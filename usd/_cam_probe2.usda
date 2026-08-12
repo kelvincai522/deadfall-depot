@@ -1,0 +1,70 @@
+#usda 1.0
+(
+    defaultPrim = "World"
+    metersPerUnit = 1
+    upAxis = "Z"
+    subLayers = [
+        @./level.usda@
+    ]
+)
+
+over "World"
+{
+    over "Cameras"
+    {
+        def Camera "PROBE00"
+        {
+            float focalLength = 0.035
+            float horizontalAperture = 0.036
+            float verticalAperture = 0.02025
+            float2 clippingRange = (0.05, 10000)
+            float focusDistance = 45.0
+            float fStop = 0
+            float exposure = 0.0
+            double3 xformOp:translate = (46.0, 1.0, 1.65)
+            double3 xformOp:rotateXYZ = (92.0, 0, 98.0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+        }
+    }
+}
+
+over "Render"
+{
+    def RenderProduct "PROBE00" (
+        prepend apiSchemas = ["OmniRtxPostBloomPhysicalAPI_1"]
+    )
+    {
+        rel camera = </World/Cameras/PROBE00>
+        rel orderedVars = [</Render/PROBE00/LdrColor>]
+        int2 resolution = (1920, 1080)
+        token omni:rtx:rendermode = "RealTimePathTracing"
+        bool omni:rtx:pt:fractionalCutoutOpacity = 1
+        int omni:rtx:pt:pixelFilter:filter = 1
+        float omni:rtx:pt:pixelFilter:radius = 1.0
+        float omni:rtx:pt:denoising:blendFactor = 0.45
+        bool omni:rtx:fog:enabled = 1
+        color3f omni:rtx:fog:color = (0.42, 0.47, 0.56)
+        float omni:rtx:fog:colorIntensity = 0.22
+        float omni:rtx:fog:distanceDensity = 0.085
+        float omni:rtx:fog:start:distance = 25.0
+        float omni:rtx:fog:endDist = 520.0
+        float omni:rtx:fog:height:density = 0.350
+        float omni:rtx:fog:height:falloff = 11.00
+        float omni:rtx:fog:start:height = 0.00
+        bool omni:rtx:fog:zUp:enabled = 1
+        bool omni:rtx:post:bloom:enabled = 1
+        float omni:rtx:post:bloom:scale = 0.08
+        float3 omni:rtx:post:bloom:cutoff = (6.0, 6.0, 6.0)
+        float omni:rtx:post:bloom:cutoffFuzziness = 0.45
+        float omni:rtx:post:bloom:focalLength = 35
+        float omni:rtx:post:bloom:fStop = 8
+        float omni:rtx:post:bloom:sensorDiagonal = 43.3
+        float omni:rtx:post:bloom:aspectRatio = 1.0
+        int omni:rtx:post:bloom:aperture:blades = 7
+
+        def RenderVar "LdrColor"
+        {
+            string sourceName = "LdrColor"
+        }
+    }
+}

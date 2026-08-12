@@ -1,0 +1,11 @@
+[project]
+name = "level-authoring"
+version = "1.0.0"
+description = "USD authoring toolchain (usd-core) - separate from the ovrtx render venv"
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "usd-core==25.5.1",
+    "numpy==2.2.6",
+    "pillow==12.1.1",
+    "pybullet>=3.2.7",
+]

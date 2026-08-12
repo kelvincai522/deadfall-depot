@@ -1,0 +1,1313 @@
+{
+ "StormSky": {
+  "type": "DomeLight",
+  "intensity": 82.0,
+  "specular": 1.0,
+  "color": [
+   0.56,
+   0.76,
+   1.22
+  ]
+ },
+ "KeySun": {
+  "type": "DistantLight",
+  "intensity": 13500.0,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.5,
+   0.2
+  ]
+ },
+ "StormFillCool": {
+  "type": "DistantLight",
+  "intensity": 2800.0,
+  "specular": 0.15,
+  "color": [
+   0.3,
+   0.5,
+   1.0
+  ]
+ },
+ "StormFillCool_S": {
+  "type": "DistantLight",
+  "intensity": 1400.0,
+  "specular": 0.1,
+  "color": [
+   0.32,
+   0.52,
+   1.0
+  ]
+ },
+ "StormFillCool_Z": {
+  "type": "DistantLight",
+  "intensity": 1900.0,
+  "specular": 0.06,
+  "color": [
+   0.34,
+   0.54,
+   1.0
+  ]
+ },
+ "HB_m27_18": {
+  "type": "DiskLight",
+  "intensity": 21654266.7,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   -26.85,
+   18.05,
+   8.31
+  ]
+ },
+ "HB_m13_18": {
+  "type": "DiskLight",
+  "intensity": 23557553.2,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   -13.16,
+   18.05,
+   8.31
+  ]
+ },
+ "HB_m07_18": {
+  "type": "DiskLight",
+  "intensity": 11909367.7,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   0.78,
+   0.93,
+   1.0
+  ],
+  "translate": [
+   -6.85,
+   18.05,
+   8.31
+  ]
+ },
+ "HB_p00_18": {
+  "type": "DiskLight",
+  "intensity": 2606050.3,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.46,
+   0.18
+  ],
+  "translate": [
+   -0.0,
+   18.05,
+   8.31
+  ]
+ },
+ "HB_p07_18": {
+  "type": "DiskLight",
+  "intensity": 2606050.3,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.46,
+   0.18
+  ],
+  "translate": [
+   6.84,
+   18.05,
+   8.31
+  ]
+ },
+ "HB_p13_18": {
+  "type": "DiskLight",
+  "intensity": 2606050.3,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.46,
+   0.18
+  ],
+  "translate": [
+   13.15,
+   18.05,
+   8.31
+  ]
+ },
+ "HB_m07_33": {
+  "type": "DiskLight",
+  "intensity": 22502677.9,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   -6.85,
+   32.98,
+   10.57
+  ]
+ },
+ "HB_p07_33": {
+  "type": "DiskLight",
+  "intensity": 20875369.3,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   6.84,
+   32.98,
+   10.57
+  ]
+ },
+ "HB_m20_33": {
+  "type": "DiskLight",
+  "intensity": 19962813.8,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   -20.0,
+   32.99,
+   10.57
+  ]
+ },
+ "HB_m27_46": {
+  "type": "DiskLight",
+  "intensity": 19308345.0,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   -26.85,
+   45.52,
+   9.51
+  ]
+ },
+ "HB_m20_46": {
+  "type": "DiskLight",
+  "intensity": 22022442.5,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   -20.0,
+   45.52,
+   9.51
+  ]
+ },
+ "HB_m13_46": {
+  "type": "DiskLight",
+  "intensity": 11909367.7,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   0.78,
+   0.93,
+   1.0
+  ],
+  "translate": [
+   -13.16,
+   45.52,
+   9.51
+  ]
+ },
+ "HB_m07_46": {
+  "type": "DiskLight",
+  "intensity": 2606050.3,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.46,
+   0.18
+  ],
+  "translate": [
+   -6.85,
+   45.52,
+   9.51
+  ]
+ },
+ "HB_p07_46": {
+  "type": "DiskLight",
+  "intensity": 21319806.4,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   6.84,
+   45.52,
+   9.51
+  ]
+ },
+ "HB_p13_46": {
+  "type": "DiskLight",
+  "intensity": 22978077.5,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   13.15,
+   45.52,
+   9.51
+  ]
+ },
+ "HB_p20_46": {
+  "type": "DiskLight",
+  "intensity": 2606050.3,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.46,
+   0.18
+  ],
+  "translate": [
+   20.0,
+   45.52,
+   9.51
+  ]
+ },
+ "HB_p27_46": {
+  "type": "DiskLight",
+  "intensity": 11909367.7,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   0.78,
+   0.93,
+   1.0
+  ],
+  "translate": [
+   26.84,
+   45.52,
+   9.51
+  ]
+ },
+ "HB_m27_58": {
+  "type": "DiskLight",
+  "intensity": 21853972.7,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   -26.85,
+   58.09,
+   10.56
+  ]
+ },
+ "HB_m20_58": {
+  "type": "DiskLight",
+  "intensity": 23479132.9,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   -20.0,
+   58.09,
+   10.56
+  ]
+ },
+ "HB_m07_58": {
+  "type": "DiskLight",
+  "intensity": 19608443.7,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   -6.85,
+   58.09,
+   10.56
+  ]
+ },
+ "HB_p07_58": {
+  "type": "DiskLight",
+  "intensity": 18856658.3,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   6.84,
+   58.09,
+   10.56
+  ]
+ },
+ "HB_p13_58": {
+  "type": "DiskLight",
+  "intensity": 19814076.5,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   13.15,
+   58.09,
+   10.56
+  ]
+ },
+ "HB_p20_58": {
+  "type": "DiskLight",
+  "intensity": 23854112.2,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   20.0,
+   58.09,
+   10.56
+  ]
+ },
+ "HB_m27_73": {
+  "type": "DiskLight",
+  "intensity": 21175710.1,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   -26.85,
+   73.0,
+   8.26
+  ]
+ },
+ "HB_m07_73": {
+  "type": "DiskLight",
+  "intensity": 20059570.2,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   -6.85,
+   73.0,
+   8.26
+  ]
+ },
+ "HB_p07_73": {
+  "type": "DiskLight",
+  "intensity": 19098138.7,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   6.84,
+   73.0,
+   8.26
+  ]
+ },
+ "HB_p27_73": {
+  "type": "DiskLight",
+  "intensity": 19648570.0,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   26.84,
+   73.0,
+   8.26
+  ]
+ },
+ "WP_m34": {
+  "type": "SphereLight",
+  "intensity": 87403633.5,
+  "radius": 0.16,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   -34.0,
+   14.6,
+   5.2
+  ]
+ },
+ "WP_m10": {
+  "type": "SphereLight",
+  "intensity": 32222537.6,
+  "radius": 0.16,
+  "specular": 1.0,
+  "color": [
+   0.78,
+   0.93,
+   1.0
+  ],
+  "translate": [
+   -10.0,
+   14.6,
+   5.2
+  ]
+ },
+ "WP_p02": {
+  "type": "SphereLight",
+  "intensity": 100514178.3,
+  "radius": 0.16,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   2.0,
+   14.6,
+   5.2
+  ]
+ },
+ "WP_p14": {
+  "type": "SphereLight",
+  "intensity": 26221090.0,
+  "radius": 0.16,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.46,
+   0.18
+  ],
+  "translate": [
+   14.0,
+   14.6,
+   5.2
+  ]
+ },
+ "WP_p26": {
+  "type": "SphereLight",
+  "intensity": 78663270.1,
+  "radius": 0.16,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   26.0,
+   14.6,
+   5.2
+  ]
+ },
+ "DC_m44": {
+  "type": "SphereLight",
+  "intensity": 38519537.6,
+  "radius": 0.16,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   -44.0,
+   -21.5,
+   5.2
+  ]
+ },
+ "DC_m30": {
+  "type": "SphereLight",
+  "intensity": 42574225.8,
+  "radius": 0.16,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   -30.0,
+   -21.5,
+   5.2
+  ]
+ },
+ "DC_m16": {
+  "type": "SphereLight",
+  "intensity": 36492193.5,
+  "radius": 0.16,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   -16.0,
+   -21.5,
+   5.2
+  ]
+ },
+ "DC_m06": {
+  "type": "SphereLight",
+  "intensity": 89108646.2,
+  "radius": 0.16,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   -6.0,
+   -21.5,
+   5.2
+  ]
+ },
+ "DC_p02": {
+  "type": "SphereLight",
+  "intensity": 34464849.5,
+  "radius": 0.16,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   2.0,
+   -21.5,
+   5.2
+  ]
+ },
+ "DC_p26": {
+  "type": "SphereLight",
+  "intensity": 11468975.2,
+  "radius": 0.16,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.46,
+   0.18
+  ],
+  "translate": [
+   26.0,
+   -21.5,
+   5.2
+  ]
+ },
+ "DockFace_BayLamp_m06": {
+  "type": "SphereLight",
+  "intensity": 41229373.6,
+  "radius": 0.11,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   -6.6,
+   -22.1,
+   1.25
+  ]
+ },
+ "Gable_Yard_West": {
+  "type": "SphereLight",
+  "intensity": 1382876717.7,
+  "radius": 0.22,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   -26.0,
+   14.4,
+   9.0
+  ]
+ },
+ "Gable_Yard_East": {
+  "type": "SphereLight",
+  "intensity": 314673219.2,
+  "radius": 0.22,
+  "specular": 1.0,
+  "color": [
+   0.7,
+   0.83,
+   1.0
+  ],
+  "translate": [
+   8.0,
+   14.4,
+   9.0
+  ]
+ },
+ "Mast_FuelBay": {
+  "type": "SphereLight",
+  "intensity": 387290116.0,
+  "radius": 0.2,
+  "specular": 1.0,
+  "color": [
+   0.87,
+   0.93,
+   1.0
+  ],
+  "translate": [
+   -60.0,
+   -2.0,
+   8.0
+  ]
+ },
+ "Gantry_West": {
+  "type": "SphereLight",
+  "intensity": 290467587.0,
+  "radius": 0.2,
+  "specular": 1.0,
+  "color": [
+   0.87,
+   0.93,
+   1.0
+  ],
+  "translate": [
+   44.0,
+   26.0,
+   9.0
+  ]
+ },
+ "Gantry_East": {
+  "type": "SphereLight",
+  "intensity": 290467587.0,
+  "radius": 0.2,
+  "specular": 1.0,
+  "color": [
+   0.87,
+   0.93,
+   1.0
+  ],
+  "translate": [
+   64.0,
+   26.0,
+   9.0
+  ]
+ },
+ "TankerGantry": {
+  "type": "SphereLight",
+  "intensity": 462230753.4,
+  "radius": 0.2,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   -54.0,
+   8.0,
+   4.5
+  ]
+ },
+ "Trestle_West": {
+  "type": "SphereLight",
+  "intensity": 252125865.5,
+  "radius": 0.2,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.46,
+   0.18
+  ],
+  "translate": [
+   -30.0,
+   3.5,
+   5.05
+  ]
+ },
+ "Bridge_East": {
+  "type": "SphereLight",
+  "intensity": 1067239030.5,
+  "radius": 0.2,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   25.9,
+   -3.5,
+   5.75
+  ]
+ },
+ "Bridge_East_N": {
+  "type": "SphereLight",
+  "intensity": 948656916.0,
+  "radius": 0.2,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   25.9,
+   9.5,
+   5.75
+  ]
+ },
+ "Bridge_East_S": {
+  "type": "SphereLight",
+  "intensity": 474328458.0,
+  "radius": 0.2,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.46,
+   0.18
+  ],
+  "translate": [
+   25.9,
+   -12.0,
+   5.75
+  ]
+ },
+ "EastPlatform": {
+  "type": "SphereLight",
+  "intensity": 360179807.9,
+  "radius": 0.2,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.55,
+   0.24
+  ],
+  "translate": [
+   45.0,
+   8.0,
+   4.2
+  ]
+ },
+ "DockOffice_Broken": {
+  "type": "SphereLight",
+  "intensity": 23237407.0,
+  "radius": 0.1,
+  "specular": 1.0,
+  "color": [
+   0.62,
+   0.86,
+   0.74
+  ],
+  "translate": [
+   47.0,
+   -27.0,
+   4.2
+  ]
+ },
+ "Clerestory_South": {
+  "type": "RectLight",
+  "intensity": 1755.0,
+  "width": 66.0,
+  "height": 2.9,
+  "specular": 1.0,
+  "color": [
+   0.3,
+   0.5,
+   1.0
+  ],
+  "translate": [
+   0.0,
+   38.2,
+   15.3
+  ]
+ },
+ "Clerestory_North": {
+  "type": "RectLight",
+  "intensity": 1575.0,
+  "width": 66.0,
+  "height": 2.9,
+  "specular": 1.0,
+  "color": [
+   0.28,
+   0.48,
+   1.0
+  ],
+  "translate": [
+   0.0,
+   52.8,
+   15.3
+  ]
+ },
+ "RoofMonitor_Down": {
+  "type": "RectLight",
+  "intensity": 189.0,
+  "width": 62.0,
+  "height": 13.0,
+  "specular": 1.0,
+  "color": [
+   0.34,
+   0.52,
+   1.0
+  ],
+  "translate": [
+   0.0,
+   45.5,
+   16.6
+  ]
+ },
+ "GateWash_South": {
+  "type": "RectLight",
+  "intensity": 1400.0,
+  "width": 40.0,
+  "height": 3.6,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.54,
+   0.22
+  ],
+  "translate": [
+   -17.6,
+   15.6,
+   1.85
+  ]
+ },
+ "GateWash_Hero": {
+  "type": "RectLight",
+  "intensity": 9500.0,
+  "width": 7.3,
+  "height": 6.6,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.5,
+   0.2
+  ],
+  "translate": [
+   0.0,
+   15.9,
+   3.4
+  ]
+ },
+ "GateWash_West": {
+  "type": "RectLight",
+  "intensity": 1700.0,
+  "width": 42.0,
+  "height": 3.6,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.56,
+   0.24
+  ],
+  "translate": [
+   -37.55,
+   36.5,
+   1.85
+  ]
+ },
+ "GateWash_East": {
+  "type": "RectLight",
+  "intensity": 45000.0,
+  "width": 24.0,
+  "height": 3.8,
+  "specular": 1.0,
+  "color": [
+   0.62,
+   0.78,
+   1.3
+  ],
+  "translate": [
+   37.55,
+   45.5,
+   1.85
+  ]
+ },
+ "Sky_H0": {
+  "type": "RectLight",
+  "intensity": 2078.2,
+  "width": 2.2,
+  "height": 3.8,
+  "specular": 1.0,
+  "color": [
+   0.58,
+   0.76,
+   1.25
+  ],
+  "translate": [
+   -29.3,
+   18.3,
+   10.568
+  ]
+ },
+ "SunBar_H0": {
+  "type": "SphereLight",
+  "intensity": 22808812.5,
+  "radius": 0.25,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.58,
+   0.28
+  ],
+  "translate": [
+   -29.3,
+   18.3,
+   10.388
+  ]
+ },
+ "Sky_H1": {
+  "type": "RectLight",
+  "intensity": 2629.5,
+  "width": 1.8,
+  "height": 4.8,
+  "specular": 1.0,
+  "color": [
+   0.58,
+   0.76,
+   1.25
+  ],
+  "translate": [
+   13.5,
+   29.0,
+   12.154
+  ]
+ },
+ "SunBar_H1": {
+  "type": "SphereLight",
+  "intensity": 28928250.0,
+  "radius": 0.25,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.58,
+   0.28
+  ],
+  "translate": [
+   13.5,
+   29.0,
+   11.974
+  ]
+ },
+ "Sky_H2": {
+  "type": "RectLight",
+  "intensity": 2417.5,
+  "width": 1.6,
+  "height": 3.0,
+  "specular": 1.0,
+  "color": [
+   0.58,
+   0.76,
+   1.25
+  ],
+  "translate": [
+   -5.4,
+   29.5,
+   12.372
+  ]
+ },
+ "SunBar_H2": {
+  "type": "SphereLight",
+  "intensity": 26146687.5,
+  "radius": 0.25,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.58,
+   0.28
+  ],
+  "translate": [
+   -5.4,
+   29.5,
+   12.192
+  ]
+ },
+ "Sky_H3": {
+  "type": "RectLight",
+  "intensity": 1866.1,
+  "width": 1.8,
+  "height": 2.8,
+  "specular": 1.0,
+  "color": [
+   0.58,
+   0.76,
+   1.25
+  ],
+  "translate": [
+   25.7,
+   18.2,
+   10.63
+  ]
+ },
+ "SunBar_H3": {
+  "type": "SphereLight",
+  "intensity": 18914625.0,
+  "radius": 0.25,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.58,
+   0.28
+  ],
+  "translate": [
+   25.7,
+   18.2,
+   10.45
+  ]
+ },
+ "Sky_H4": {
+  "type": "RectLight",
+  "intensity": 2205.4,
+  "width": 1.8,
+  "height": 3.0,
+  "specular": 1.0,
+  "color": [
+   0.58,
+   0.76,
+   1.25
+  ],
+  "translate": [
+   34.1,
+   28.9,
+   12.278
+  ]
+ },
+ "SunBar_H4": {
+  "type": "SphereLight",
+  "intensity": 24477750.0,
+  "radius": 0.25,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.58,
+   0.28
+  ],
+  "translate": [
+   34.1,
+   28.9,
+   12.098
+  ]
+ },
+ "Sky_H5": {
+  "type": "RectLight",
+  "intensity": 2332.6,
+  "width": 1.8,
+  "height": 2.8,
+  "specular": 1.0,
+  "color": [
+   0.58,
+   0.76,
+   1.25
+  ],
+  "translate": [
+   -18.5,
+   23.0,
+   11.376
+  ]
+ },
+ "SunBar_H5": {
+  "type": "SphereLight",
+  "intensity": 17245687.5,
+  "radius": 0.25,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.58,
+   0.28
+  ],
+  "translate": [
+   -18.5,
+   23.0,
+   11.196
+  ]
+ },
+ "StormBreak_West": {
+  "type": "RectLight",
+  "intensity": 640.0,
+  "width": 160.0,
+  "height": 90.0,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.61,
+   0.31
+  ],
+  "translate": [
+   -422.9,
+   -153.9,
+   42.0
+  ]
+ },
+ "StormBreak_Fringe": {
+  "type": "RectLight",
+  "intensity": 260.0,
+  "width": 300.0,
+  "height": 46.0,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.68,
+   0.43
+  ],
+  "translate": [
+   -418.0,
+   -152.1,
+   12.0
+  ]
+ },
+ "YardMast_EastApron": {
+  "type": "SphereLight",
+  "intensity": 9000000.0,
+  "radius": 0.42,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.54,
+   0.23
+  ],
+  "translate": [
+   40.0,
+   -19.4,
+   6.6
+  ]
+ },
+ "DockFace_BayLamp_m22": {
+  "type": "SphereLight",
+  "intensity": 5200000.0,
+  "radius": 0.3,
+  "specular": 1.0,
+  "color": [
+   1.0,
+   0.51,
+   0.2
+  ],
+  "translate": [
+   -19.4,
+   -22.1,
+   1.45
+  ]
+ },
+ "YardSky_South": {
+  "type": "RectLight",
+  "intensity": 620.0,
+  "width": 60.0,
+  "height": 26.0,
+  "specular": 0.25,
+  "color": [
+   0.05,
+   0.26,
+   1.65
+  ],
+  "translate": [
+   -8.0,
+   -7.0,
+   13.0
+  ]
+ },
+ "GateWash_West_Sky": {
+  "type": "RectLight",
+  "intensity": 9000.0,
+  "width": 42.0,
+  "height": 4.6,
+  "specular": 0.6,
+  "color": [
+   0.06,
+   0.28,
+   1.7
+  ],
+  "translate": [
+   -37.5,
+   36.5,
+   2.35
+  ]
+ },
+ "ApronSky_CanopySlot": {
+  "type": "RectLight",
+  "intensity": 1400.0,
+  "width": 42.0,
+  "height": 5.2,
+  "specular": 0.2,
+  "color": [
+   0.05,
+   0.22,
+   1.8
+  ],
+  "translate": [
+   -14.0,
+   -19.7,
+   3.0
+  ]
+ },
+ "SunDisc": {
+  "type": "DistantLight",
+  "intensity": 0.6,
+  "specular": 1.0,
+  "normalize": 0,
+  "color": [
+   1.0,
+   0.68,
+   0.38
+  ]
+ }
+}

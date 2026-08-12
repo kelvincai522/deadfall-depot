@@ -1,0 +1,5856 @@
+{
+"Assets/simready_content/common_assets/props/steeldrum_a01/steeldrum_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/steeldrum_a01/steeldrum_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 62655,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.3209,
+-0.3361,
+-0.0
+],
+"max_m": [
+0.3209,
+0.3209,
+0.8683
+],
+"size_m": [
+0.6418,
+0.6571,
+0.8683
+]
+},
+"Assets/simready_content/common_assets/props/steeldrum_a02/steeldrum_a02.usd": {
+"key": "Assets/simready_content/common_assets/props/steeldrum_a02/steeldrum_a02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 60184,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2407,
+-0.2407,
+-0.0
+],
+"max_m": [
+0.2521,
+0.2407,
+0.7377
+],
+"size_m": [
+0.4928,
+0.4814,
+0.7377
+]
+},
+"Assets/simready_content/common_assets/props/steeldrum_a03/steeldrum_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/steeldrum_a03/steeldrum_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 60263,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1873,
+-0.1962,
+-0.0
+],
+"max_m": [
+0.1873,
+0.1873,
+0.6612
+],
+"size_m": [
+0.3746,
+0.3834,
+0.6612
+]
+},
+"Assets/simready_content/common_assets/props/steeldrum_a04/steeldrum_a04.usd": {
+"key": "Assets/simready_content/common_assets/props/steeldrum_a04/steeldrum_a04.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 60263,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1873,
+-0.1961,
+-0.0
+],
+"max_m": [
+0.1873,
+0.1873,
+0.4837
+],
+"size_m": [
+0.3745,
+0.3834,
+0.4837
+]
+},
+"Assets/simready_content/common_assets/props/plasticdrum_a03/plasticdrum_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/plasticdrum_a03/plasticdrum_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 45714,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1776,
+-0.1781,
+-0.0005
+],
+"max_m": [
+0.1776,
+0.1781,
+0.66
+],
+"size_m": [
+0.3553,
+0.3563,
+0.6605
+]
+},
+"Assets/simready_content/common_assets/props/plasticdrum_a04/plasticdrum_a04.usd": {
+"key": "Assets/simready_content/common_assets/props/plasticdrum_a04/plasticdrum_a04.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 47134,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2353,
+-0.2353,
+0.0
+],
+"max_m": [
+0.2353,
+0.2353,
+0.7543
+],
+"size_m": [
+0.4706,
+0.4706,
+0.7543
+]
+},
+"Assets/simready_content/common_assets/props/plasticdrum_a05/plasticdrum_a05.usd": {
+"key": "Assets/simready_content/common_assets/props/plasticdrum_a05/plasticdrum_a05.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 36874,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2426,
+-0.2426,
+-0.0001
+],
+"max_m": [
+0.2426,
+0.2426,
+0.7355
+],
+"size_m": [
+0.4851,
+0.4851,
+0.7356
+]
+},
+"Assets/simready_content/common_assets/props/plasticdrum_b01/plasticdrum_b01.usd": {
+"key": "Assets/simready_content/common_assets/props/plasticdrum_b01/plasticdrum_b01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 53061,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2642,
+-0.2642,
+0.0042
+],
+"max_m": [
+0.2642,
+0.2642,
+0.8571
+],
+"size_m": [
+0.5284,
+0.5284,
+0.8528
+]
+},
+"Assets/simready_content/common_assets/props/plasticdrum_b02/plasticdrum_b02.usd": {
+"key": "Assets/simready_content/common_assets/props/plasticdrum_b02/plasticdrum_b02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 67115,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2789,
+-0.2789,
+0.0006
+],
+"max_m": [
+0.2789,
+0.2789,
+0.9206
+],
+"size_m": [
+0.5578,
+0.5578,
+0.92
+]
+},
+"Assets/simready_content/common_assets/props/plasticdrum_b03/plasticdrum_b03.usd": {
+"key": "Assets/simready_content/common_assets/props/plasticdrum_b03/plasticdrum_b03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 22767,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2789,
+-0.2789,
+0.0006
+],
+"max_m": [
+0.2789,
+0.2789,
+0.897
+],
+"size_m": [
+0.5578,
+0.5578,
+0.8964
+]
+},
+"Assets/simready_content/common_assets/props/fiberdrum_a01/fiberdrum_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/fiberdrum_a01/fiberdrum_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 25518,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.3107,
+-0.3191,
+-0.0026
+],
+"max_m": [
+0.3107,
+0.3107,
+1.1113
+],
+"size_m": [
+0.6213,
+0.6298,
+1.1139
+]
+},
+"Assets/simready_content/common_assets/props/fiberdrum_a02/fiberdrum_a02.usd": {
+"key": "Assets/simready_content/common_assets/props/fiberdrum_a02/fiberdrum_a02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 25518,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2888,
+-0.2973,
+-0.0
+],
+"max_m": [
+0.2888,
+0.2888,
+0.9072
+],
+"size_m": [
+0.5775,
+0.5861,
+0.9072
+]
+},
+"Assets/simready_content/common_assets/props/fiberdrum_a03/fiberdrum_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/fiberdrum_a03/fiberdrum_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 25498,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2452,
+-0.2539,
+-0.0
+],
+"max_m": [
+0.2452,
+0.2452,
+0.6972
+],
+"size_m": [
+0.4903,
+0.4991,
+0.6972
+]
+},
+"Assets/simready_content/common_assets/props/fiberdrum_a04/fiberdrum_a04.usd": {
+"key": "Assets/simready_content/common_assets/props/fiberdrum_a04/fiberdrum_a04.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 25504,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2116,
+-0.2206,
+-0.0
+],
+"max_m": [
+0.2116,
+0.2116,
+0.6572
+],
+"size_m": [
+0.4232,
+0.4322,
+0.6572
+]
+},
+"Assets/simready_content/common_assets/props/fiberdrum_a05/fiberdrum_a05.usd": {
+"key": "Assets/simready_content/common_assets/props/fiberdrum_a05/fiberdrum_a05.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 25518,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.205,
+-0.2141,
+-0.0
+],
+"max_m": [
+0.205,
+0.205,
+0.4972
+],
+"size_m": [
+0.41,
+0.4191,
+0.4972
+]
+},
+"Assets/simready_content/common_assets/props/fiberdrum_a06/fiberdrum_a06.usd": {
+"key": "Assets/simready_content/common_assets/props/fiberdrum_a06/fiberdrum_a06.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 25902,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1891,
+-0.1982,
+0.0
+],
+"max_m": [
+0.1891,
+0.1891,
+0.4269
+],
+"size_m": [
+0.3782,
+0.3872,
+0.4269
+]
+},
+"Assets/simready_content/common_assets/props/fiberdrum_a07/fiberdrum_a07.usd": {
+"key": "Assets/simready_content/common_assets/props/fiberdrum_a07/fiberdrum_a07.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 13981,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.157,
+-0.157,
+0.0
+],
+"max_m": [
+0.157,
+0.157,
+0.224
+],
+"size_m": [
+0.3141,
+0.3141,
+0.224
+]
+},
+"Assets/simready_content/common_assets/props/nestableplasticdrum_a01/nestableplasticdrum_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/nestableplasticdrum_a01/nestableplasticdrum_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 28108,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2033,
+-0.2104,
+0.0
+],
+"max_m": [
+0.2051,
+0.204,
+0.7058
+],
+"size_m": [
+0.4084,
+0.4145,
+0.7058
+]
+},
+"Assets/simready_content/common_assets/props/nestableplasticdrum_a02/nestableplasticdrum_a02.usd": {
+"key": "Assets/simready_content/common_assets/props/nestableplasticdrum_a02/nestableplasticdrum_a02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 29431,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.3002,
+-0.3036,
+-0.0
+],
+"max_m": [
+0.3002,
+0.3002,
+0.9959
+],
+"size_m": [
+0.6005,
+0.6039,
+0.9959
+]
+},
+"Assets/simready_content/common_assets/props/ibctank_a01/ibctank_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/ibctank_a01/ibctank_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 85924,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.5233,
+-0.6283,
+0.0
+],
+"max_m": [
+0.5246,
+0.6273,
+1.4131
+],
+"size_m": [
+1.0479,
+1.2557,
+1.4131
+]
+},
+"Assets/simready_content/common_assets/props/ibctank_a02/ibctank_a02.usd": {
+"key": "Assets/simready_content/common_assets/props/ibctank_a02/ibctank_a02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 80514,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.524,
+-0.6283,
+0.0
+],
+"max_m": [
+0.524,
+0.6273,
+1.2022
+],
+"size_m": [
+1.0479,
+1.2557,
+1.2022
+]
+},
+"Assets/simready_content/common_assets/props/ibctank_b01/ibctank_b01.usd": {
+"key": "Assets/simready_content/common_assets/props/ibctank_b01/ibctank_b01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 77591,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.5134,
+-0.6479,
+-0.0
+],
+"max_m": [
+0.5134,
+0.6402,
+1.3193
+],
+"size_m": [
+1.0268,
+1.2881,
+1.3193
+]
+},
+"Assets/simready_content/common_assets/props/stainlesssteelibctank_a01/stainlesssteelibctank_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/stainlesssteelibctank_a01/stainlesssteelibctank_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 151135,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6323,
+-0.5561,
+-0.0
+],
+"max_m": [
+0.6327,
+0.556,
+1.2967
+],
+"size_m": [
+1.265,
+1.1121,
+1.2967
+]
+},
+"Assets/simready_content/common_assets/props/ibctankheater_a01/ibctankheater_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/ibctankheater_a01/ibctankheater_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 113735,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6472,
+-0.5453,
+-0.0
+],
+"max_m": [
+0.722,
+0.5467,
+1.2225
+],
+"size_m": [
+1.3692,
+1.0919,
+1.2225
+]
+},
+"Assets/simready_content/common_assets/props/ibcspillcontainmentpallet_a01/ibcspillcontainmentpallet_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/ibcspillcontainmentpallet_a01/ibcspillcontainmentpallet_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 112385,
+"defaultPrim": "RootNode",
+"min_m": [
+-1.0046,
+-0.9837,
+0.0
+],
+"max_m": [
+1.0046,
+0.9837,
+0.8111
+],
+"size_m": [
+2.0091,
+1.9674,
+0.8111
+]
+},
+"Assets/simready_content/common_assets/props/blockpallet_a01/blockpallet_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/blockpallet_a01/blockpallet_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 18177,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.5,
+-0.6,
+0.0
+],
+"max_m": [
+0.5,
+0.6,
+0.1202
+],
+"size_m": [
+1.0,
+1.2,
+0.1202
+]
+},
+"Assets/simready_content/common_assets/props/blockpallet_a02/blockpallet_a02.usd": {
+"key": "Assets/simready_content/common_assets/props/blockpallet_a02/blockpallet_a02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 20037,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.5001,
+-0.6,
+-0.0
+],
+"max_m": [
+0.5001,
+0.6,
+0.1405
+],
+"size_m": [
+1.0002,
+1.2,
+0.1405
+]
+},
+"Assets/simready_content/common_assets/props/blockpallet_a03/blockpallet_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/blockpallet_a03/blockpallet_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 16125,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.5004,
+-0.6,
+-0.0
+],
+"max_m": [
+0.5004,
+0.6,
+0.1199
+],
+"size_m": [
+1.0009,
+1.2,
+0.1199
+]
+},
+"Assets/simready_content/common_assets/props/blockpallet_a04/blockpallet_a04.usd": {
+"key": "Assets/simready_content/common_assets/props/blockpallet_a04/blockpallet_a04.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 20037,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.5002,
+-0.6,
+-0.0
+],
+"max_m": [
+0.5002,
+0.6,
+0.1411
+],
+"size_m": [
+1.0005,
+1.2,
+0.1411
+]
+},
+"Assets/simready_content/common_assets/props/blockpallet_a05/blockpallet_a05.usd": {
+"key": "Assets/simready_content/common_assets/props/blockpallet_a05/blockpallet_a05.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 17835,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.5,
+-0.6,
+0.0
+],
+"max_m": [
+0.5,
+0.6,
+0.1386
+],
+"size_m": [
+1.0,
+1.2,
+0.1386
+]
+},
+"Assets/simready_content/common_assets/props/blockpallet_a06/blockpallet_a06.usd": {
+"key": "Assets/simready_content/common_assets/props/blockpallet_a06/blockpallet_a06.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 19491,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.5004,
+-0.6,
+0.0
+],
+"max_m": [
+0.5004,
+0.6,
+0.1402
+],
+"size_m": [
+1.0009,
+1.2,
+0.1402
+]
+},
+"Assets/simready_content/common_assets/props/blockpallet_a07/blockpallet_a07.usd": {
+"key": "Assets/simready_content/common_assets/props/blockpallet_a07/blockpallet_a07.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 18273,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.3991,
+-0.6,
+0.0
+],
+"max_m": [
+0.3991,
+0.6,
+0.1408
+],
+"size_m": [
+0.7983,
+1.2,
+0.1408
+]
+},
+"Assets/simready_content/common_assets/props/blockpallet_a08/blockpallet_a08.usd": {
+"key": "Assets/simready_content/common_assets/props/blockpallet_a08/blockpallet_a08.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 23265,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.4998,
+-0.6,
+-0.0
+],
+"max_m": [
+0.4997,
+0.6,
+0.1618
+],
+"size_m": [
+0.9995,
+1.2,
+0.1618
+]
+},
+"Assets/simready_content/common_assets/props/blockpallet_a09/blockpallet_a09.usd": {
+"key": "Assets/simready_content/common_assets/props/blockpallet_a09/blockpallet_a09.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 23541,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.5,
+-0.6008,
+0.0
+],
+"max_m": [
+0.5,
+0.6008,
+0.1618
+],
+"size_m": [
+1.0,
+1.2016,
+0.1618
+]
+},
+"Assets/simready_content/common_assets/props/blockpallet_b01/blockpallet_b01.usd": {
+"key": "Assets/simready_content/common_assets/props/blockpallet_b01/blockpallet_b01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 13481,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6021,
+-0.4002,
+0.0
+],
+"max_m": [
+0.6021,
+0.4002,
+0.2086
+],
+"size_m": [
+1.2042,
+0.8004,
+0.2086
+]
+},
+"Assets/simready_content/common_assets/props/blockpallet_b02/blockpallet_b02.usd": {
+"key": "Assets/simready_content/common_assets/props/blockpallet_b02/blockpallet_b02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 13537,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6052,
+-0.5012,
+0.0
+],
+"max_m": [
+0.6052,
+0.5012,
+0.2086
+],
+"size_m": [
+1.2104,
+1.0025,
+0.2086
+]
+},
+"Assets/simready_content/common_assets/props/blockpallet_b03/blockpallet_b03.usd": {
+"key": "Assets/simready_content/common_assets/props/blockpallet_b03/blockpallet_b03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 13929,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.8635,
+-0.9627,
+0.0
+],
+"max_m": [
+0.8635,
+0.9627,
+0.2086
+],
+"size_m": [
+1.7271,
+1.9254,
+0.2086
+]
+},
+"Assets/simready_content/common_assets/props/blockpallet_c01/blockpallet_c01.usd": {
+"key": "Assets/simready_content/common_assets/props/blockpallet_c01/blockpallet_c01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 16051,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.5086,
+-0.6131,
+0.0
+],
+"max_m": [
+0.5086,
+0.6131,
+0.1579
+],
+"size_m": [
+1.0172,
+1.2262,
+0.1579
+]
+},
+"Assets/simready_content/common_assets/props/recycledwoodpallet_a01/recycledwoodpallet_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/recycledwoodpallet_a01/recycledwoodpallet_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 15802,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.3029,
+-0.2999,
+0.0
+],
+"max_m": [
+0.3029,
+0.2999,
+0.112
+],
+"size_m": [
+0.6058,
+0.5999,
+0.112
+]
+},
+"Assets/simready_content/common_assets/props/recycledwoodpallet_a02/recycledwoodpallet_a02.usd": {
+"key": "Assets/simready_content/common_assets/props/recycledwoodpallet_a02/recycledwoodpallet_a02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 18421,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.3754,
+-0.3745,
+-0.0
+],
+"max_m": [
+0.3754,
+0.3745,
+0.1122
+],
+"size_m": [
+0.7508,
+0.749,
+0.1122
+]
+},
+"Assets/simready_content/common_assets/props/recycledwoodpallet_a03/recycledwoodpallet_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/recycledwoodpallet_a03/recycledwoodpallet_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 17828,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.4518,
+-0.4507,
+0.0
+],
+"max_m": [
+0.4518,
+0.4507,
+0.1212
+],
+"size_m": [
+0.9035,
+0.9014,
+0.1212
+]
+},
+"Assets/simready_content/common_assets/props/recycledwoodpallet_a04/recycledwoodpallet_a04.usd": {
+"key": "Assets/simready_content/common_assets/props/recycledwoodpallet_a04/recycledwoodpallet_a04.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 18700,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.5301,
+-0.526,
+0.0
+],
+"max_m": [
+0.5301,
+0.526,
+0.1212
+],
+"size_m": [
+1.0603,
+1.052,
+0.1212
+]
+},
+"Assets/simready_content/common_assets/props/recycledwoodpallet_a05/recycledwoodpallet_a05.usd": {
+"key": "Assets/simready_content/common_assets/props/recycledwoodpallet_a05/recycledwoodpallet_a05.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 19360,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.4523,
+-0.597,
+0.0
+],
+"max_m": [
+0.4523,
+0.597,
+0.1212
+],
+"size_m": [
+0.9046,
+1.1939,
+0.1212
+]
+},
+"Assets/simready_content/common_assets/props/recycledwoodpallet_a06/recycledwoodpallet_a06.usd": {
+"key": "Assets/simready_content/common_assets/props/recycledwoodpallet_a06/recycledwoodpallet_a06.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 20655,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.5,
+-0.597,
+0.0
+],
+"max_m": [
+0.5,
+0.597,
+0.1212
+],
+"size_m": [
+1.0,
+1.1939,
+0.1212
+]
+},
+"Assets/simready_content/common_assets/props/recycledwoodpallet_a07/recycledwoodpallet_a07.usd": {
+"key": "Assets/simready_content/common_assets/props/recycledwoodpallet_a07/recycledwoodpallet_a07.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 20575,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6001,
+-0.597,
+0.0
+],
+"max_m": [
+0.6001,
+0.597,
+0.1212
+],
+"size_m": [
+1.2002,
+1.1939,
+0.1212
+]
+},
+"Assets/simready_content/common_assets/props/recycledwoodpallet_a08/recycledwoodpallet_a08.usd": {
+"key": "Assets/simready_content/common_assets/props/recycledwoodpallet_a08/recycledwoodpallet_a08.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 20555,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.5,
+-0.597,
+0.0
+],
+"max_m": [
+0.5,
+0.597,
+0.121
+],
+"size_m": [
+1.0,
+1.1939,
+0.121
+]
+},
+"Assets/simready_content/common_assets/props/exportpallet_a01/exportpallet_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/exportpallet_a01/exportpallet_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 39945,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.4,
+-0.3,
+0.0
+],
+"max_m": [
+0.4,
+0.3,
+0.1362
+],
+"size_m": [
+0.8,
+0.6,
+0.1362
+]
+},
+"Assets/simready_content/common_assets/props/exportpallet_a03/exportpallet_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/exportpallet_a03/exportpallet_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 66901,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6185,
+-0.5156,
+0.0
+],
+"max_m": [
+0.6185,
+0.5156,
+0.1362
+],
+"size_m": [
+1.237,
+1.0312,
+0.1362
+]
+},
+"Assets/simready_content/common_assets/props/exportpallet_a05/exportpallet_a05.usd": {
+"key": "Assets/simready_content/common_assets/props/exportpallet_a05/exportpallet_a05.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 40143,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.55,
+-0.55,
+0.0
+],
+"max_m": [
+0.55,
+0.55,
+0.1447
+],
+"size_m": [
+1.1,
+1.1,
+0.1447
+]
+},
+"Assets/simready_content/common_assets/props/exportpallet_a07/exportpallet_a07.usd": {
+"key": "Assets/simready_content/common_assets/props/exportpallet_a07/exportpallet_a07.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 63149,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6112,
+-0.5689,
+0.0
+],
+"max_m": [
+0.6112,
+0.5689,
+0.1538
+],
+"size_m": [
+1.2225,
+1.1379,
+0.1538
+]
+},
+"Assets/simready_content/common_assets/props/aluminumpallet_a01/aluminumpallet_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/aluminumpallet_a01/aluminumpallet_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 55142,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6112,
+-0.5082,
+0.0
+],
+"max_m": [
+0.6112,
+0.5082,
+0.1361
+],
+"size_m": [
+1.2224,
+1.0164,
+0.1361
+]
+},
+"Assets/simready_content/common_assets/props/aluminumpallet_a02/aluminumpallet_a02.usd": {
+"key": "Assets/simready_content/common_assets/props/aluminumpallet_a02/aluminumpallet_a02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 55388,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6111,
+-0.6092,
+0.0
+],
+"max_m": [
+0.6111,
+0.6092,
+0.137
+],
+"size_m": [
+1.2223,
+1.2184,
+0.137
+]
+},
+"Assets/simready_content/common_assets/props/galvanizedsteelpallet_a01/galvanizedsteelpallet_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/galvanizedsteelpallet_a01/galvanizedsteelpallet_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 140052,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6096,
+-0.6103,
+0.0
+],
+"max_m": [
+0.6096,
+0.6103,
+0.1193
+],
+"size_m": [
+1.2192,
+1.2205,
+0.1193
+]
+},
+"Assets/simready_content/common_assets/props/industrialplasticpallet_a01/industrialplasticpallet_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/industrialplasticpallet_a01/industrialplasticpallet_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 60289,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6112,
+-0.5092,
+0.0
+],
+"max_m": [
+0.6112,
+0.5092,
+0.1503
+],
+"size_m": [
+1.2224,
+1.0184,
+0.1503
+]
+},
+"Assets/simready_content/common_assets/props/economyplasticpallet_a01/economyplasticpallet_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/economyplasticpallet_a01/economyplasticpallet_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 118577,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6117,
+-0.5117,
+0.0
+],
+"max_m": [
+0.6117,
+0.5117,
+0.1349
+],
+"size_m": [
+1.2233,
+1.0233,
+0.1349
+]
+},
+"Assets/simready_content/common_assets/props/economyplasticpallet_a02/economyplasticpallet_a02.usd": {
+"key": "Assets/simready_content/common_assets/props/economyplasticpallet_a02/economyplasticpallet_a02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 111923,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6117,
+-0.5117,
+-0.0
+],
+"max_m": [
+0.6117,
+0.5117,
+0.1662
+],
+"size_m": [
+1.2233,
+1.0233,
+0.1662
+]
+},
+"Assets/simready_content/common_assets/props/economyplasticpallet_a03/economyplasticpallet_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/economyplasticpallet_a03/economyplasticpallet_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 111903,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6117,
+-0.5344,
+-0.0
+],
+"max_m": [
+0.6117,
+0.5344,
+0.1662
+],
+"size_m": [
+1.2233,
+1.0688,
+0.1662
+]
+},
+"Assets/simready_content/common_assets/props/heavydutynestablepallet_a01/heavydutynestablepallet_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/heavydutynestablepallet_a01/heavydutynestablepallet_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 92977,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.5119,
+-0.6119,
+-0.0
+],
+"max_m": [
+0.5119,
+0.6119,
+0.147
+],
+"size_m": [
+1.0239,
+1.2239,
+0.147
+]
+},
+"Assets/simready_content/common_assets/props/heavydutynestablepallet_a02/heavydutynestablepallet_a02.usd": {
+"key": "Assets/simready_content/common_assets/props/heavydutynestablepallet_a02/heavydutynestablepallet_a02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 198027,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.608,
+-0.608,
+0.0
+],
+"max_m": [
+0.608,
+0.608,
+0.1478
+],
+"size_m": [
+1.2161,
+1.2161,
+0.1478
+]
+},
+"Assets/simready_content/common_assets/props/rackablepallet_a01/rackablepallet_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/rackablepallet_a01/rackablepallet_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 241797,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.61,
+-0.51,
+0.0
+],
+"max_m": [
+0.61,
+0.51,
+0.1478
+],
+"size_m": [
+1.22,
+1.02,
+0.1478
+]
+},
+"Assets/simready_content/common_assets/props/rackablepallet_a02/rackablepallet_a02.usd": {
+"key": "Assets/simready_content/common_assets/props/rackablepallet_a02/rackablepallet_a02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 164191,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.61,
+-0.61,
+0.0
+],
+"max_m": [
+0.61,
+0.61,
+0.1585
+],
+"size_m": [
+1.22,
+1.22,
+0.1585
+]
+},
+"Assets/simready_content/common_assets/props/solidtoprackablepallet_a01/solidtoprackablepallet_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/solidtoprackablepallet_a01/solidtoprackablepallet_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 23665,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.5,
+-0.619,
+0.0
+],
+"max_m": [
+0.5,
+0.619,
+0.1594
+],
+"size_m": [
+1.0,
+1.2381,
+0.1594
+]
+},
+"Assets/simready_content/common_assets/props/solidtoprackablepallet_a03/solidtoprackablepallet_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/solidtoprackablepallet_a03/solidtoprackablepallet_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 24440,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.5047,
+-0.6041,
+-0.0
+],
+"max_m": [
+0.5047,
+0.6041,
+0.1535
+],
+"size_m": [
+1.0094,
+1.2083,
+0.1535
+]
+},
+"Assets/simready_content/common_assets/props/closeddeckexportpallet_a01/closeddeckexportpallet_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/closeddeckexportpallet_a01/closeddeckexportpallet_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 53583,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6096,
+-0.508,
+0.0
+],
+"max_m": [
+0.6096,
+0.508,
+0.1461
+],
+"size_m": [
+1.2192,
+1.016,
+0.1461
+]
+},
+"Assets/simready_content/common_assets/props/plasticdrumpallet_a01/plasticdrumpallet_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/plasticdrumpallet_a01/plasticdrumpallet_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 130594,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.5986,
+-0.5991,
+-0.0005
+],
+"max_m": [
+0.5986,
+0.5991,
+0.1484
+],
+"size_m": [
+1.1973,
+1.1983,
+0.1489
+]
+},
+"Assets/simready_content/common_assets/props/heavydutywoodcrate_a01/heavydutywoodcrate_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/heavydutywoodcrate_a01/heavydutywoodcrate_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 18787,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.4519,
+-0.4537,
+-0.0
+],
+"max_m": [
+0.4519,
+0.4537,
+0.8071
+],
+"size_m": [
+0.9037,
+0.9075,
+0.8071
+]
+},
+"Assets/simready_content/common_assets/props/heavydutywoodcrate_a02/heavydutywoodcrate_a02.usd": {
+"key": "Assets/simready_content/common_assets/props/heavydutywoodcrate_a02/heavydutywoodcrate_a02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 18787,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6026,
+-0.6039,
+-0.0
+],
+"max_m": [
+0.6026,
+0.6039,
+0.5038
+],
+"size_m": [
+1.2052,
+1.2078,
+0.5038
+]
+},
+"Assets/simready_content/common_assets/props/heavydutywoodcrate_a03/heavydutywoodcrate_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/heavydutywoodcrate_a03/heavydutywoodcrate_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 18787,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6026,
+-0.6039,
+-0.0
+],
+"max_m": [
+0.6026,
+0.6039,
+1.1038
+],
+"size_m": [
+1.2052,
+1.2078,
+1.1038
+]
+},
+"Assets/simready_content/common_assets/props/heavydutywoodcrate_a04/heavydutywoodcrate_a04.usd": {
+"key": "Assets/simready_content/common_assets/props/heavydutywoodcrate_a04/heavydutywoodcrate_a04.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 18787,
+"defaultPrim": "RootNode",
+"min_m": [
+-1.2026,
+-0.6039,
+-0.0
+],
+"max_m": [
+1.2026,
+0.6039,
+1.1038
+],
+"size_m": [
+2.4052,
+1.2078,
+1.1038
+]
+},
+"Assets/simready_content/common_assets/props/heavydutywoodcrate_a05/heavydutywoodcrate_a05.usd": {
+"key": "Assets/simready_content/common_assets/props/heavydutywoodcrate_a05/heavydutywoodcrate_a05.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 18787,
+"defaultPrim": "RootNode",
+"min_m": [
+-1.2026,
+-0.6039,
+0.0
+],
+"max_m": [
+1.2026,
+0.6039,
+1.4038
+],
+"size_m": [
+2.4052,
+1.2078,
+1.4038
+]
+},
+"Assets/simready_content/common_assets/props/heavydutywoodcrate_a06/heavydutywoodcrate_a06.usd": {
+"key": "Assets/simready_content/common_assets/props/heavydutywoodcrate_a06/heavydutywoodcrate_a06.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 18851,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6026,
+-0.6039,
+-0.0
+],
+"max_m": [
+0.6026,
+0.6039,
+1.9038
+],
+"size_m": [
+1.2052,
+1.2078,
+1.9038
+]
+},
+"Assets/simready_content/common_assets/props/plywoodcrate_a01/plywoodcrate_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/plywoodcrate_a01/plywoodcrate_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 21147,
+"defaultPrim": "RootNode",
+"min_m": [
+-1.2091,
+-0.6152,
+-0.0
+],
+"max_m": [
+1.2097,
+0.6058,
+1.3844
+],
+"size_m": [
+2.4188,
+1.2209,
+1.3844
+]
+},
+"Assets/simready_content/common_assets/props/plywoodcrate_a02/plywoodcrate_a02.usd": {
+"key": "Assets/simready_content/common_assets/props/plywoodcrate_a02/plywoodcrate_a02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 20600,
+"defaultPrim": "RootNode",
+"min_m": [
+-1.2125,
+-0.6165,
+-0.0
+],
+"max_m": [
+1.2125,
+0.6056,
+1.0856
+],
+"size_m": [
+2.4251,
+1.2222,
+1.0856
+]
+},
+"Assets/simready_content/common_assets/props/plywoodcrate_a03/plywoodcrate_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/plywoodcrate_a03/plywoodcrate_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 15031,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.4645,
+-0.463,
+0.0
+],
+"max_m": [
+0.4645,
+0.463,
+0.7825
+],
+"size_m": [
+0.9291,
+0.9261,
+0.7825
+]
+},
+"Assets/simready_content/common_assets/props/plywoodcrate_a04/plywoodcrate_a04.usd": {
+"key": "Assets/simready_content/common_assets/props/plywoodcrate_a04/plywoodcrate_a04.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 14369,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6076,
+-0.6095,
+0.0
+],
+"max_m": [
+0.6076,
+0.6095,
+0.4723
+],
+"size_m": [
+1.2153,
+1.219,
+0.4723
+]
+},
+"Assets/simready_content/common_assets/props/plywoodcrate_a05/plywoodcrate_a05.usd": {
+"key": "Assets/simready_content/common_assets/props/plywoodcrate_a05/plywoodcrate_a05.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 15221,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6077,
+-0.6094,
+-0.0
+],
+"max_m": [
+0.6077,
+0.6094,
+1.2209
+],
+"size_m": [
+1.2155,
+1.2187,
+1.2209
+]
+},
+"Assets/simready_content/common_assets/props/plywoodcrate_a06/plywoodcrate_a06.usd": {
+"key": "Assets/simready_content/common_assets/props/plywoodcrate_a06/plywoodcrate_a06.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 18977,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6094,
+-0.6117,
+0.0
+],
+"max_m": [
+0.6094,
+0.6117,
+1.8633
+],
+"size_m": [
+1.2188,
+1.2234,
+1.8633
+]
+},
+"Assets/simready_content/common_assets/props/standardwoodcrate_a01/standardwoodcrate_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/standardwoodcrate_a01/standardwoodcrate_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 117433,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.7691,
+-0.7672,
+-0.0
+],
+"max_m": [
+0.7691,
+0.7672,
+1.5268
+],
+"size_m": [
+1.5382,
+1.5344,
+1.5268
+]
+},
+"Assets/simready_content/common_assets/props/standardwoodcrate_a05/standardwoodcrate_a05.usd": {
+"key": "Assets/simready_content/common_assets/props/standardwoodcrate_a05/standardwoodcrate_a05.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 108969,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.7432,
+-0.5059,
+-0.0
+],
+"max_m": [
+0.7432,
+0.5059,
+1.1667
+],
+"size_m": [
+1.4864,
+1.0119,
+1.1667
+]
+},
+"Assets/simready_content/common_assets/props/standardwoodcrate_a09/standardwoodcrate_a09.usd": {
+"key": "Assets/simready_content/common_assets/props/standardwoodcrate_a09/standardwoodcrate_a09.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 137627,
+"defaultPrim": "RootNode",
+"min_m": [
+-1.0734,
+-0.6206,
+0.0
+],
+"max_m": [
+1.0734,
+0.6206,
+1.2232
+],
+"size_m": [
+2.1467,
+1.2412,
+1.2232
+]
+},
+"Assets/simready_content/common_assets/props/standardwoodcrate_a13/standardwoodcrate_a13.usd": {
+"key": "Assets/simready_content/common_assets/props/standardwoodcrate_a13/standardwoodcrate_a13.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 126179,
+"defaultPrim": "RootNode",
+"min_m": [
+-1.0734,
+-0.3058,
+-0.0
+],
+"max_m": [
+1.0734,
+0.3058,
+0.603
+],
+"size_m": [
+2.1467,
+0.6116,
+0.603
+]
+},
+"Assets/simready_content/common_assets/props/standardwoodcrate_a17/standardwoodcrate_a17.usd": {
+"key": "Assets/simready_content/common_assets/props/standardwoodcrate_a17/standardwoodcrate_a17.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 102897,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6208,
+-0.5057,
+-0.0
+],
+"max_m": [
+0.6208,
+0.5057,
+0.7628
+],
+"size_m": [
+1.2417,
+1.0114,
+0.7628
+]
+},
+"Assets/simready_content/common_assets/props/standardwoodcrate_a21/standardwoodcrate_a21.usd": {
+"key": "Assets/simready_content/common_assets/props/standardwoodcrate_a21/standardwoodcrate_a21.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 98123,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.5088,
+-0.3709,
+-0.0
+],
+"max_m": [
+0.5088,
+0.3709,
+0.64
+],
+"size_m": [
+1.0176,
+0.7418,
+0.64
+]
+},
+"Assets/simready_content/common_assets/props/standardwoodcrate_a25/standardwoodcrate_a25.usd": {
+"key": "Assets/simready_content/common_assets/props/standardwoodcrate_a25/standardwoodcrate_a25.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 92121,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.3089,
+-0.2561,
+-0.0
+],
+"max_m": [
+0.3089,
+0.2561,
+0.6302
+],
+"size_m": [
+0.6178,
+0.5122,
+0.6302
+]
+},
+"Assets/simready_content/common_assets/props/standardwoodcrate_a29/standardwoodcrate_a29.usd": {
+"key": "Assets/simready_content/common_assets/props/standardwoodcrate_a29/standardwoodcrate_a29.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 54743,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1586,
+-0.1558,
+-0.0
+],
+"max_m": [
+0.1586,
+0.1558,
+0.2997
+],
+"size_m": [
+0.3171,
+0.3117,
+0.2997
+]
+},
+"Assets/simready_content/common_assets/props/heavydutywoodcrateassembly_a01/heavydutywoodcrateassembly_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/heavydutywoodcrateassembly_a01/heavydutywoodcrateassembly_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 19483,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.4519,
+-0.4537,
+-0.0
+],
+"max_m": [
+0.4519,
+0.4537,
+0.9036
+],
+"size_m": [
+0.9037,
+0.9075,
+0.9036
+]
+},
+"Assets/simready_content/common_assets/props/heavydutywoodcrateassembly_a03/heavydutywoodcrateassembly_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/heavydutywoodcrateassembly_a03/heavydutywoodcrateassembly_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 19483,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6026,
+-0.6039,
+-0.0
+],
+"max_m": [
+0.6026,
+0.6039,
+1.2019
+],
+"size_m": [
+1.2052,
+1.2078,
+1.2019
+]
+},
+"Assets/simready_content/common_assets/props/heavydutywoodcrateassembly_a05/heavydutywoodcrateassembly_a05.usd": {
+"key": "Assets/simready_content/common_assets/props/heavydutywoodcrateassembly_a05/heavydutywoodcrateassembly_a05.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 19819,
+"defaultPrim": "RootNode",
+"min_m": [
+-1.2026,
+-0.6039,
+-0.0
+],
+"max_m": [
+1.2026,
+0.6039,
+1.5019
+],
+"size_m": [
+2.4052,
+1.2078,
+1.5019
+]
+},
+"Assets/simready_content/common_assets/props/plywoodcrateassembly_a01/plywoodcrateassembly_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/plywoodcrateassembly_a01/plywoodcrateassembly_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 21707,
+"defaultPrim": "RootNode",
+"min_m": [
+-1.2097,
+-0.6152,
+-0.0
+],
+"max_m": [
+1.2097,
+0.6152,
+1.5243
+],
+"size_m": [
+2.4193,
+1.2304,
+1.5243
+]
+},
+"Assets/simready_content/common_assets/props/plywoodcrateassembly_a03/plywoodcrateassembly_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/plywoodcrateassembly_a03/plywoodcrateassembly_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 15826,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.4645,
+-0.463,
+-0.0
+],
+"max_m": [
+0.4645,
+0.463,
+0.9224
+],
+"size_m": [
+0.9291,
+0.9261,
+0.9224
+]
+},
+"Assets/simready_content/common_assets/props/plywoodcrateassembly_a05/plywoodcrateassembly_a05.usd": {
+"key": "Assets/simready_content/common_assets/props/plywoodcrateassembly_a05/plywoodcrateassembly_a05.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 15221,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6077,
+-0.6094,
+-0.0
+],
+"max_m": [
+0.6077,
+0.6094,
+1.2209
+],
+"size_m": [
+1.2155,
+1.2187,
+1.2209
+]
+},
+"Assets/simready_content/common_assets/props/stdwoodcrateasm_a03/stdwoodcrateasm_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/stdwoodcrateasm_a03/stdwoodcrateasm_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 127833,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.7691,
+-0.6115,
+0.0
+],
+"max_m": [
+0.7691,
+0.6115,
+1.3982
+],
+"size_m": [
+1.5382,
+1.2229,
+1.3982
+]
+},
+"Assets/simready_content/common_assets/props/stdwoodcrateasm_a08/stdwoodcrateasm_a08.usd": {
+"key": "Assets/simready_content/common_assets/props/stdwoodcrateasm_a08/stdwoodcrateasm_a08.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 126561,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6208,
+-0.579,
+0.0
+],
+"max_m": [
+0.6208,
+0.579,
+1.0776
+],
+"size_m": [
+1.2417,
+1.1579,
+1.0776
+]
+},
+"Assets/simready_content/common_assets/props/stdwoodcrateasm_a14/stdwoodcrateasm_a14.usd": {
+"key": "Assets/simready_content/common_assets/props/stdwoodcrateasm_a14/stdwoodcrateasm_a14.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 124731,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.9198,
+-0.3058,
+0.0
+],
+"max_m": [
+0.9198,
+0.3058,
+0.7907
+],
+"size_m": [
+1.8396,
+0.6116,
+0.7907
+]
+},
+"Assets/simready_content/common_assets/props/stdwoodcrateasm_a20/stdwoodcrateasm_a20.usd": {
+"key": "Assets/simready_content/common_assets/props/stdwoodcrateasm_a20/stdwoodcrateasm_a20.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 125961,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6208,
+-0.6206,
+0.0
+],
+"max_m": [
+0.6208,
+0.6206,
+0.8977
+],
+"size_m": [
+1.2417,
+1.2412,
+0.8977
+]
+},
+"Assets/simready_content/common_assets/props/stdwoodcrateasm_a26/stdwoodcrateasm_a26.usd": {
+"key": "Assets/simready_content/common_assets/props/stdwoodcrateasm_a26/stdwoodcrateasm_a26.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 103455,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.309,
+-0.3061,
+0.0
+],
+"max_m": [
+0.309,
+0.3061,
+0.7877
+],
+"size_m": [
+0.618,
+0.6121,
+0.7877
+]
+},
+"Assets/simready_content/common_assets/props/bulkstoragerack_a01/bulkstoragerack_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/bulkstoragerack_a01/bulkstoragerack_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 134947,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.4531,
+-0.776,
+-0.0
+],
+"max_m": [
+0.4531,
+0.776,
+1.8362
+],
+"size_m": [
+0.9063,
+1.552,
+1.8362
+]
+},
+"Assets/simready_content/common_assets/props/bulkstoragerack_a02/bulkstoragerack_a02.usd": {
+"key": "Assets/simready_content/common_assets/props/bulkstoragerack_a02/bulkstoragerack_a02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 144545,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.613,
+-1.2272,
+0.0
+],
+"max_m": [
+0.613,
+1.2272,
+1.8362
+],
+"size_m": [
+1.226,
+2.4545,
+1.8362
+]
+},
+"Assets/simready_content/common_assets/props/bulkstoragerack_a03/bulkstoragerack_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/bulkstoragerack_a03/bulkstoragerack_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 172535,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.613,
+-1.2272,
+0.0
+],
+"max_m": [
+0.613,
+1.2272,
+2.4311
+],
+"size_m": [
+1.226,
+2.4545,
+2.4311
+]
+},
+"Assets/simready_content/common_assets/props/bulkstoragerack_a04/bulkstoragerack_a04.usd": {
+"key": "Assets/simready_content/common_assets/props/bulkstoragerack_a04/bulkstoragerack_a04.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 214655,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.613,
+-1.2272,
+0.0
+],
+"max_m": [
+0.613,
+1.2272,
+3.026
+],
+"size_m": [
+1.226,
+2.4545,
+3.026
+]
+},
+"Assets/simready_content/common_assets/props/horizontalbarrack_a01/horizontalbarrack_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/horizontalbarrack_a01/horizontalbarrack_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 203873,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.7719,
+-1.4308,
+0.0
+],
+"max_m": [
+0.7719,
+1.4308,
+1.2701
+],
+"size_m": [
+1.5438,
+2.8615,
+1.2701
+]
+},
+"Assets/simready_content/common_assets/props/horizontalbarrack_a02/horizontalbarrack_a02.usd": {
+"key": "Assets/simready_content/common_assets/props/horizontalbarrack_a02/horizontalbarrack_a02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 49561,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2773,
+-0.7172,
+0.0
+],
+"max_m": [
+0.2773,
+0.7172,
+1.5241
+],
+"size_m": [
+0.5547,
+1.4345,
+1.5241
+]
+},
+"Assets/simready_content/common_assets/props/horizontalbarrack_a03/horizontalbarrack_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/horizontalbarrack_a03/horizontalbarrack_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 122713,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.7733,
+-0.7174,
+-0.0
+],
+"max_m": [
+0.7733,
+0.7174,
+1.5241
+],
+"size_m": [
+1.5467,
+1.4349,
+1.5241
+]
+},
+"Assets/simready_content/common_assets/props/industrialsteelshelving_a01/industrialsteelshelving_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/industrialsteelshelving_a01/industrialsteelshelving_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 185739,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1557,
+-0.4588,
+0.0
+],
+"max_m": [
+0.1557,
+0.4588,
+2.411
+],
+"size_m": [
+0.3115,
+0.9176,
+2.411
+]
+},
+"Assets/simready_content/common_assets/props/industrialsteelshelving_a05/industrialsteelshelving_a05.usd": {
+"key": "Assets/simready_content/common_assets/props/industrialsteelshelving_a05/industrialsteelshelving_a05.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 185739,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2291,
+-0.7641,
+0.0
+],
+"max_m": [
+0.2291,
+0.7641,
+2.411
+],
+"size_m": [
+0.4583,
+1.5283,
+2.411
+]
+},
+"Assets/simready_content/common_assets/props/industrialsteelshelving_a09/industrialsteelshelving_a09.usd": {
+"key": "Assets/simready_content/common_assets/props/industrialsteelshelving_a09/industrialsteelshelving_a09.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 201561,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2292,
+-1.2177,
+-0.0
+],
+"max_m": [
+0.2291,
+1.2177,
+2.411
+],
+"size_m": [
+0.4583,
+2.4353,
+2.411
+]
+},
+"Assets/simready_content/common_assets/props/industrialsteelshelving_a14/industrialsteelshelving_a14.usd": {
+"key": "Assets/simready_content/common_assets/props/industrialsteelshelving_a14/industrialsteelshelving_a14.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 235165,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2291,
+-0.4588,
+0.0
+],
+"max_m": [
+0.2291,
+0.4588,
+2.9974
+],
+"size_m": [
+0.4583,
+0.9176,
+2.9974
+]
+},
+"Assets/simready_content/common_assets/props/industrialsteelshelving_a19/industrialsteelshelving_a19.usd": {
+"key": "Assets/simready_content/common_assets/props/industrialsteelshelving_a19/industrialsteelshelving_a19.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 235165,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6127,
+-0.7641,
+-0.0
+],
+"max_m": [
+0.6127,
+0.7641,
+2.9974
+],
+"size_m": [
+1.2253,
+1.5283,
+2.9974
+]
+},
+"Assets/simready_content/common_assets/props/industrialsteelshelving_a23/industrialsteelshelving_a23.usd": {
+"key": "Assets/simready_content/common_assets/props/industrialsteelshelving_a23/industrialsteelshelving_a23.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 256389,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6127,
+-1.2177,
+0.0
+],
+"max_m": [
+0.6127,
+1.2177,
+2.9974
+],
+"size_m": [
+1.2253,
+2.4353,
+2.9974
+]
+},
+"Assets/simready_content/common_assets/props/openindustrialsteelshelving_a01/openindustrialsteelshelving_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/openindustrialsteelshelving_a01/openindustrialsteelshelving_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 131341,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2316,
+-0.463,
+0.0
+],
+"max_m": [
+0.2316,
+0.463,
+1.9042
+],
+"size_m": [
+0.4632,
+0.9261,
+1.9042
+]
+},
+"Assets/simready_content/common_assets/props/openindustrialsteelshelving_a05/openindustrialsteelshelving_a05.usd": {
+"key": "Assets/simready_content/common_assets/props/openindustrialsteelshelving_a05/openindustrialsteelshelving_a05.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 153614,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.3097,
+-0.4631,
+0.0
+],
+"max_m": [
+0.3097,
+0.4631,
+2.2203
+],
+"size_m": [
+0.6194,
+0.9262,
+2.2203
+]
+},
+"Assets/simready_content/common_assets/props/openindustrialsteelshelving_a09/openindustrialsteelshelving_a09.usd": {
+"key": "Assets/simready_content/common_assets/props/openindustrialsteelshelving_a09/openindustrialsteelshelving_a09.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 142177,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1497,
+-0.6179,
+-0.0
+],
+"max_m": [
+0.1497,
+0.6179,
+1.9064
+],
+"size_m": [
+0.2994,
+1.2357,
+1.9064
+]
+},
+"Assets/simready_content/common_assets/props/openindustrialsteelshelving_a14/openindustrialsteelshelving_a14.usd": {
+"key": "Assets/simready_content/common_assets/props/openindustrialsteelshelving_a14/openindustrialsteelshelving_a14.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 144354,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2378,
+-0.463,
+0.0
+],
+"max_m": [
+0.2378,
+0.463,
+1.9028
+],
+"size_m": [
+0.4756,
+0.9261,
+1.9028
+]
+},
+"Assets/simready_content/common_assets/props/openindustrialsteelshelving_a18/openindustrialsteelshelving_a18.usd": {
+"key": "Assets/simready_content/common_assets/props/openindustrialsteelshelving_a18/openindustrialsteelshelving_a18.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 168455,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.232,
+-0.4741,
+0.0
+],
+"max_m": [
+0.232,
+0.4741,
+2.2227
+],
+"size_m": [
+0.464,
+0.9482,
+2.2227
+]
+},
+"Assets/simready_content/common_assets/props/heavydutysteelshelving_a01/heavydutysteelshelving_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/heavydutysteelshelving_a01/heavydutysteelshelving_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 121283,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2312,
+-0.4598,
+0.0
+],
+"max_m": [
+0.2312,
+0.4598,
+1.8288
+],
+"size_m": [
+0.4624,
+0.9196,
+1.8288
+]
+},
+"Assets/simready_content/common_assets/props/heavydutysteelshelving_a03/heavydutysteelshelving_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/heavydutysteelshelving_a03/heavydutysteelshelving_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 142595,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2312,
+-0.4598,
+0.0
+],
+"max_m": [
+0.2312,
+0.4598,
+2.4384
+],
+"size_m": [
+0.4624,
+0.9196,
+2.4384
+]
+},
+"Assets/simready_content/common_assets/props/heavydutysteelshelving_a05/heavydutysteelshelving_a05.usd": {
+"key": "Assets/simready_content/common_assets/props/heavydutysteelshelving_a05/heavydutysteelshelving_a05.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 131939,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.4598,
+-0.3074,
+0.0
+],
+"max_m": [
+0.4598,
+0.3074,
+2.1336
+],
+"size_m": [
+0.9196,
+0.6148,
+2.1336
+]
+},
+"Assets/simready_content/common_assets/props/rack_a01/rack_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/rack_a01/rack_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 40045,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2833,
+-1.6385,
+-0.0
+],
+"max_m": [
+0.2833,
+1.6385,
+1.999
+],
+"size_m": [
+0.5666,
+3.277,
+1.999
+]
+},
+"Assets/simready_content/common_assets/props/rack_a06/rack_a06.usd": {
+"key": "Assets/simready_content/common_assets/props/rack_a06/rack_a06.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 41521,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.5081,
+-1.6385,
+-0.0
+],
+"max_m": [
+0.5081,
+1.6385,
+2.5001
+],
+"size_m": [
+1.0162,
+3.277,
+2.5001
+]
+},
+"Assets/simready_content/common_assets/props/rack_b03/rack_b03.usd": {
+"key": "Assets/simready_content/common_assets/props/rack_b03/rack_b03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 50755,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.3151,
+-1.6784,
+-0.0
+],
+"max_m": [
+0.3151,
+1.6784,
+2.9999
+],
+"size_m": [
+0.6301,
+3.3568,
+2.9999
+]
+},
+"Assets/simready_content/common_assets/props/rack_c03/rack_c03.usd": {
+"key": "Assets/simready_content/common_assets/props/rack_c03/rack_c03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 56045,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2345,
+-1.6164,
+0.0
+],
+"max_m": [
+0.2345,
+1.6164,
+2.48
+],
+"size_m": [
+0.469,
+3.2329,
+2.48
+]
+},
+"Assets/simready_content/common_assets/props/rack_c10/rack_c10.usd": {
+"key": "Assets/simready_content/common_assets/props/rack_c10/rack_c10.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 66965,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6371,
+-1.6164,
+0.0
+],
+"max_m": [
+0.6371,
+1.6164,
+2.0
+],
+"size_m": [
+1.2742,
+3.2329,
+2.0
+]
+},
+"Assets/simready_content/common_assets/props/rack_d01/rack_d01.usd": {
+"key": "Assets/simready_content/common_assets/props/rack_d01/rack_d01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 23633,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.75,
+-0.5199,
+0.0
+],
+"max_m": [
+0.75,
+0.5199,
+2.0107
+],
+"size_m": [
+1.4999,
+1.0397,
+2.0107
+]
+},
+"Assets/simready_content/common_assets/props/rack_e01/rack_e01.usd": {
+"key": "Assets/simready_content/common_assets/props/rack_e01/rack_e01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 22289,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.775,
+-0.5332,
+0.0
+],
+"max_m": [
+0.775,
+0.5332,
+3.0002
+],
+"size_m": [
+1.5501,
+1.0665,
+3.0002
+]
+},
+"Assets/simready_content/common_assets/props/rack_f01/rack_f01.usd": {
+"key": "Assets/simready_content/common_assets/props/rack_f01/rack_f01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 65095,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2297,
+-0.5517,
+-0.0
+],
+"max_m": [
+0.2297,
+0.5517,
+1.95
+],
+"size_m": [
+0.4594,
+1.1034,
+1.95
+]
+},
+"Assets/simready_content/common_assets/props/rack_f07/rack_f07.usd": {
+"key": "Assets/simready_content/common_assets/props/rack_f07/rack_f07.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 130573,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.4499,
+-0.5517,
+0.0
+],
+"max_m": [
+0.4499,
+0.5517,
+1.95
+],
+"size_m": [
+0.8997,
+1.1034,
+1.95
+]
+},
+"Assets/simready_content/common_assets/props/rack_g03/rack_g03.usd": {
+"key": "Assets/simready_content/common_assets/props/rack_g03/rack_g03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 47201,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.3309,
+-1.6209,
+0.0
+],
+"max_m": [
+0.3309,
+1.6209,
+1.9796
+],
+"size_m": [
+0.6619,
+3.2419,
+1.9796
+]
+},
+"Assets/simready_content/common_assets/props/rack_h05/rack_h05.usd": {
+"key": "Assets/simready_content/common_assets/props/rack_h05/rack_h05.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 31813,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2858,
+-1.1298,
+0.0
+],
+"max_m": [
+0.2858,
+1.1298,
+2.0
+],
+"size_m": [
+0.5715,
+2.2596,
+2.0
+]
+},
+"Assets/simready_content/common_assets/props/rack_h12/rack_h12.usd": {
+"key": "Assets/simready_content/common_assets/props/rack_h12/rack_h12.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 38535,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.386,
+-2.0497,
+0.0
+],
+"max_m": [
+0.386,
+2.0497,
+2.0
+],
+"size_m": [
+0.7719,
+4.0993,
+2.0
+]
+},
+"Assets/simready_content/common_assets/props/rack_k05/rack_k05.usd": {
+"key": "Assets/simready_content/common_assets/props/rack_k05/rack_k05.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 56252,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.37,
+-2.1474,
+0.0
+],
+"max_m": [
+0.37,
+2.1474,
+2.5
+],
+"size_m": [
+0.74,
+4.2949,
+2.5
+]
+},
+"Assets/simready_content/common_assets/props/rack_l09/rack_l09.usd": {
+"key": "Assets/simready_content/common_assets/props/rack_l09/rack_l09.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 513153,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.65,
+-1.2,
+0.0
+],
+"max_m": [
+0.65,
+1.2,
+2.0
+],
+"size_m": [
+1.3,
+2.4,
+2.0
+]
+},
+"Assets/simready_content/common_assets/props/rack_n02/rack_n02.usd": {
+"key": "Assets/simready_content/common_assets/props/rack_n02/rack_n02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 359543,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2973,
+-0.6755,
+-0.0
+],
+"max_m": [
+0.2973,
+0.6755,
+2.6007
+],
+"size_m": [
+0.5946,
+1.3509,
+2.6007
+]
+},
+"Assets/simready_content/common_assets/props/tirerack_a01/tirerack_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/tirerack_a01/tirerack_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 46541,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.4248,
+-0.7648,
+-0.0
+],
+"max_m": [
+0.4248,
+0.7648,
+2.3136
+],
+"size_m": [
+0.8495,
+1.5295,
+2.3136
+]
+},
+"Assets/simready_content/common_assets/props/tirerack_a02/tirerack_a02.usd": {
+"key": "Assets/simready_content/common_assets/props/tirerack_a02/tirerack_a02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 46541,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.4248,
+-1.2268,
+-0.0
+],
+"max_m": [
+0.4248,
+1.2268,
+2.3136
+],
+"size_m": [
+0.8495,
+2.4536,
+2.3136
+]
+},
+"Assets/simready_content/common_assets/props/tireracksystem_a01/tireracksystem_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/tireracksystem_a01/tireracksystem_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 204473,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2517,
+-0.9416,
+0.0
+],
+"max_m": [
+0.2516,
+0.9416,
+2.5003
+],
+"size_m": [
+0.5033,
+1.8832,
+2.5003
+]
+},
+"Assets/simready_content/common_assets/props/tireracksystem_a02/tireracksystem_a02.usd": {
+"key": "Assets/simready_content/common_assets/props/tireracksystem_a02/tireracksystem_a02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 204473,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2517,
+-1.1916,
+0.0
+],
+"max_m": [
+0.2517,
+1.1916,
+2.5003
+],
+"size_m": [
+0.5033,
+2.3831,
+2.5003
+]
+},
+"Assets/simready_content/common_assets/props/tireracksystem_a03/tireracksystem_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/tireracksystem_a03/tireracksystem_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 204473,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2517,
+-1.3916,
+0.0
+],
+"max_m": [
+0.2517,
+1.3916,
+2.5003
+],
+"size_m": [
+0.5033,
+2.7832,
+2.5003
+]
+},
+"Assets/simready_content/common_assets/props/tireracksystem_a04/tireracksystem_a04.usd": {
+"key": "Assets/simready_content/common_assets/props/tireracksystem_a04/tireracksystem_a04.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 204473,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2516,
+-1.5415,
+0.0
+],
+"max_m": [
+0.2517,
+1.5415,
+2.5003
+],
+"size_m": [
+0.5033,
+3.0831,
+2.5003
+]
+},
+"Assets/simready_content/common_assets/props/tireracksystem_b01/tireracksystem_b01.usd": {
+"key": "Assets/simready_content/common_assets/props/tireracksystem_b01/tireracksystem_b01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 48569,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2536,
+-0.4035,
+-0.0
+],
+"max_m": [
+0.2536,
+0.4035,
+1.202
+],
+"size_m": [
+0.5071,
+0.8069,
+1.202
+]
+},
+"Assets/simready_content/common_assets/props/tireracksystem_b03/tireracksystem_b03.usd": {
+"key": "Assets/simready_content/common_assets/props/tireracksystem_b03/tireracksystem_b03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 62525,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2536,
+-0.4034,
+-0.0
+],
+"max_m": [
+0.2536,
+0.4034,
+1.602
+],
+"size_m": [
+0.5071,
+0.8069,
+1.602
+]
+},
+"Assets/simready_content/common_assets/props/tireracksystem_b05/tireracksystem_b05.usd": {
+"key": "Assets/simready_content/common_assets/props/tireracksystem_b05/tireracksystem_b05.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 47373,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2536,
+-0.6536,
+-0.0
+],
+"max_m": [
+0.2536,
+0.6536,
+1.952
+],
+"size_m": [
+0.5071,
+1.3071,
+1.952
+]
+},
+"Assets/simready_content/common_assets/props/tireracksystem_c01/tireracksystem_c01.usd": {
+"key": "Assets/simready_content/common_assets/props/tireracksystem_c01/tireracksystem_c01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 47689,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2417,
+-0.5688,
+0.0
+],
+"max_m": [
+0.2417,
+0.5688,
+2.0128
+],
+"size_m": [
+0.4833,
+1.1376,
+2.0128
+]
+},
+"Assets/simready_content/common_assets/props/tireracksystem_c05/tireracksystem_c05.usd": {
+"key": "Assets/simready_content/common_assets/props/tireracksystem_c05/tireracksystem_c05.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 54501,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2417,
+-0.6414,
+0.0
+],
+"max_m": [
+0.2417,
+0.6414,
+2.521
+],
+"size_m": [
+0.4833,
+1.2827,
+2.521
+]
+},
+"Assets/simready_content/common_assets/props/tireracksystem_c09/tireracksystem_c09.usd": {
+"key": "Assets/simready_content/common_assets/props/tireracksystem_c09/tireracksystem_c09.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 62265,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2417,
+-0.7914,
+0.0
+],
+"max_m": [
+0.2417,
+0.7914,
+2.99
+],
+"size_m": [
+0.4833,
+1.5827,
+2.99
+]
+},
+"Assets/simready_content/common_assets/props/tireracksystem_d01/tireracksystem_d01.usd": {
+"key": "Assets/simready_content/common_assets/props/tireracksystem_d01/tireracksystem_d01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 54458,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.5033,
+-0.6566,
+0.0
+],
+"max_m": [
+0.5033,
+0.6566,
+2.0
+],
+"size_m": [
+1.0065,
+1.3133,
+2.0
+]
+},
+"Assets/simready_content/common_assets/props/tireracksystem_d03/tireracksystem_d03.usd": {
+"key": "Assets/simready_content/common_assets/props/tireracksystem_d03/tireracksystem_d03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 57583,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.5033,
+-0.6567,
+-0.0
+],
+"max_m": [
+0.5033,
+0.6567,
+2.0001
+],
+"size_m": [
+1.0065,
+1.3134,
+2.0001
+]
+},
+"Assets/simready_content/common_assets/props/tiltandrollladder_a01/tiltandrollladder_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/tiltandrollladder_a01/tiltandrollladder_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 122025,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.3102,
+-0.3486,
+0.0
+],
+"max_m": [
+0.3102,
+0.3486,
+1.2831
+],
+"size_m": [
+0.6204,
+0.6972,
+1.2831
+]
+},
+"Assets/simready_content/common_assets/props/tiltandrollladder_a02/tiltandrollladder_a02.usd": {
+"key": "Assets/simready_content/common_assets/props/tiltandrollladder_a02/tiltandrollladder_a02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 145201,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.3898,
+-0.3486,
+0.0
+],
+"max_m": [
+0.3898,
+0.3486,
+1.5372
+],
+"size_m": [
+0.7796,
+0.6972,
+1.5372
+]
+},
+"Assets/simready_content/common_assets/props/tiltandrollladder_a03/tiltandrollladder_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/tiltandrollladder_a03/tiltandrollladder_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 168377,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.4787,
+-0.3486,
+0.0
+],
+"max_m": [
+0.4787,
+0.3486,
+1.7781
+],
+"size_m": [
+0.9574,
+0.6972,
+1.7781
+]
+},
+"Assets/simready_content/common_assets/props/tiltandrollladder_a04/tiltandrollladder_a04.usd": {
+"key": "Assets/simready_content/common_assets/props/tiltandrollladder_a04/tiltandrollladder_a04.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 191577,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.5549,
+-0.3486,
+0.0
+],
+"max_m": [
+0.5549,
+0.3486,
+2.0565
+],
+"size_m": [
+1.1098,
+0.6972,
+2.0565
+]
+},
+"Assets/simready_content/common_assets/props/stationaryworkplatform_a01/stationaryworkplatform_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/stationaryworkplatform_a01/stationaryworkplatform_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 177700,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.326,
+-0.3642,
+0.0
+],
+"max_m": [
+0.326,
+0.3642,
+0.2069
+],
+"size_m": [
+0.652,
+0.7283,
+0.2069
+]
+},
+"Assets/simready_content/common_assets/props/stationaryworkplatform_a02/stationaryworkplatform_a02.usd": {
+"key": "Assets/simready_content/common_assets/props/stationaryworkplatform_a02/stationaryworkplatform_a02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 205031,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.3262,
+-0.3644,
+0.0
+],
+"max_m": [
+0.3262,
+0.3644,
+0.344
+],
+"size_m": [
+0.6525,
+0.7289,
+0.344
+]
+},
+"Assets/simready_content/common_assets/props/stationaryworkplatform_a03/stationaryworkplatform_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/stationaryworkplatform_a03/stationaryworkplatform_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 311836,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.4805,
+-0.3672,
+0.0
+],
+"max_m": [
+0.4805,
+0.3672,
+0.2069
+],
+"size_m": [
+0.9609,
+0.7344,
+0.2069
+]
+},
+"Assets/simready_content/common_assets/props/stationaryworkplatform_a04/stationaryworkplatform_a04.usd": {
+"key": "Assets/simready_content/common_assets/props/stationaryworkplatform_a04/stationaryworkplatform_a04.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 344410,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.4805,
+-0.3672,
+0.0
+],
+"max_m": [
+0.4805,
+0.3672,
+0.3438
+],
+"size_m": [
+0.961,
+0.7344,
+0.3438
+]
+},
+"Assets/simready_content/common_assets/props/aluminumstepstand_a01/aluminumstepstand_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/aluminumstepstand_a01/aluminumstepstand_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 49421,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2167,
+-0.3352,
+0.0
+],
+"max_m": [
+0.2167,
+0.3352,
+0.2497
+],
+"size_m": [
+0.4333,
+0.6703,
+0.2497
+]
+},
+"Assets/simready_content/common_assets/props/aluminumstepstand_a02/aluminumstepstand_a02.usd": {
+"key": "Assets/simready_content/common_assets/props/aluminumstepstand_a02/aluminumstepstand_a02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 75272,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2749,
+-0.3352,
+0.0
+],
+"max_m": [
+0.2749,
+0.3352,
+0.5
+],
+"size_m": [
+0.5498,
+0.6703,
+0.5
+]
+},
+"Assets/simready_content/common_assets/props/aluminumstepstand_a03/aluminumstepstand_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/aluminumstepstand_a03/aluminumstepstand_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 110321,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.4264,
+-0.3352,
+0.0
+],
+"max_m": [
+0.4264,
+0.3352,
+0.7503
+],
+"size_m": [
+0.8527,
+0.6703,
+0.7503
+]
+},
+"Assets/simready_content/common_assets/props/dockboard_a01/dockboard_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/dockboard_a01/dockboard_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 107546,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6078,
+-0.6858,
+-0.0
+],
+"max_m": [
+0.6078,
+0.6858,
+0.2542
+],
+"size_m": [
+1.2155,
+1.3716,
+0.2542
+]
+},
+"Assets/simready_content/common_assets/props/dockboard_a04/dockboard_a04.usd": {
+"key": "Assets/simready_content/common_assets/props/dockboard_a04/dockboard_a04.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 112787,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.7602,
+-0.762,
+-0.0
+],
+"max_m": [
+0.7602,
+0.762,
+0.305
+],
+"size_m": [
+1.5203,
+1.524,
+0.305
+]
+},
+"Assets/simready_content/common_assets/props/dockboard_b01/dockboard_b01.usd": {
+"key": "Assets/simready_content/common_assets/props/dockboard_b01/dockboard_b01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 24581,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.3051,
+-0.4572,
+-0.0
+],
+"max_m": [
+0.3051,
+0.4572,
+0.1038
+],
+"size_m": [
+0.6102,
+0.9144,
+0.1038
+]
+},
+"Assets/simready_content/common_assets/props/dockboard_b05/dockboard_b05.usd": {
+"key": "Assets/simready_content/common_assets/props/dockboard_b05/dockboard_b05.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 35597,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.7602,
+-0.6096,
+-0.0
+],
+"max_m": [
+0.7602,
+0.6096,
+0.2321
+],
+"size_m": [
+1.5203,
+1.2192,
+0.2321
+]
+},
+"Assets/simready_content/common_assets/props/wheelriserramp_a01/wheelriserramp_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/wheelriserramp_a01/wheelriserramp_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 62267,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6137,
+-0.2302,
+0.0
+],
+"max_m": [
+0.6137,
+0.2302,
+0.1588
+],
+"size_m": [
+1.2274,
+0.4604,
+0.1588
+]
+},
+"Assets/simready_content/common_assets/props/wheelriserramp_a03/wheelriserramp_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/wheelriserramp_a03/wheelriserramp_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 76191,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6118,
+-0.3052,
+0.0
+],
+"max_m": [
+0.6118,
+0.3052,
+0.1612
+],
+"size_m": [
+1.2236,
+0.6104,
+0.1612
+]
+},
+"Assets/simready_content/common_assets/props/polycurbramp_a01/polycurbramp_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/polycurbramp_a01/polycurbramp_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 41182,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.351,
+-0.346,
+0.0
+],
+"max_m": [
+0.351,
+0.346,
+0.1088
+],
+"size_m": [
+0.7021,
+0.692,
+0.1088
+]
+},
+"Assets/simready_content/common_assets/props/optionalramp_a01/optionalramp_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/optionalramp_a01/optionalramp_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 16596,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6171,
+-0.6099,
+0.0
+],
+"max_m": [
+0.6171,
+0.6099,
+0.1023
+],
+"size_m": [
+1.2341,
+1.2197,
+0.1023
+]
+},
+"Assets/simready_content/common_assets/props/ramplong_a1/ramplong_a1.usd": {
+"key": "Assets/simready_content/common_assets/props/ramplong_a1/ramplong_a1.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 13093,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1742,
+-1.1204,
+-0.0
+],
+"max_m": [
+0.1742,
+1.1204,
+0.501
+],
+"size_m": [
+0.3484,
+2.2407,
+0.501
+]
+},
+"Assets/simready_content/common_assets/props/rampshort_a1/rampshort_a1.usd": {
+"key": "Assets/simready_content/common_assets/props/rampshort_a1/rampshort_a1.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 13005,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1742,
+-0.6289,
+0.0
+],
+"max_m": [
+0.1742,
+0.6289,
+0.501
+],
+"size_m": [
+0.3484,
+1.2578,
+0.501
+]
+},
+"Assets/simready_content/common_assets/props/cornerrail_a1/cornerrail_a1.usd": {
+"key": "Assets/simready_content/common_assets/props/cornerrail_a1/cornerrail_a1.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 13019,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.168,
+-0.2127,
+-0.0
+],
+"max_m": [
+0.168,
+0.2127,
+0.5266
+],
+"size_m": [
+0.3359,
+0.4255,
+0.5267
+]
+},
+"Assets/simready_content/common_assets/props/metalfencing_a1/metalfencing_a1.usd": {
+"key": "Assets/simready_content/common_assets/props/metalfencing_a1/metalfencing_a1.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 13193,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1149,
+-0.115,
+-0.0
+],
+"max_m": [
+0.1149,
+0.115,
+1.0718
+],
+"size_m": [
+0.2299,
+0.23,
+1.0718
+]
+},
+"Assets/simready_content/common_assets/props/metalfencing_a3/metalfencing_a3.usd": {
+"key": "Assets/simready_content/common_assets/props/metalfencing_a3/metalfencing_a3.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 15077,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1862,
+-0.8585,
+-0.0
+],
+"max_m": [
+0.2531,
+0.1514,
+1.0718
+],
+"size_m": [
+0.4394,
+1.0099,
+1.0718
+]
+},
+"Assets/simready_content/common_assets/props/plasticjerrican_a01/plasticjerrican_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/plasticjerrican_a01/plasticjerrican_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 21678,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.0936,
+-0.1023,
+-0.0
+],
+"max_m": [
+0.0936,
+0.1023,
+0.227
+],
+"size_m": [
+0.1872,
+0.2045,
+0.227
+]
+},
+"Assets/simready_content/common_assets/props/plasticjerrican_a02/plasticjerrican_a02.usd": {
+"key": "Assets/simready_content/common_assets/props/plasticjerrican_a02/plasticjerrican_a02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 23711,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1085,
+-0.1185,
+-0.0
+],
+"max_m": [
+0.1085,
+0.1185,
+0.2932
+],
+"size_m": [
+0.2171,
+0.237,
+0.2932
+]
+},
+"Assets/simready_content/common_assets/props/plasticjerrican_a03/plasticjerrican_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/plasticjerrican_a03/plasticjerrican_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 27130,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1262,
+-0.1397,
+0.0
+],
+"max_m": [
+0.1262,
+0.1397,
+0.3598
+],
+"size_m": [
+0.2525,
+0.2793,
+0.3598
+]
+},
+"Assets/simready_content/common_assets/props/plasticjerrican_a04/plasticjerrican_a04.usd": {
+"key": "Assets/simready_content/common_assets/props/plasticjerrican_a04/plasticjerrican_a04.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 27130,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1262,
+-0.1397,
+0.0
+],
+"max_m": [
+0.1262,
+0.1397,
+0.5103
+],
+"size_m": [
+0.2525,
+0.2793,
+0.5103
+]
+},
+"Assets/simready_content/common_assets/props/screwtoppail_a01/screwtoppail_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/screwtoppail_a01/screwtoppail_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 31606,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1356,
+-0.1352,
+0.0
+],
+"max_m": [
+0.1356,
+0.1352,
+0.2483
+],
+"size_m": [
+0.2712,
+0.2703,
+0.2483
+]
+},
+"Assets/simready_content/common_assets/props/screwtoppail_a02/screwtoppail_a02.usd": {
+"key": "Assets/simready_content/common_assets/props/screwtoppail_a02/screwtoppail_a02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 31606,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1648,
+-0.1648,
+0.0
+],
+"max_m": [
+0.1648,
+0.1648,
+0.2716
+],
+"size_m": [
+0.3295,
+0.3295,
+0.2716
+]
+},
+"Assets/simready_content/common_assets/props/screwtoppail_a03/screwtoppail_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/screwtoppail_a03/screwtoppail_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 31606,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1648,
+-0.1648,
+0.0
+],
+"max_m": [
+0.1648,
+0.1648,
+0.3229
+],
+"size_m": [
+0.3295,
+0.3295,
+0.3229
+]
+},
+"Assets/simready_content/common_assets/props/screwtoppail_a04/screwtoppail_a04.usd": {
+"key": "Assets/simready_content/common_assets/props/screwtoppail_a04/screwtoppail_a04.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 31974,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1648,
+-0.1648,
+0.0
+],
+"max_m": [
+0.1648,
+0.1648,
+0.4781
+],
+"size_m": [
+0.3295,
+0.3295,
+0.4781
+]
+},
+"Assets/simready_content/common_assets/props/closedheadpail_a01/closedheadpail_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/closedheadpail_a01/closedheadpail_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 25037,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1314,
+-0.1317,
+0.0
+],
+"max_m": [
+0.1314,
+0.1317,
+0.347
+],
+"size_m": [
+0.2628,
+0.2634,
+0.347
+]
+},
+"Assets/simready_content/common_assets/props/liquidscrewtoppail_a01/liquidscrewtoppail_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/liquidscrewtoppail_a01/liquidscrewtoppail_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 35924,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1889,
+-0.1933,
+0.0
+],
+"max_m": [
+0.1902,
+0.1933,
+0.4299
+],
+"size_m": [
+0.3792,
+0.3866,
+0.4299
+]
+},
+"Assets/simready_content/common_assets/props/liquidscrewtoppail_a02/liquidscrewtoppail_a02.usd": {
+"key": "Assets/simready_content/common_assets/props/liquidscrewtoppail_a02/liquidscrewtoppail_a02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 34460,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1889,
+-0.1933,
+0.0
+],
+"max_m": [
+0.1902,
+0.1933,
+0.4299
+],
+"size_m": [
+0.3792,
+0.3866,
+0.4299
+]
+},
+"Assets/simready_content/common_assets/props/squarepail_a01/squarepail_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/squarepail_a01/squarepail_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 16351,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1406,
+-0.1239,
+0.0
+],
+"max_m": [
+0.1406,
+0.1239,
+0.2255
+],
+"size_m": [
+0.2812,
+0.2477,
+0.2255
+]
+},
+"Assets/simready_content/common_assets/props/squarepail_a02/squarepail_a02.usd": {
+"key": "Assets/simready_content/common_assets/props/squarepail_a02/squarepail_a02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 17046,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1273,
+-0.1193,
+-0.0
+],
+"max_m": [
+0.1273,
+0.1193,
+0.3612
+],
+"size_m": [
+0.2547,
+0.2386,
+0.3612
+]
+},
+"Assets/simready_content/common_assets/props/plasticpail_a02/plasticpail_a02.usd": {
+"key": "Assets/simready_content/common_assets/props/plasticpail_a02/plasticpail_a02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 15973,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.098,
+-0.0922,
+0.0
+],
+"max_m": [
+0.098,
+0.0922,
+0.2
+],
+"size_m": [
+0.196,
+0.1844,
+0.2
+]
+},
+"Assets/simready_content/common_assets/props/plasticpail_a04/plasticpail_a04.usd": {
+"key": "Assets/simready_content/common_assets/props/plasticpail_a04/plasticpail_a04.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 16861,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1664,
+-0.1618,
+-0.0
+],
+"max_m": [
+0.1664,
+0.1618,
+0.4508
+],
+"size_m": [
+0.3329,
+0.3236,
+0.4508
+]
+},
+"Assets/simready_content/common_assets/props/metalfstylecan_a01/metalfstylecan_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/metalfstylecan_a01/metalfstylecan_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 40530,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.0549,
+-0.0837,
+0.0
+],
+"max_m": [
+0.0549,
+0.0837,
+0.258
+],
+"size_m": [
+0.1099,
+0.1673,
+0.258
+]
+},
+"Assets/simready_content/common_assets/props/fstylejug_a01/fstylejug_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/fstylejug_a01/fstylejug_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 34170,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.0277,
+-0.0678,
+0.0
+],
+"max_m": [
+0.0277,
+0.0678,
+0.193
+],
+"size_m": [
+0.0555,
+0.1356,
+0.193
+]
+},
+"Assets/simready_content/common_assets/props/fstylejug_a03/fstylejug_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/fstylejug_a03/fstylejug_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 34363,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.0506,
+-0.0954,
+-0.0
+],
+"max_m": [
+0.0506,
+0.0954,
+0.3051
+],
+"size_m": [
+0.1012,
+0.1908,
+0.3051
+]
+},
+"Assets/simready_content/common_assets/props/milkjug_a01/milkjug_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/milkjug_a01/milkjug_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 41116,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.0384,
+-0.0383,
+0.0
+],
+"max_m": [
+0.0384,
+0.0383,
+0.1724
+],
+"size_m": [
+0.0768,
+0.0766,
+0.1724
+]
+},
+"Assets/simready_content/common_assets/props/heavydutytrafficcone_a01/heavydutytrafficcone_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/heavydutytrafficcone_a01/heavydutytrafficcone_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 20445,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1629,
+-0.1629,
+0.0012
+],
+"max_m": [
+0.1629,
+0.1629,
+0.4569
+],
+"size_m": [
+0.3258,
+0.3258,
+0.4557
+]
+},
+"Assets/simready_content/common_assets/props/heavydutytrafficcone_a02/heavydutytrafficcone_a02.usd": {
+"key": "Assets/simready_content/common_assets/props/heavydutytrafficcone_a02/heavydutytrafficcone_a02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 20737,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1952,
+-0.1964,
+0.0
+],
+"max_m": [
+0.1951,
+0.1939,
+0.7104
+],
+"size_m": [
+0.3903,
+0.3903,
+0.7104
+]
+},
+"Assets/simready_content/common_assets/props/heavydutytrafficcone_a03/heavydutytrafficcone_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/heavydutytrafficcone_a03/heavydutytrafficcone_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 21102,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2494,
+-0.2498,
+0.0
+],
+"max_m": [
+0.2501,
+0.2498,
+0.9094
+],
+"size_m": [
+0.4996,
+0.4996,
+0.9093
+]
+},
+"Assets/simready_content/common_assets/props/heavydutytrafficcone_a04/heavydutytrafficcone_a04.usd": {
+"key": "Assets/simready_content/common_assets/props/heavydutytrafficcone_a04/heavydutytrafficcone_a04.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 20829,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1629,
+-0.1629,
+0.0
+],
+"max_m": [
+0.1629,
+0.1629,
+0.4557
+],
+"size_m": [
+0.3258,
+0.3258,
+0.4557
+]
+},
+"Assets/simready_content/common_assets/props/heavydutytrafficcone_a05/heavydutytrafficcone_a05.usd": {
+"key": "Assets/simready_content/common_assets/props/heavydutytrafficcone_a05/heavydutytrafficcone_a05.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 21121,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1951,
+-0.1951,
+0.0
+],
+"max_m": [
+0.1951,
+0.1951,
+0.7104
+],
+"size_m": [
+0.3903,
+0.3903,
+0.7104
+]
+},
+"Assets/simready_content/common_assets/props/heavydutytrafficcone_a06/heavydutytrafficcone_a06.usd": {
+"key": "Assets/simready_content/common_assets/props/heavydutytrafficcone_a06/heavydutytrafficcone_a06.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 21486,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2498,
+-0.2498,
+0.0
+],
+"max_m": [
+0.2498,
+0.2498,
+0.9094
+],
+"size_m": [
+0.4996,
+0.4996,
+0.9093
+]
+},
+"Assets/simready_content/common_assets/props/trafficcone_a02/trafficcone_a02.usd": {
+"key": "Assets/simready_content/common_assets/props/trafficcone_a02/trafficcone_a02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 16429,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1225,
+-0.1225,
+0.0
+],
+"max_m": [
+0.1225,
+0.1225,
+0.303
+],
+"size_m": [
+0.245,
+0.245,
+0.303
+]
+},
+"Assets/simready_content/common_assets/props/trafficcone_a03/trafficcone_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/trafficcone_a03/trafficcone_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 17161,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.15,
+-0.15,
+-0.0
+],
+"max_m": [
+0.15,
+0.15,
+0.4563
+],
+"size_m": [
+0.3,
+0.3,
+0.4563
+]
+},
+"Assets/simready_content/common_assets/props/trafficcone_a04/trafficcone_a04.usd": {
+"key": "Assets/simready_content/common_assets/props/trafficcone_a04/trafficcone_a04.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 17305,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1913,
+-0.1913,
+-0.0
+],
+"max_m": [
+0.1896,
+0.1896,
+0.7097
+],
+"size_m": [
+0.3809,
+0.3809,
+0.7097
+]
+},
+"Assets/simready_content/common_assets/props/coloredtrafficcone_a01/coloredtrafficcone_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/coloredtrafficcone_a01/coloredtrafficcone_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 17305,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1913,
+-0.1913,
+0.0
+],
+"max_m": [
+0.1896,
+0.1896,
+0.7097
+],
+"size_m": [
+0.3809,
+0.3809,
+0.7097
+]
+},
+"Assets/simready_content/common_assets/props/popupcone_a01/popupcone_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/popupcone_a01/popupcone_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 22758,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1238,
+-0.1238,
+0.0
+],
+"max_m": [
+0.1238,
+0.1238,
+0.0506
+],
+"size_m": [
+0.2475,
+0.2475,
+0.0506
+]
+},
+"Assets/simready_content/common_assets/props/popupcone_a03/popupcone_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/popupcone_a03/popupcone_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 39773,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1622,
+-0.1622,
+0.0
+],
+"max_m": [
+0.1622,
+0.1622,
+0.0658
+],
+"size_m": [
+0.3243,
+0.3243,
+0.0658
+]
+},
+"Assets/simready_content/common_assets/props/bin_a01/bin_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/bin_a01/bin_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 15581,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.0435,
+-0.0533,
+-0.0
+],
+"max_m": [
+0.0435,
+0.0533,
+0.0798
+],
+"size_m": [
+0.0869,
+0.1066,
+0.0798
+]
+},
+"Assets/simready_content/common_assets/props/bin_a04/bin_a04.usd": {
+"key": "Assets/simready_content/common_assets/props/bin_a04/bin_a04.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 20819,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1488,
+-0.0706,
+0.0
+],
+"max_m": [
+0.1488,
+0.0706,
+0.1295
+],
+"size_m": [
+0.2976,
+0.1411,
+0.1295
+]
+},
+"Assets/simready_content/common_assets/props/bin_b02/bin_b02.usd": {
+"key": "Assets/simready_content/common_assets/props/bin_b02/bin_b02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 14913,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.085,
+-0.05,
+0.0
+],
+"max_m": [
+0.085,
+0.05,
+0.0762
+],
+"size_m": [
+0.17,
+0.1,
+0.0762
+]
+},
+"Assets/simready_content/common_assets/props/bin_b06/bin_b06.usd": {
+"key": "Assets/simready_content/common_assets/props/bin_b06/bin_b06.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 16269,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.3573,
+-0.2257,
+0.0
+],
+"max_m": [
+0.3573,
+0.2257,
+0.3176
+],
+"size_m": [
+0.7147,
+0.4514,
+0.3176
+]
+},
+"Assets/simready_content/common_assets/props/tote_a01/tote_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/tote_a01/tote_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 19495,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.4096,
+-0.3,
+0.0
+],
+"max_m": [
+0.4096,
+0.3,
+0.6
+],
+"size_m": [
+0.8192,
+0.6,
+0.6
+]
+},
+"Assets/simready_content/common_assets/props/tote_b03/tote_b03.usd": {
+"key": "Assets/simready_content/common_assets/props/tote_b03/tote_b03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 16182,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.3,
+-0.2,
+0.0
+],
+"max_m": [
+0.3,
+0.2,
+0.325
+],
+"size_m": [
+0.6,
+0.4,
+0.325
+]
+},
+"Assets/simready_content/common_assets/props/tote_c07/tote_c07.usd": {
+"key": "Assets/simready_content/common_assets/props/tote_c07/tote_c07.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 22949,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2498,
+-0.2,
+0.0
+],
+"max_m": [
+0.2498,
+0.2,
+0.3799
+],
+"size_m": [
+0.4997,
+0.4,
+0.3799
+]
+},
+"Assets/simready_content/common_assets/props/tote_d05/tote_d05.usd": {
+"key": "Assets/simready_content/common_assets/props/tote_d05/tote_d05.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 31758,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1721,
+-0.0929,
+0.0
+],
+"max_m": [
+0.1721,
+0.0929,
+0.1497
+],
+"size_m": [
+0.3443,
+0.1857,
+0.1497
+]
+},
+"Assets/simready_content/common_assets/props/case_a01/case_a01.usd": {
+"key": "Assets/simready_content/common_assets/props/case_a01/case_a01.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 43434,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.273,
+-0.1778,
+0.0
+],
+"max_m": [
+0.2734,
+0.1778,
+0.2294
+],
+"size_m": [
+0.5464,
+0.3555,
+0.2294
+]
+},
+"Assets/simready_content/common_assets/props/case_c03/case_c03.usd": {
+"key": "Assets/simready_content/common_assets/props/case_c03/case_c03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 23587,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.4596,
+-0.2662,
+0.0
+],
+"max_m": [
+0.4596,
+0.2662,
+0.4253
+],
+"size_m": [
+0.9192,
+0.5324,
+0.4253
+]
+},
+"Assets/simready_content/common_assets/props/case_d02/case_d02.usd": {
+"key": "Assets/simready_content/common_assets/props/case_d02/case_d02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 36776,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2998,
+-0.1995,
+0.0
+],
+"max_m": [
+0.2998,
+0.2017,
+0.2648
+],
+"size_m": [
+0.5995,
+0.4012,
+0.2648
+]
+},
+"Assets/simready_content/common_assets/props/case_e02/case_e02.usd": {
+"key": "Assets/simready_content/common_assets/props/case_e02/case_e02.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 24041,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.3535,
+-0.1609,
+0.0
+],
+"max_m": [
+0.3535,
+0.1609,
+0.3199
+],
+"size_m": [
+0.707,
+0.3218,
+0.3199
+]
+},
+"Assets/simready_content/common_assets/props/container_b04/container_b04.usd": {
+"key": "Assets/simready_content/common_assets/props/container_b04/container_b04.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 15301,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2014,
+-0.1503,
+-0.0
+],
+"max_m": [
+0.2014,
+0.1503,
+0.12
+],
+"size_m": [
+0.4027,
+0.3006,
+0.12
+]
+},
+"Assets/simready_content/common_assets/props/container_c11/container_c11.usd": {
+"key": "Assets/simready_content/common_assets/props/container_c11/container_c11.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 19929,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2031,
+-0.15,
+0.0
+],
+"max_m": [
+0.2031,
+0.15,
+0.228
+],
+"size_m": [
+0.4062,
+0.3,
+0.228
+]
+},
+"Assets/simready_content/common_assets/props/container_d05/container_d05.usd": {
+"key": "Assets/simready_content/common_assets/props/container_d05/container_d05.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 13905,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.6589,
+-0.4844,
+0.0
+],
+"max_m": [
+0.6589,
+0.4844,
+0.6287
+],
+"size_m": [
+1.3177,
+0.9689,
+0.6287
+]
+},
+"Assets/simready_content/common_assets/props/container_h07/container_h07.usd": {
+"key": "Assets/simready_content/common_assets/props/container_h07/container_h07.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 37395,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.3007,
+-0.2009,
+0.0
+],
+"max_m": [
+0.3007,
+0.2009,
+0.17
+],
+"size_m": [
+0.6015,
+0.4018,
+0.17
+]
+},
+"Assets/ArchVis/Industrial/Piles/WarehousePile_A1.usd": {
+"key": "Assets/ArchVis/Industrial/Piles/WarehousePile_A1.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 152,
+"defaultPrim": "World",
+"min_m": [
+-1.7624,
+-1.5435,
+-0.0016
+],
+"max_m": [
+1.7625,
+1.5435,
+2.0249
+],
+"size_m": [
+3.5249,
+3.0871,
+2.0265
+]
+},
+"Assets/ArchVis/Industrial/Piles/WarehousePile_A2.usd": {
+"key": "Assets/ArchVis/Industrial/Piles/WarehousePile_A2.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 179,
+"defaultPrim": "World",
+"min_m": [
+-1.0564,
+-1.1419,
+-0.0016
+],
+"max_m": [
+1.0729,
+1.1428,
+1.9062
+],
+"size_m": [
+2.1293,
+2.2847,
+1.9078
+]
+},
+"Assets/ArchVis/Industrial/Piles/WarehousePile_A3.usd": {
+"key": "Assets/ArchVis/Industrial/Piles/WarehousePile_A3.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 789,
+"defaultPrim": "World",
+"min_m": [
+-0.7867,
+-1.1255,
+-0.002
+],
+"max_m": [
+0.7849,
+1.1255,
+1.2678
+],
+"size_m": [
+1.5715,
+2.251,
+1.2698
+]
+},
+"Assets/ArchVis/Industrial/Piles/WarehousePile_A4.usd": {
+"key": "Assets/ArchVis/Industrial/Piles/WarehousePile_A4.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 0,
+"defaultPrim": "World",
+"min_m": [
+-0.8635,
+-0.9627,
+0.0
+],
+"max_m": [
+0.8635,
+0.9627,
+1.5066
+],
+"size_m": [
+1.7271,
+1.9254,
+1.5066
+]
+},
+"Assets/ArchVis/Industrial/Piles/WarehousePile_A5.usd": {
+"key": "Assets/ArchVis/Industrial/Piles/WarehousePile_A5.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 0,
+"defaultPrim": "World",
+"min_m": [
+-0.7283,
+-0.6332,
+0.0
+],
+"max_m": [
+0.7283,
+0.6322,
+1.0297
+],
+"size_m": [
+1.4566,
+1.2655,
+1.0297
+]
+},
+"Assets/ArchVis/Industrial/Piles/Pallets_A1.usd": {
+"key": "Assets/ArchVis/Industrial/Piles/Pallets_A1.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 0,
+"defaultPrim": "World",
+"min_m": [
+-0.9465,
+-1.0672,
+0.0
+],
+"max_m": [
+0.9495,
+1.0659,
+1.4608
+],
+"size_m": [
+1.896,
+2.1331,
+1.4608
+]
+},
+"Assets/ArchVis/Industrial/Piles/Pallets_A2.usd": {
+"key": "Assets/ArchVis/Industrial/Piles/Pallets_A2.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 0,
+"defaultPrim": "World",
+"min_m": [
+-0.9717,
+-0.9956,
+-0.0054
+],
+"max_m": [
+0.9749,
+0.9923,
+1.7192
+],
+"size_m": [
+1.9466,
+1.9879,
+1.7246
+]
+},
+"Assets/ArchVis/Industrial/Piles/Pallets_A3.usd": {
+"key": "Assets/ArchVis/Industrial/Piles/Pallets_A3.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 0,
+"defaultPrim": "World",
+"min_m": [
+-0.6489,
+-0.6452,
+-0.0
+],
+"max_m": [
+0.6444,
+0.648,
+1.0442
+],
+"size_m": [
+1.2932,
+1.2932,
+1.0442
+]
+},
+"Assets/ArchVis/Industrial/Piles/Pallets_A4.usd": {
+"key": "Assets/ArchVis/Industrial/Piles/Pallets_A4.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 0,
+"defaultPrim": "World",
+"min_m": [
+-0.7602,
+-0.6052,
+-0.0063
+],
+"max_m": [
+0.7605,
+0.6052,
+1.2221
+],
+"size_m": [
+1.5207,
+1.2104,
+1.2284
+]
+},
+"Assets/ArchVis/Industrial/Piles/Pallets_A5.usd": {
+"key": "Assets/ArchVis/Industrial/Piles/Pallets_A5.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 0,
+"defaultPrim": "World",
+"min_m": [
+-0.5585,
+-0.6021,
+-0.0037
+],
+"max_m": [
+0.5582,
+0.6021,
+1.2193
+],
+"size_m": [
+1.1167,
+1.2042,
+1.2231
+]
+},
+"Assets/ArchVis/Industrial/Wooden/WoodenCrate_A1.usd": {
+"key": "Assets/ArchVis/Industrial/Wooden/WoodenCrate_A1.usd",
+"error": "fetch failed"
+},
+"Assets/ArchVis/Industrial/Wooden/WoodenCrate_A2.usd": {
+"key": "Assets/ArchVis/Industrial/Wooden/WoodenCrate_A2.usd",
+"error": "fetch failed"
+},
+"Assets/ArchVis/Industrial/Wooden/WoodenCrate_B1.usd": {
+"key": "Assets/ArchVis/Industrial/Wooden/WoodenCrate_B1.usd",
+"error": "fetch failed"
+},
+"Assets/ArchVis/Industrial/Wooden/WoodenCrate_B2.usd": {
+"key": "Assets/ArchVis/Industrial/Wooden/WoodenCrate_B2.usd",
+"error": "fetch failed"
+},
+"Assets/ArchVis/Industrial/Wooden/WoodenCrate_C1.usd": {
+"key": "Assets/ArchVis/Industrial/Wooden/WoodenCrate_C1.usd",
+"error": "fetch failed"
+},
+"Assets/ArchVis/Industrial/Wooden/WoodenCrate_D1.usd": {
+"key": "Assets/ArchVis/Industrial/Wooden/WoodenCrate_D1.usd",
+"error": "fetch failed"
+},
+"Assets/ArchVis/Industrial/Pallets/Pallet_A1.usd": {
+"key": "Assets/ArchVis/Industrial/Pallets/Pallet_A1.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 1064,
+"defaultPrim": "World",
+"min_m": [
+-0.6021,
+-0.4002,
+0.0
+],
+"max_m": [
+0.6021,
+0.4002,
+0.2086
+],
+"size_m": [
+1.2042,
+0.8004,
+0.2086
+]
+},
+"Assets/ArchVis/Industrial/Pallets/Pallet_B1.usd": {
+"key": "Assets/ArchVis/Industrial/Pallets/Pallet_B1.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 1120,
+"defaultPrim": "World",
+"min_m": [
+-0.6052,
+-0.5012,
+0.0
+],
+"max_m": [
+0.6052,
+0.5012,
+0.2086
+],
+"size_m": [
+1.2104,
+1.0025,
+0.2086
+]
+},
+"Assets/ArchVis/Industrial/Pallets/Pallet_C1.usd": {
+"key": "Assets/ArchVis/Industrial/Pallets/Pallet_C1.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 1512,
+"defaultPrim": "World",
+"min_m": [
+-0.8635,
+-0.9627,
+0.0
+],
+"max_m": [
+0.8635,
+0.9627,
+0.2086
+],
+"size_m": [
+1.7271,
+1.9254,
+0.2086
+]
+},
+"Assets/ArchVis/Industrial/Shelves/RackLongEmpty_A1.usd": {
+"key": "Assets/ArchVis/Industrial/Shelves/RackLongEmpty_A1.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 22480,
+"defaultPrim": "World",
+"min_m": [
+-0.5402,
+-2.0,
+0.0
+],
+"max_m": [
+0.5402,
+2.0,
+3.01
+],
+"size_m": [
+1.0805,
+4.0,
+3.01
+]
+},
+"Assets/ArchVis/Industrial/Shelves/RackLongEmpty_A2.usd": {
+"key": "Assets/ArchVis/Industrial/Shelves/RackLongEmpty_A2.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 27348,
+"defaultPrim": "World",
+"min_m": [
+-0.5402,
+-2.0,
+0.0
+],
+"max_m": [
+0.5402,
+2.0,
+3.01
+],
+"size_m": [
+1.0805,
+4.0,
+3.01
+]
+},
+"Assets/ArchVis/Industrial/Shelves/RackSmallEmpty_A1.usd": {
+"key": "Assets/ArchVis/Industrial/Shelves/RackSmallEmpty_A1.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 20900,
+"defaultPrim": "World",
+"min_m": [
+-0.5401,
+-0.999,
+0.0
+],
+"max_m": [
+0.5401,
+0.999,
+3.01
+],
+"size_m": [
+1.0802,
+1.9981,
+3.01
+]
+},
+"Assets/ArchVis/Industrial/Containers/Wooden/WoodenCrate_A1.usd": {
+"key": "Assets/ArchVis/Industrial/Containers/Wooden/WoodenCrate_A1.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 12802,
+"defaultPrim": "World",
+"min_m": [
+-0.5011,
+-0.5043,
+-0.0016
+],
+"max_m": [
+0.5011,
+0.5043,
+1.0149
+],
+"size_m": [
+1.0022,
+1.0087,
+1.0165
+]
+},
+"Assets/ArchVis/Industrial/Containers/Wooden/WoodenCrate_A2.usd": {
+"key": "Assets/ArchVis/Industrial/Containers/Wooden/WoodenCrate_A2.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 10354,
+"defaultPrim": "World",
+"min_m": [
+-0.501,
+-0.5036,
+-0.0016
+],
+"max_m": [
+0.5012,
+0.5051,
+1.0149
+],
+"size_m": [
+1.0022,
+1.0087,
+1.0165
+]
+},
+"Assets/ArchVis/Industrial/Containers/Wooden/WoodenCrate_B1.usd": {
+"key": "Assets/ArchVis/Industrial/Containers/Wooden/WoodenCrate_B1.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 14681,
+"defaultPrim": "World",
+"min_m": [
+-0.5026,
+-1.004,
+-0.0016
+],
+"max_m": [
+0.5026,
+1.004,
+1.016
+],
+"size_m": [
+1.0052,
+2.008,
+1.0176
+]
+},
+"Assets/ArchVis/Industrial/Containers/Wooden/WoodenCrate_B2.usd": {
+"key": "Assets/ArchVis/Industrial/Containers/Wooden/WoodenCrate_B2.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 14677,
+"defaultPrim": "World",
+"min_m": [
+-0.5026,
+-1.004,
+-0.0016
+],
+"max_m": [
+0.5026,
+1.004,
+1.016
+],
+"size_m": [
+1.0052,
+2.008,
+1.0176
+]
+},
+"Assets/ArchVis/Industrial/Containers/Wooden/WoodenCrate_C1.usd": {
+"key": "Assets/ArchVis/Industrial/Containers/Wooden/WoodenCrate_C1.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 19424,
+"defaultPrim": "World",
+"min_m": [
+-0.5028,
+-0.5051,
+-0.0016
+],
+"max_m": [
+0.5028,
+0.5051,
+1.9062
+],
+"size_m": [
+1.0056,
+1.0102,
+1.9078
+]
+},
+"Assets/ArchVis/Industrial/Containers/Wooden/WoodenCrate_D1.usd": {
+"key": "Assets/ArchVis/Industrial/Containers/Wooden/WoodenCrate_D1.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 23258,
+"defaultPrim": "World",
+"min_m": [
+-1.005,
+-1.5005,
+0.0
+],
+"max_m": [
+1.005,
+1.5005,
+1.016
+],
+"size_m": [
+2.0099,
+3.0009,
+1.016
+]
+},
+"Assets/simready_content/common_assets/props/cardbox_a1/cardbox_a1.usd": {
+"key": "Assets/simready_content/common_assets/props/cardbox_a1/cardbox_a1.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 12696,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.3497,
+-0.2606,
+0.0
+],
+"max_m": [
+0.3497,
+0.2606,
+0.5099
+],
+"size_m": [
+0.6994,
+0.5212,
+0.5099
+]
+},
+"Assets/simready_content/common_assets/props/cardbox_a2/cardbox_a2.usd": {
+"key": "Assets/simready_content/common_assets/props/cardbox_a2/cardbox_a2.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 12696,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.3497,
+-0.255,
+0.0
+],
+"max_m": [
+0.3497,
+0.255,
+0.5212
+],
+"size_m": [
+0.6994,
+0.5099,
+0.5212
+]
+},
+"Assets/simready_content/common_assets/props/cardbox_a3/cardbox_a3.usd": {
+"key": "Assets/simready_content/common_assets/props/cardbox_a3/cardbox_a3.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 12696,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.3497,
+-0.255,
+0.0
+],
+"max_m": [
+0.3497,
+0.255,
+0.5212
+],
+"size_m": [
+0.6994,
+0.5099,
+0.5212
+]
+},
+"Assets/simready_content/common_assets/props/cardbox_b1/cardbox_b1.usd": {
+"key": "Assets/simready_content/common_assets/props/cardbox_b1/cardbox_b1.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 12699,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2551,
+-0.255,
+-0.0007
+],
+"max_m": [
+0.2551,
+0.255,
+0.52
+],
+"size_m": [
+0.5103,
+0.5099,
+0.5207
+]
+},
+"Assets/simready_content/common_assets/props/cardbox_b2/cardbox_b2.usd": {
+"key": "Assets/simready_content/common_assets/props/cardbox_b2/cardbox_b2.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 12699,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2551,
+-0.255,
+-0.0007
+],
+"max_m": [
+0.2551,
+0.255,
+0.52
+],
+"size_m": [
+0.5103,
+0.5099,
+0.5207
+]
+},
+"Assets/simready_content/common_assets/props/cardbox_c1/cardbox_c1.usd": {
+"key": "Assets/simready_content/common_assets/props/cardbox_c1/cardbox_c1.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 12569,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2566,
+-0.2553,
+-0.0002
+],
+"max_m": [
+0.2566,
+0.2553,
+0.2595
+],
+"size_m": [
+0.5132,
+0.5106,
+0.2597
+]
+},
+"Assets/simready_content/common_assets/props/cardbox_c2/cardbox_c2.usd": {
+"key": "Assets/simready_content/common_assets/props/cardbox_c2/cardbox_c2.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 12569,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2566,
+-0.2553,
+-0.0002
+],
+"max_m": [
+0.2566,
+0.2553,
+0.2595
+],
+"size_m": [
+0.5132,
+0.5106,
+0.2597
+]
+},
+"Assets/simready_content/common_assets/props/cardbox_c3/cardbox_c3.usd": {
+"key": "Assets/simready_content/common_assets/props/cardbox_c3/cardbox_c3.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 12569,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2566,
+-0.2553,
+-0.0002
+],
+"max_m": [
+0.2566,
+0.2553,
+0.2595
+],
+"size_m": [
+0.5132,
+0.5106,
+0.2597
+]
+},
+"Assets/simready_content/common_assets/props/cardbox_d1/cardbox_d1.usd": {
+"key": "Assets/simready_content/common_assets/props/cardbox_d1/cardbox_d1.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 12596,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1724,
+-0.1322,
+0.0
+],
+"max_m": [
+0.1724,
+0.1322,
+0.1661
+],
+"size_m": [
+0.3448,
+0.2644,
+0.1661
+]
+},
+"Assets/simready_content/common_assets/props/cardbox_d2/cardbox_d2.usd": {
+"key": "Assets/simready_content/common_assets/props/cardbox_d2/cardbox_d2.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 12596,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1724,
+-0.1322,
+0.0
+],
+"max_m": [
+0.1724,
+0.1322,
+0.1661
+],
+"size_m": [
+0.3448,
+0.2644,
+0.1661
+]
+},
+"Assets/simready_content/common_assets/props/cardbox_d3/cardbox_d3.usd": {
+"key": "Assets/simready_content/common_assets/props/cardbox_d3/cardbox_d3.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 12596,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1724,
+-0.1322,
+0.034
+],
+"max_m": [
+0.1724,
+0.1322,
+0.2001
+],
+"size_m": [
+0.3448,
+0.2644,
+0.1661
+]
+},
+"Assets/simready_content/common_assets/props/flatbox_a03/flatbox_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/flatbox_a03/flatbox_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 14948,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1129,
+-0.1085,
+0.0
+],
+"max_m": [
+0.1129,
+0.1085,
+0.1091
+],
+"size_m": [
+0.2258,
+0.217,
+0.1091
+]
+},
+"Assets/simready_content/common_assets/props/flatbox_a09/flatbox_a09.usd": {
+"key": "Assets/simready_content/common_assets/props/flatbox_a09/flatbox_a09.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 14633,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1574,
+-0.1591,
+0.0
+],
+"max_m": [
+0.1574,
+0.1591,
+0.1625
+],
+"size_m": [
+0.3148,
+0.3182,
+0.1625
+]
+},
+"Assets/simready_content/common_assets/props/longbox_a04/longbox_a04.usd": {
+"key": "Assets/simready_content/common_assets/props/longbox_a04/longbox_a04.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 15164,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.0535,
+-0.2577,
+0.0
+],
+"max_m": [
+0.0535,
+0.2577,
+0.1058
+],
+"size_m": [
+0.1071,
+0.5153,
+0.1058
+]
+},
+"Assets/simready_content/common_assets/props/multidepthbox_a05/multidepthbox_a05.usd": {
+"key": "Assets/simready_content/common_assets/props/multidepthbox_a05/multidepthbox_a05.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 15564,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.153,
+-0.1546,
+0.0
+],
+"max_m": [
+0.153,
+0.1546,
+0.3143
+],
+"size_m": [
+0.3059,
+0.3092,
+0.3143
+]
+},
+"Assets/simready_content/common_assets/props/printersbox_a03/printersbox_a03.usd": {
+"key": "Assets/simready_content/common_assets/props/printersbox_a03/printersbox_a03.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 14358,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1124,
+-0.1421,
+0.0
+],
+"max_m": [
+0.1124,
+0.1421,
+0.1194
+],
+"size_m": [
+0.2249,
+0.2841,
+0.1194
+]
+},
+"Assets/simready_content/common_assets/props/cubebox_a05/cubebox_a05.usd": {
+"key": "Assets/simready_content/common_assets/props/cubebox_a05/cubebox_a05.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 16764,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.1581,
+-0.1551,
+-0.0
+],
+"max_m": [
+0.1581,
+0.1551,
+0.3148
+],
+"size_m": [
+0.3162,
+0.3102,
+0.3148
+]
+},
+"Assets/simready_content/common_assets/props/box_a04/box_a04.usd": {
+"key": "Assets/simready_content/common_assets/props/box_a04/box_a04.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 20117,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2,
+-0.15,
+-0.0
+],
+"max_m": [
+0.2,
+0.15,
+0.41
+],
+"size_m": [
+0.4,
+0.3,
+0.41
+]
+},
+"Assets/simready_content/common_assets/props/box_a09/box_a09.usd": {
+"key": "Assets/simready_content/common_assets/props/box_a09/box_a09.usd",
+"upAxis": "Z",
+"metersPerUnit": 1.0,
+"points": 19141,
+"defaultPrim": "RootNode",
+"min_m": [
+-0.2,
+-0.15,
+-0.0
+],
+"max_m": [
+0.2,
+0.15,
+0.2448
+],
+"size_m": [
+0.4,
+0.3,
+0.2448
+]
+},
+"Assets/ArchVis/Industrial/Containers/Cardboard/Cardbox_A1.usd": {
+"key": "Assets/ArchVis/Industrial/Containers/Cardboard/Cardbox_A1.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 279,
+"defaultPrim": "World",
+"min_m": [
+-0.3497,
+-0.2606,
+0.0
+],
+"max_m": [
+0.3497,
+0.2606,
+0.5099
+],
+"size_m": [
+0.6994,
+0.5212,
+0.5099
+]
+},
+"Assets/ArchVis/Industrial/Containers/Cardboard/Cardbox_A2.usd": {
+"key": "Assets/ArchVis/Industrial/Containers/Cardboard/Cardbox_A2.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 279,
+"defaultPrim": "World",
+"min_m": [
+-0.3497,
+-0.255,
+0.0
+],
+"max_m": [
+0.3497,
+0.255,
+0.5212
+],
+"size_m": [
+0.6994,
+0.5099,
+0.5212
+]
+},
+"Assets/ArchVis/Industrial/Containers/Cardboard/Cardbox_B2.usd": {
+"key": "Assets/ArchVis/Industrial/Containers/Cardboard/Cardbox_B2.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 282,
+"defaultPrim": "World",
+"min_m": [
+-0.2551,
+-0.255,
+-0.0007
+],
+"max_m": [
+0.2551,
+0.255,
+0.52
+],
+"size_m": [
+0.5103,
+0.5099,
+0.5207
+]
+},
+"Assets/ArchVis/Industrial/Containers/Cardboard/Cardbox_B3.usd": {
+"key": "Assets/ArchVis/Industrial/Containers/Cardboard/Cardbox_B3.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 282,
+"defaultPrim": "World",
+"min_m": [
+-0.2551,
+-0.255,
+-0.0007
+],
+"max_m": [
+0.2551,
+0.255,
+0.52
+],
+"size_m": [
+0.5103,
+0.5099,
+0.5207
+]
+},
+"Assets/ArchVis/Industrial/Containers/Cardboard/Cardbox_C3.usd": {
+"key": "Assets/ArchVis/Industrial/Containers/Cardboard/Cardbox_C3.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 152,
+"defaultPrim": "World",
+"min_m": [
+-0.2566,
+-0.2553,
+-0.0002
+],
+"max_m": [
+0.2566,
+0.2553,
+0.2595
+],
+"size_m": [
+0.5132,
+0.5106,
+0.2597
+]
+},
+"Assets/ArchVis/Industrial/Containers/Cardboard/Cardbox_D1.usd": {
+"key": "Assets/ArchVis/Industrial/Containers/Cardboard/Cardbox_D1.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 179,
+"defaultPrim": "World",
+"min_m": [
+-0.1724,
+-0.1322,
+0.0
+],
+"max_m": [
+0.1724,
+0.1322,
+0.1661
+],
+"size_m": [
+0.3448,
+0.2644,
+0.1661
+]
+},
+"Assets/ArchVis/Industrial/Containers/Cardboard/Cardbox_D2.usd": {
+"key": "Assets/ArchVis/Industrial/Containers/Cardboard/Cardbox_D2.usd",
+"upAxis": "Z",
+"metersPerUnit": 0.009999999776482582,
+"points": 179,
+"defaultPrim": "World",
+"min_m": [
+-0.1724,
+-0.1322,
+0.0
+],
+"max_m": [
+0.1724,
+0.1322,
+0.1661
+],
+"size_m": [
+0.3448,
+0.2644,
+0.1661
+]
+}
+}

@@ -1,0 +1,264 @@
+{
+ "Black_Oak": {
+  "Shumard_Oak_leaf_Mat2": [
+   "Looks",
+   "Shumard_Oak_leaf_Mat2",
+   "Shader"
+  ],
+  "Shumard_Oak_leaf_v2_Mat2": [
+   "Looks",
+   "Shumard_Oak_leaf_v2_Mat2",
+   "Shader"
+  ],
+  "Shumard_Oak_leaf_v3_Mat2": [
+   "Looks",
+   "Shumard_Oak_leaf_v3_Mat2",
+   "Shader"
+  ],
+  "Shumard_Oak_leaf_v4_Mat2": [
+   "Looks",
+   "Shumard_Oak_leaf_v4_Mat2",
+   "Shader"
+  ],
+  "TreeBark_7": [
+   "Looks",
+   "TreeBark_7",
+   "Shader"
+  ]
+ },
+ "Blue_Berry_Elder": {
+  "HollyPrivet_Mat": [
+   "Looks",
+   "HollyPrivet_Mat",
+   "HollyPrivet_Mat"
+  ],
+  "tree_bark_03_2k": [
+   "Looks",
+   "tree_bark_03_2k",
+   "Shader"
+  ]
+ },
+ "Elm_Sapling": {
+  "American_Beech_leaf": [
+   "Looks",
+   "American_Beech_leaf",
+   "Shader"
+  ],
+  "bark3": [
+   "Looks",
+   "bark3",
+   "Shader"
+  ]
+ },
+ "Fraxinus": {
+  "Apple_bark_Mat": [
+   "Looks",
+   "Apple_bark_Mat",
+   "Shader"
+  ],
+  "Apple_bark_Mat_2": [
+   "Looks",
+   "Apple_bark_Mat_2",
+   "Shader"
+  ],
+  "Fraxinus_leaves": [
+   "Looks",
+   "Fraxinus_leaves",
+   "Fraxinus_leaves"
+  ]
+ },
+ "Grass_Short_A": {
+  "lawngrass_a_mat": [
+   "Looks",
+   "lawngrass_a_mat",
+   "Shader"
+  ]
+ },
+ "Grass_Short_B": {
+  "lawngrass_a_mat": [
+   "Looks",
+   "lawngrass_a_mat",
+   "Shader"
+  ]
+ },
+ "Grass_Short_C": {
+  "lawngrass_a_mat": [
+   "Looks",
+   "lawngrass_a_mat",
+   "Shader"
+  ]
+ },
+ "Grass_Trimmed_A": {
+  "lawngrass_a_mat": [
+   "Looks",
+   "lawngrass_a_mat",
+   "Shader"
+  ]
+ },
+ "Grass_Trimmed_B": {
+  "lawngrass_a_mat": [
+   "Looks",
+   "lawngrass_a_mat",
+   "Shader"
+  ]
+ },
+ "Grass_Trimmed_C": {
+  "lawngrass_a_mat": [
+   "Looks",
+   "lawngrass_a_mat",
+   "Shader"
+  ]
+ },
+ "Gray_Birch": {
+  "Gray_Birch_Bark_Mat": [
+   "Looks",
+   "Gray_Birch_Bark_Mat",
+   "Gray_Birch_Bark_Mat"
+  ],
+  "Gray_Birch_Leaves_Mat": [
+   "Looks",
+   "Gray_Birch_Leaves_Mat",
+   "Shader"
+  ]
+ },
+ "Hawthorn": {
+  "Hawthorn_bark_Mat": [
+   "Looks",
+   "Hawthorn_bark_Mat",
+   "Hawthorn_bark_Mat"
+  ],
+  "Hawthorn_leaf_Mat": [
+   "Looks",
+   "Hawthorn_leaf_Mat",
+   "Hawthorn_leaf_Mat"
+  ],
+  "Hawthorn_leaf_v2_Mat": [
+   "Looks",
+   "Hawthorn_leaf_v2_Mat",
+   "Hawthorn_leaf_v2_Mat"
+  ],
+  "Hawthorn_leaf_v3_Mat": [
+   "Looks",
+   "Hawthorn_leaf_v3_Mat",
+   "Hawthorn_leaf_v3_Mat"
+  ],
+  "Hawthorn_leaf_v4_Mat": [
+   "Looks",
+   "Hawthorn_leaf_v4_Mat",
+   "Hawthorn_leaf_v4_Mat"
+  ]
+ },
+ "Lombardy_Poplar": {
+  "LombardyPoplar_leaf_Mat_2": [
+   "Looks",
+   "LombardyPoplar_leaf_Mat_2",
+   "Shader"
+  ],
+  "bark3": [
+   "Looks",
+   "bark3",
+   "Shader"
+  ]
+ },
+ "Privet": {
+  "HollyPrivet_Mat": [
+   "Looks",
+   "HollyPrivet_Mat",
+   "Shader"
+  ],
+  "bark3": [
+   "Looks",
+   "bark3",
+   "Shader"
+  ]
+ },
+ "Red_Ash": {
+  "RedAsh_bark_Mat": [
+   "Looks",
+   "RedAsh_bark_Mat",
+   "RedAsh_bark_Mat"
+  ],
+  "RedAsh_leaf_mat": [
+   "Looks",
+   "RedAsh_leaf_mat",
+   "RedAsh_leaf_mat"
+  ]
+ },
+ "Switchgrass": {
+  "Switchgrass_Mat": [
+   "Looks",
+   "Switchgrass_Mat",
+   "Switchgrass_Mat"
+  ]
+ },
+ "rock_small_01": {
+  "material": [
+   "rock",
+   "material",
+   "Shader"
+  ]
+ },
+ "rock_small_02": {
+  "material": [
+   "rock",
+   "material",
+   "Shader"
+  ]
+ },
+ "rock_small_03": {
+  "material": [
+   "rock",
+   "material",
+   "Shader"
+  ]
+ },
+ "rock_small_04": {
+  "material": [
+   "iock",
+   "material",
+   "Shader"
+  ]
+ },
+ "rock_small_05": {
+  "material": [
+   "rock",
+   "material",
+   "Shader"
+  ]
+ },
+ "rock_small_06": {
+  "material": [
+   "rock",
+   "material",
+   "Shader"
+  ]
+ },
+ "rock_small_07": {
+  "material": [
+   "rock",
+   "material",
+   "Shader"
+  ]
+ },
+ "rock_small_08": {
+  "material": [
+   "rock",
+   "material",
+   "Shader"
+  ]
+ },
+ "rock_small_09": {
+  "material": [
+   "rock",
+   "material",
+   "Shader"
+  ]
+ },
+ "rock_small_10": {
+  "material": [
+   "rock",
+   "material",
+   "Shader"
+  ]
+ }
+}

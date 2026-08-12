@@ -1,0 +1,115 @@
+#usda 1.0
+(
+    doc = "Foundation smoke test: proves remote S3 references, remote HDRI dome lights, and remote MDL materials all resolve from a LOCAL root layer."
+    defaultPrim = "World"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "World"
+{
+    # --- Ground: 60m x 60m plane, remote vMaterials concrete -----------------
+    def Mesh "Ground" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        float3[] extent = [(-30, -30, 0), (30, 30, 0)]
+        int[] faceVertexCounts = [4]
+        int[] faceVertexIndices = [0, 1, 2, 3]
+        point3f[] points = [(-30, -30, 0), (30, -30, 0), (30, 30, 0), (-30, 30, 0)]
+        normal3f[] primvars:normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+            interpolation = "faceVarying"
+        )
+        int[] primvars:normals:indices = [0, 1, 2, 3]
+        texCoord2f[] primvars:st = [(0, 0), (10, 0), (10, 10), (0, 10)] (
+            interpolation = "faceVarying"
+        )
+        int[] primvars:st:indices = [0, 1, 2, 3]
+        uniform token subdivisionScheme = "none"
+        rel material:binding = </World/Looks/Asphalt>
+    }
+
+    def Scope "Looks"
+    {
+        # Remote MDL: proves the MDL resolver follows https URLs.
+        def Material "Asphalt"
+        {
+            token outputs:mdl:surface.connect = </World/Looks/Asphalt/Shader.outputs:out>
+
+            def Shader "Shader"
+            {
+                uniform token info:implementationSource = "sourceAsset"
+                uniform asset info:mdl:sourceAsset = @https://omniverse-content-production.s3.us-west-2.amazonaws.com/Materials/vMaterials_2/Concrete/Concrete_Rough.mdl@
+                uniform token info:mdl:sourceAsset:subIdentifier = "Concrete_Rough"
+                token outputs:out
+            }
+        }
+    }
+
+    # --- Remote SimReady prop reference (metersPerUnit 1, Z-up: no rescale) ---
+    def Xform "Container_A" (
+        prepend references = @https://omniverse-content-production.s3.us-west-2.amazonaws.com/Assets/simready_content/common_assets/props/container_a01/container_a01.usd@
+    )
+    {
+        double3 xformOp:translate = (0, 4, 0)
+        double xformOp:rotateZ = 18
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateZ"]
+    }
+
+    def Xform "Container_B" (
+        prepend references = @https://omniverse-content-production.s3.us-west-2.amazonaws.com/Assets/simready_content/common_assets/props/container_a01/container_a01.usd@
+    )
+    {
+        double3 xformOp:translate = (7, -3, 0)
+        double xformOp:rotateZ = -70
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateZ"]
+    }
+
+    # --- Lighting: remote 4K HDRI dome + sun ---------------------------------
+    def DomeLight "Sky" (
+        prepend apiSchemas = ["ShapingAPI"]
+    )
+    {
+        float inputs:intensity = 900
+        asset inputs:texture:file = @https://omniverse-content-production.s3.us-west-2.amazonaws.com/Assets/Skies/Storm/approaching_storm_4k.hdr@
+        token inputs:texture:format = "latlong"
+        double3 xformOp:rotateXYZ = (90, 0, 40)
+        uniform token[] xformOpOrder = ["xformOp:rotateXYZ"]
+    }
+
+    def DistantLight "Sun"
+    {
+        float inputs:intensity = 3200
+        float inputs:angle = 0.7
+        color3f inputs:color = (1.0, 0.86, 0.68)
+        double3 xformOp:rotateXYZ = (0, -42, 118)
+        uniform token[] xformOpOrder = ["xformOp:rotateXYZ"]
+    }
+
+    # --- Camera: eye height, 70mm-equiv horizontal FOV -----------------------
+    def Camera "SmokeCam"
+    {
+        float focalLength = 22
+        float horizontalAperture = 36
+        float verticalAperture = 20.25
+        float2 clippingRange = (0.05, 5000)
+        double3 xformOp:translate = (-11, -9, 1.7)
+        double3 xformOp:rotateXYZ = (84, 0, -46)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+    }
+}
+
+def Scope "Render"
+{
+    def RenderProduct "SMOKE"
+    {
+        rel camera = </World/SmokeCam>
+        rel orderedVars = [</Render/SMOKE/LdrColor>]
+        int2 resolution = (1280, 720)
+
+        def RenderVar "LdrColor"
+        {
+            string sourceName = "LdrColor"
+        }
+    }
+}

@@ -1,0 +1,1166 @@
+#usda 1.0
+(
+    doc = "DEADFALL DEPOT module: cameras. Owned by one specialist agent - do not edit from another module."
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+# =============================================================================
+# READ FIRST - ROUND 6 CORRECTIONS. THE ROUND-5 HEADER WAS WRONG ON THREE COUNTS
+# =============================================================================
+# The round-5 header claimed this module's frames were held by three coupled
+# settings: `warmup 600`, a save-path `clamp 0.065` in render.py, and per-product
+# `denoising:blendFactor`. Two of those three no longer exist and the third has
+# been recalibrated. What is true now, measured this round:
+#
+#   1. THE SAVE-PATH CLAMP IS GONE, DELIBERATELY, AND MUST NOT COME BACK.
+#      It suppressed only the BRIGHT polarity - the one side the old one-sided
+#      firefly gate sampled - so the number read 0.000 while total noise energy
+#      ROSE. `analyze_shot.py` is now two-sided and reports `speckle_energy`
+#      (mean |pixel - local median|), which no one-sided filter can move. There
+#      is no `clamp` key in usd/shots.json any more and nothing here depends on
+#      one. Do not re-add it, and do not add any other save-path filter: this
+#      module authors renderer settings, not post-processing of the measurement.
+#
+#   2. WARMUP IS 120, NOT 600. BRIEF section 6 measured 120 vs 600 warmup steps
+#      at 0.022 vs 0.024 firefly - slightly WORSE at five times the cost. In
+#      PathTracing each step is an independent frame; steps do not accumulate
+#      the way round 5 assumed. Every number in this file was measured at
+#      `--final --warmup 120`, which is the acceptance command.
+#
+#   3. `denoising:blendFactor` IS the dial, and it is now the only one. It was
+#      re-tuned this round because it was set for a 600-step raw buffer and is
+#      being asked to blend a 120-step one - five times noisier. See the
+#      ROUND-6 block above the RenderProducts for the measured curve and for
+#      the structural conflict it exposes between `detail_density` and
+#      `speckle_energy`.
+#
+# ALSO CORRECTED: round 5 claimed `renderer.reset()` made a batched
+# `render.py --final` equivalent to five `--shot X` invocations. It does not.
+# Measured this round with the IDENTICAL camera and product authored twice in
+# one invocation, once as the first product and once as the last:
+#     first product   firefly 0.0135  speckle 0.0121  detail 0.0659
+#     last product    firefly 0.0616  speckle 0.0234  detail 0.1330
+# A 4.6x difference in firefly on byte-identical authored state. The first
+# product of a process is still a different frame from the rest. The acceptance
+# command in the brief is one shot per invocation, so every number below is
+# measured that way; a batched run will read noisier and that is the harness,
+# not the art.
+#
+# NOT AUTHORABLE, tested this round so nobody retries it:
+#   * UsdGeomCamera `float exposure` is INERT. -1 and -2 stops rendered
+#     byte-comparable to 0 (mean_luma 0.268 / 0.264 / 0.265). There is no
+#     camera-side exposure compensation on this build, which is why the blown
+#     wet ground in SILHOUETTE_WEST is a lighting note and not a camera fix.
+#   * `omni:rtx:post:bloom:aperture:blades = 0` renders a BLACK FRAME
+#     (all metrics 0.000, dead_area 1.000). Keep it at 7.
+# =============================================================================
+
+# =============================================================================
+# CAMERAS
+# =============================================================================
+# Convention (Z-up, verified against BRIEF section 2.6 and LAYOUT section 7):
+#   identity looks down -Z; xformOp:rotateXYZ composes Rz * Ry * Rx, so
+#   (p, 0, h) pitches to the horizon then yaws by heading h.
+#     p = 90 -> dead horizon.  p < 90 -> looking DOWN by (90 - p) degrees.
+#     p > 90 -> looking UP by (p - 90) degrees.
+#     h = 0 -> north (+Y).  h = 90 -> west (-X).  h = 180 -> south (-Y).
+#     h = 270 -> east (+X).  Camera-right is (cos h, sin h); camera-up is +Z.
+#   View direction is (-sin p * sin h, sin p * cos h, -cos p).
+#
+# -----------------------------------------------------------------------------
+# LENS UNITS - READ THIS BEFORE TOUCHING focalLength / horizontalAperture
+# -----------------------------------------------------------------------------
+# This stage is metersPerUnit = 1. RTX derives two different things from the
+# lens attributes and it uses them in two different ways:
+#
+#   * FIELD OF VIEW is a pure ratio - 2*atan(horizontalAperture / (2*focalLength))
+#     - so it is unit-agnostic and comes out correct whatever units you author.
+#   * THE PHYSICAL APERTURE is not. The entrance pupil diameter is computed as
+#     focalLength / fStop and consumed in SCENE UNITS.
+#
+# So the photographic habit of writing "45 mm" as `focalLength = 45` on a metres
+# stage produces a 45 / 5.6 = 8.04 SCENE UNIT - an eight-METRE - lens opening.
+# That is exactly what happened here: DETAIL_WET_APRON rendered as a 100 %
+# out-of-focus smear (analyze_shot: detail_density 0.007 against a 0.020 floor,
+# dead_area_frac 0.515 against a 0.160 ceiling) while the other four cameras
+# only escaped because they had fStop = 0, which disables the lens model.
+#
+# Every camera below is therefore authored in METRES, matching the stage:
+#     36 mm full-frame gate  ->  horizontalAperture = 0.036
+#     16:9 crop              ->  verticalAperture   = 0.02025
+#     24 / 28 / 35 / 45 mm   ->  focalLength = 0.024 / 0.028 / 0.035 / 0.045
+#
+# Horizontal FOV = 2 * atan(0.018 / focalLength):
+#     0.024 -> 73.7 deg   0.028 -> 65.5 deg   0.035 -> 54.4 deg   0.045 -> 43.6 deg
+# Identical to the millimetre authoring, and all five sit inside the 40-130 deg
+# first-person band validate.py checks for. focusDistance is, and always was, in
+# scene units (metres) - it was the only lens attribute that was already right.
+#
+# Four cameras keep fStop = 0 (pinhole - deep focus, which is what a gameplay
+# frame wants). DETAIL_WET_APRON is the one frame that carries a real aperture,
+# and in metres f/5.6 at 45 mm is an 8.0 mm pupil rather than an 8.0 m one.
+# -----------------------------------------------------------------------------
+#
+# clippingRange is (0.05, 10000) everywhere: a near plane tight enough that a
+# prop 5 cm from the lens still renders, and a far plane past the 150 m plate,
+# the 26 m water tower and the sky dome.
+# =============================================================================
+
+over "World"
+{
+    # =========================================================================
+    # THE ROUND-4 CROSS-MODULE OVERRIDE IS GONE, BECAUSE ITS TARGET IS GONE.
+    # =========================================================================
+    # Round 4 authored `over "FX" { over "StormBreak" { visibility = invisible } }`
+    # here to hide 80_fx's emissive backdrop cards, which read as a painted flat
+    # in SHOT 5. 80_fx has since DELETED those cards outright (its own note
+    # records it), and 60_lighting's StormBreak_West RectLight - the other thing
+    # that put a hard-edged plate in SHOT 5's sky - now carries
+    # visibleInPrimaryRay = 0. Both problems are fixed at source, so the
+    # override was removed rather than left as a no-op `over` pointing at a
+    # prim that does not exist. This module now authors NOTHING outside
+    # /World/Cameras and /Render.
+    # =========================================================================
+
+    def Scope "Cameras"
+    {
+        # ---------------------------------------------------------------------
+        # SHOT 1 - HERO_ESTABLISH                             2560 x 1440 (hero)
+        # ---------------------------------------------------------------------
+        # Elevated three-quarter drone view from the south-west corner of the
+        # site, looking north-east across the whole map at the warehouse's south
+        # wall. 28 mm / 65.5 deg is the long end of a COD establishing frame -
+        # wide enough to hold all three lanes, long enough that the building
+        # does not bow.
+        #
+        # REFRAMED after review. The first solve stood at (-54, -38, 11) with
+        # heading 314, and that put the DOCK CANOPY ROOF - a 76 x 15 m
+        # horizontal deck at Z 5.40-5.75 - face-on across the entire lower
+        # right of the frame. A ray-cast audit of the LAYOUT box proxies
+        # measured the canopy at 28.7 % of frame; it walled off the yard the
+        # shot exists to establish, the gantry crane was completely occluded by
+        # the building, and analyze_shot reported dead_area_frac 0.29. Two
+        # levers fix all of it, and they were solved by projection and then
+        # confirmed by rendering an eleven-camera ladder (heights 14-25 m,
+        # headings 314-331, aim points from v = -0.35 to +0.10):
+        #
+        #   1. HEIGHT. 19.0 m instead of 11.0 m. The canopy deck is a
+        #      horizontal plane, so what governs how much frame it eats is the
+        #      depression angle to its FAR edge: at Z 11 that edge sat 3.4 deg
+        #      below the horizon and the roof swept up almost to frame centre;
+        #      at Z 19 it sits 9.5 deg below and the roof collapses into a
+        #      wedge in the bottom-right corner. Measured 28.7 % -> 5.5 %.
+        #      The same lift is what reveals the yard: bare grade goes from
+        #      13 % to 27 % of frame, and that grade is now carrying the
+        #      LAYOUT section 6 cover schedule.
+        #   2. HEADING 331.1 instead of 314. Seventeen degrees north turns the
+        #      canopy edge-on rather than face-on and swings the east skyline
+        #      into frame instead of the empty ENE quadrant, where the
+        #      1850 m far-field ground plane meets the horizon.
+        #
+        # Distance drops from 81 m to 63 m as a consequence, which is welcome:
+        # the corrugated south wall now carries 37.3 % of the frame instead of
+        # 25.3 %, so the raking WSW sun has something to bite on.
+        #
+        # Aim point is the hero gate at (0, 15, 3.7): 62.6 m out, 14.13 deg
+        # below the lens, hence pitch 75.86. Heading 331.1 gives view direction
+        # (0.4838, 0.8751).
+        #
+        # Frame audit (projected, then read off the render - not asserted):
+        #   * FOCAL READ: the hero gate lands at u = +0.106, w = -0.001 - 55 %
+        #     across and 50 % down. On the centre horizontal, as required, and
+        #     a whisker right of the centre column so the building's mass
+        #     balances it from the left.
+        #   * MIDGROUND: the south wall runs the full width of the middle band.
+        #     Its west corner projects to u = -1.096, so the wall bleeds off
+        #     the left edge instead of floating with a gap behind it; the east
+        #     corner lands at u = +0.760. The ridge at Z 17.99 sits 17-19 %
+        #     down from the top edge.
+        #   * BACKGROUND: the water tower (58, 70) breaks the roofline at
+        #     u = +0.338, 8 % down - tank and conical roof standing clear above
+        #     the ridge against sky. The gantry crane breaks it again at
+        #     u = +0.753, just outboard of the building's east corner at
+        #     u = +0.760. Treeline, distant skyline and storm sky above.
+        #   * SKY: the axis is 14.14 deg below horizontal against a 19.88 deg
+        #     vertical half-FOV, so the frame runs from 5.74 deg above the
+        #     horizon to 34.02 deg below it and true sky occupies the top
+        #     14.4 % of frame height. That is deliberately not the 35-40 %
+        #     the review asked for: with the gate on the centre horizontal and
+        #     an 18 m ridge 63 m away, pushing the ridge down to 60-65 % frame
+        #     height needs a ~166 m standoff, at which the building is far too
+        #     small to be a hero subject. Open sky with the water tower and the
+        #     gantry crane cutting into it is the honest maximum here, and the
+        #     ladder confirmed it empirically: every framing with more sky
+        #     scored WORSE on dead_area_frac, because the flat part of this
+        #     frame is the sky and the far-field plane, not the ground.
+        #   * FOREGROUND: the canopy deck enters the bottom of frame 19.6 m
+        #     ahead and the yard grade 28.1 m ahead, so the bottom edge is
+        #     carried by the dock roof on the right and the wet apron on the
+        #     left - a lead-in, not a wall.
+        #   * Layering reads: canopy roof + west yard clutter -> raked
+        #     warehouse south wall + centre cluster -> gantry crane, water
+        #     tower, storm sky.
+        # ---------------------------------------------------------------------
+        def Camera "HERO_ESTABLISH"
+        {
+            float focalLength = 0.028
+            float horizontalAperture = 0.036
+            float verticalAperture = 0.02025
+            float2 clippingRange = (0.05, 10000)
+            float focusDistance = 62.6
+            float fStop = 0
+            double3 xformOp:translate = (-33.0, -36.0, 19.0)
+            double3 xformOp:rotateXYZ = (75.86, 0, 331.1)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+        }
+
+        # ---------------------------------------------------------------------
+        # SHOT 2 - INTERIOR_AISLE                                   1920 x 1080
+        # ---------------------------------------------------------------------
+        # Standing 2.5 m inside the west wall in the main through-lane A3
+        # (Y = 49.5), looking due east down 73 m of racking to the glowing east
+        # roller doors at X = +37.84. 24 mm / 73.7 deg: the widest lens in the
+        # set, because a corridor shot needs the walls to rake hard.
+        #
+        # Camera Y is 49.40, not the aisle centreline 49.50. That 100 mm offset
+        # makes the two 3.011 m rack walls asymmetric in frame - which is the
+        # depth cue. A perfectly centred one-point perspective reads as a
+        # render; an off-centre one reads as a photograph.
+        #
+        # Height 2.40 m (not 1.65) is deliberate and is the one camera in the
+        # set that is not a soldier's eye: it puts the lens 0.6 m below the rack
+        # tops so you see the top rails converge.
+        #
+        # ROUND 6 - DOWN-TILT 3.0 deg -> 1.5 deg (pitch 87.0 -> 88.5).
+        # The review's finding on this frame was that the 73 m recession does
+        # not read: it terminates around 30 m and the east aperture is a small
+        # pale slot floating high in the frame. Geometry, computed and then
+        # confirmed on the render: the east roller doors are only 3.80 m tall
+        # and they are 73 m away, so from a 2.40 m lens they subtend 1.1 deg of
+        # elevation at the top and -1.9 deg at the floor - a band 6 % of frame
+        # height, no matter what this camera does. It can never be a big bright
+        # hole. What it CAN be is the point everything converges on, and that
+        # needs it near the centre horizontal rather than pushed up by tilt.
+        # At 3 deg down the door band sat 4.6-17 % ABOVE frame centre; at
+        # 1.5 deg it sits 1-11 % above it, on the eye's resting line, and the
+        # converging rack top rails now point at it. Measured on the render,
+        # everything else held (single-shot, --final --warmup 120, both at
+        # blendFactor 0.15 so the pair is like-for-like):
+        #     pitch 87.0   detail 0.0757  dead 0.142  warm_cool 0.017
+        #     pitch 88.5   detail 0.0789  dead 0.025  warm_cool 0.091
+        # The dead_area collapse is the ceiling truss: 3 deg of tilt was putting
+        # a large flat dark span of roof deck across the top of frame.
+        #
+        # WHAT THIS CAMERA CANNOT FIX, stated rather than framed around: the
+        # sightline to the aperture is BLOCKED at ~25 m by the collapsed rack
+        # bay and the spilled-cardboard island that LAYOUT 6.5 puts at X = -22,
+        # and that island is 2.2 m tall against a 3.8 m door, so it covers the
+        # bottom half of the aperture from every eye height in the aisle. Seven
+        # islands at X -30, -22, -12, -2, +8, +18, +28 is also LAYOUT's own
+        # 10 m-max-sightline requirement, so the aisle is doing two contradictory
+        # jobs. Camera-side options were rendered and all lose: moving east to
+        # X -24 / -18 clears the rack but walks into the staggered wall gaps at
+        # RR-S1 X {-12,-8} and RR-N1 X {-28,-24}, and the corridor stops being a
+        # corridor (dead_area 0.041 / 0.000 but no rack walls in frame); lifting
+        # to Z 3.60 clears the islands but puts the lens ABOVE the 3.011 m rack
+        # tops and the shot becomes a warehouse overview. The request to
+        # 30_props is in the report: shift the X = -22 island 3-4 m off the
+        # aisle centreline, or drop it to <= 1.2 m, so the aperture is clear.
+        #
+        # Composition that survives:
+        #   * Vertical half-FOV 22.9 deg; pitched down 1.5 deg the top of frame
+        #     is 21.4 deg up, so the SM_Lamp_A1 fittings (Z 8.08-13.12) are
+        #     above the frame edge for the first ~29 m and then drop in as a
+        #     receding row of sodium points converging on the door.
+        #   * Rack walls at Y 46.53 / 52.47 rake to the vanishing point; camera
+        #     Y 49.40 vs centreline 49.50 keeps them asymmetric.
+        #   * Foreground pallet stack and floor debris carry the bottom third.
+        # ---------------------------------------------------------------------
+        def Camera "INTERIOR_AISLE"
+        {
+            float focalLength = 0.024
+            float horizontalAperture = 0.036
+            float verticalAperture = 0.02025
+            float2 clippingRange = (0.05, 10000)
+            float focusDistance = 40.0
+            float fStop = 0
+            double3 xformOp:translate = (-35.5, 49.4, 2.40)
+            double3 xformOp:rotateXYZ = (88.5, 0, 270.0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+        }
+
+        # ---------------------------------------------------------------------
+        # SHOT 3 - LANE_EYE_YARD                                    1920 x 1080
+        # ---------------------------------------------------------------------
+        # THE GAMEPLAY-TRUTH FRAME. Soldier eye height, exactly 1.65 m. Dead
+        # horizon (pitch 90.000 - no tilt, no float, no cheat). Standing in
+        # Lane B at the west end of the yard looking due east down 104 m of map.
+        # 28 mm / 65.5 deg is inside the COD gameplay band and is the lens that
+        # makes the 128 m spawn-to-spawn distance read honestly.
+        #
+        # Composition:
+        #   * Foreground occluders: the pipe-trestle legs at X = -30 cut the
+        #     near field at 14 m, left and right of the walking line.
+        #   * Midground focal read: the centre cluster, 38-58 m out, sitting on
+        #     the frame's centre third.
+        #   * Lintel: the conveyor bridge crosses at 68.6-71.2 m - deck Z 5.90
+        #     subtends 3.5 deg and ridge Z 9.10 subtends 6.1 deg above the
+        #     horizon line, in a frame that runs +/-19.9 deg. So it is a thin
+        #     dark band sitting just over the centre cluster: it separates
+        #     midground from sky without eating the frame.
+        #   * Frame edges: the warehouse wall enters upper-left from 20 m out
+        #     and rakes away; the dock canopy enters lower-right from 37 m.
+        #     Two converging edges, one vanishing point, cluster on top of it.
+        #   * Background: gantry crane and storm sky.
+        #   * Sun is BEHIND the camera (WSW at 5.5 deg), so shadows recede into
+        #     frame and the wet specular has to come from the practicals on the
+        #     warehouse wall (Z 5.20, Y 14.60) and the dock canopy fascia. That
+        #     is exactly the Hackney Yard read.
+        # ---------------------------------------------------------------------
+        def Camera "LANE_EYE_YARD"
+        {
+            float focalLength = 0.028
+            float horizontalAperture = 0.036
+            float verticalAperture = 0.02025
+            float2 clippingRange = (0.05, 10000)
+            float focusDistance = 48.0
+            float fStop = 0
+            double3 xformOp:translate = (-44.0, 2.0, 1.65)
+            double3 xformOp:rotateXYZ = (90.0, 0, 270.0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+        }
+
+        # ---------------------------------------------------------------------
+        # SHOT 4 - DETAIL_WET_APRON                                 1920 x 1080
+        # ---------------------------------------------------------------------
+        # DETAIL / TEXTURE. Low (1.10 m) and close, tilted 7 deg down toward
+        # (-6.6, -17.4, 0.02), 8.76 m away. Heading 218 gives view direction
+        # (0.6157, -0.7880), which lands on that delta (5.4, -6.9) exactly.
+        # 45 mm / 43.6 deg - deliberately the longest lens in the set and
+        # deliberately just above validate.py's 40 deg floor, because a texture
+        # shot wants compression, not distortion.
+        #
+        # Subject stack, near to far:
+        #   * the cast-iron trench drain crossing frame 5 m out at X ~ -8.9
+        #   * puddle P4 (7.0 x 4.5 at (-8.5, -17.5)) filling the middle
+        #   * two rusted steeldrum_a01 at (-5.2, -19.6) and (-4.3, -19.0)
+        #     bleeding rust into the water
+        #   * a fallen heavydutytrafficcone_a03 (0.909 m) half submerged
+        #   * the dock face at Y = -22 closing the composition 14.6 m out with
+        #     bumpers and a rusted leveller plate
+        #
+        # Vertical half-FOV is 12.7 deg, so tilted down 7 deg the frame runs
+        # from 5.7 deg above the horizon to 19.7 deg below it: the ground enters
+        # 3.1 m ahead (drain at 5 m lands in the lower third) and the top edge
+        # crosses the dock face at Z 2.56 m - above the deck at 1.20, below the
+        # canopy at 5.40. The dock-canopy sodium at (-6, -23, 5.4) sits at
+        # 17.2 deg elevation, three times the top edge, so it is firmly OUT of
+        # frame and only its reflection in P4 is in shot. That is the whole
+        # idea of the frame.
+        #
+        # THE APERTURE - this is the camera the unit note at the top of the file
+        # exists for. Authored as mm on a metres stage this read f/5.6 at
+        # focalLength 45, i.e. a 45 / 5.6 = 8.04 SCENE UNIT entrance pupil: an
+        # eight-metre lens opening that blurred all 1920 x 1080 pixels,
+        # including the ground directly under the lens. Measured on the render:
+        # detail_density 0.007 (floor 0.020), dead_area_frac 0.515 (ceiling
+        # 0.160). Authored in metres the identical f-number is an 8.04 mm pupil,
+        # which is what f/5.6 on a 45 mm lens actually is.
+        #
+        # With c = 24 um (frame width / 1500), f/5.6 at 45 mm gives a hyperfocal
+        # of 15.1 m; focused at 8.8 m the acceptable-sharpness band runs
+        # 5.6 - 21.0 m. Drain (5 m), puddle (7-10 m), drums (9-10 m) and the
+        # dock face (14.6 m) are all inside it and only the extreme near ground
+        # under the lens softens - a subtle falloff, not a bokeh effect, which
+        # is the point on a frame judged for texture. VERIFIED by render:
+        # detail_density 0.007 -> 0.042, dead_area_frac 0.515 -> 0.236.
+        # ---------------------------------------------------------------------
+        def Camera "DETAIL_WET_APRON"
+        {
+            float focalLength = 0.045
+            float horizontalAperture = 0.036
+            float verticalAperture = 0.02025
+            float2 clippingRange = (0.05, 10000)
+            float focusDistance = 8.8
+            float fStop = 5.6
+            double3 xformOp:translate = (-12.0, -10.5, 1.10)
+            double3 xformOp:rotateXYZ = (83.0, 0, 218.0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+        }
+
+        # ---------------------------------------------------------------------
+        # SHOT 5 - SILHOUETTE_WEST                                  1920 x 1080
+        # ---------------------------------------------------------------------
+        # ROUND 6 - RE-AIMED AT THE SUN. (56,-8,1.65)/(90,0,90) -> (46,1,1.65)/
+        # (93,0,98). This is the shot LAYOUT 7.5 calls "the shot that has to look
+        # like a screenshot", and the review's verdict was that it had neither a
+        # silhouette nor a sun: the disc was a small neutral ball sitting BEHIND
+        # a conveyor-bridge column with a duplicate dot beside it, and the frame
+        # was a blue-grey wash. All three are now understood and two are fixed
+        # here. The geometry, worked from 60_lighting's authored numbers:
+        #
+        # WHERE THE SUN ACTUALLY IS. KeySun/SunDisc are DistantLights at
+        # rotateXYZ (82.7, 0, 290), which emit toward (0.932, 0.339, -0.127), so
+        # the disc sits at compass bearing 200 (WSW) and elevation 7.30 deg -
+        # 1.8 deg higher than LAYOUT's 5.5 because 60_lighting authored 82.7 for
+        # pitch rather than 84.5. In this file's heading convention that bearing
+        # is heading 110.2. From a 1.65 m eye it rises 0.1281 m per horizontal
+        # metre, so the line of sight to the disc is at 5.7 m by the time it has
+        # crossed the yard - and the conveyor bridge deck (LAYOUT 5.6) is at
+        # Z 5.90 across X 24.6-27.2 for the whole of Y -22..+15. That single
+        # fact governs this shot:
+        #
+        #   * From the round-5 stand at X 56 the sightline to the disc reached
+        #     the bridge plane at 5.74 m - 16 CENTIMETRES under the deck - and
+        #     threaded the cross-bracing between the legs at Y -12 and Y -21.
+        #     That is why the sun read as a blown practical behind a column. It
+        #     was not a lens or a pitch problem; it was 16 cm of clearance.
+        #   * There is no eye-height stand anywhere on this map from which the
+        #     disc clears the bridge OVER the top: that needs the sightline
+        #     above the 9.10 m ridge at X 26, i.e. a 58 m standoff, i.e. camera
+        #     X > 80, which is off the 150 m plate. Passing SOUTH of the bridge
+        #     (camera Y < -11) puts the dock office block (X 30-46, parapet
+        #     7.50) in the way instead; passing NORTH of it lands inside the
+        #     warehouse. Under the bridge is the only opening, which is exactly
+        #     what LAYOUT 7.5 designed - it just has to go through the MIDDLE of
+        #     a leg bay, not the edge of one.
+        #
+        # THE SOLVE. Sightline height at the bridge plane is 1.65 + 0.1363*(X-26)
+        # and its Y there is Cy - 0.3637*(X-26). Legs sit at Y +10, 0, -12, -21,
+        # so the wide bay is centred Y = -6. Solving both at once for a 1.5 m
+        # clearance under the deck gives X = 46, Cy = +1: the disc crosses the
+        # bridge plane at 4.38 m, 1.52 m clear of the deck, at Y = -6.3, dead
+        # centre of the 12 m bay between the Y 0 and Y -12 legs. Rendered and
+        # confirmed - the disc is unobstructed, with the deck as a hard lintel
+        # above it and clear sky either side.
+        #
+        # HEADING 98, not 90. The disc is at heading 110.2, so at heading 98 it
+        # falls 12.2 deg left of the axis; with a 27.2 deg horizontal half-FOV
+        # that is u = -0.420, i.e. 29 % in from the left edge - LAYOUT 7.5's
+        # "about a quarter in from the left", which heading 90 could not deliver
+        # because it put the disc at 14 % and hard against the frame edge.
+        # The cost is 8 deg off "due west"; the benefit is that the warehouse
+        # south wall still rakes in from frame-right (its west corner projects
+        # to u +0.81) and the dock canopy still closes frame-left.
+        #
+        # PITCH 93, and this is where the DUPLICATE DISC is resolved.
+        # There are two bright discs on bearing 200 and they are not both the
+        # sun. Measured off a pitch-96 render by back-projecting each blob:
+        #     lower blob   elevation 7.8 deg   = 60_lighting's SunDisc
+        #     upper blob   elevation 20.4 deg  = the DomeLight's own bright
+        #                                        break in approaching_storm_4k
+        # 60_lighting spun the dome to Z 56 so the HDRI's break would land on
+        # KeySun's bearing - which it does, but a Z-only spin cannot move it in
+        # ELEVATION, so the two stack 13 deg apart on the same azimuth and read
+        # as two suns. That is 60_lighting's to resolve (the report asks for the
+        # dome spun OFF bearing 200, since matching elevation is impossible with
+        # a Z spin) and this camera cannot fix it - but it can decline to
+        # photograph it. Pitch 93 puts the top of frame at 19.1 deg, below the
+        # 20.4 deg break, so only the real disc is in shot. Pitch 96 - LAYOUT's
+        # literal 6 deg up - puts the top edge at 22.1 deg and photographs both.
+        # That is the reason for the 3 deg deviation from LAYOUT 7.5 and this is
+        # it stated.
+        #
+        # MEASURED, single-shot `--final --warmup 120`, this framing vs round 5:
+        #                    round 5 (56,-8,90,90)   round 6 (46,1,93,98)
+        #     firefly_frac        0.0280                 0.0135
+        #     speckle_energy      0.0180                 0.0147
+        #     detail_density      0.0990                 0.0787
+        #     warm_cool_split     0.0070                 0.0610
+        #     cool_pixel_frac     0.4360                 0.2790
+        #     dead_area_frac      0.0670                 0.1000
+        # Better on both noise gates and 8.7x better on warm_cool_split, which
+        # is the gate that says whether the frame has a warm key at all; worse
+        # on detail_density and dead_area because a frame with the sun in it
+        # trades textured clutter for sky and glare. detail_density is held over
+        # its floor by blendFactor - see the product block.
+        #
+        # WHAT IS STILL WRONG AND IS NOT MINE. This is a backlit frame, not a
+        # true silhouette, because nothing in it goes dark: StormSky is authored
+        # at intensity 58 with `inputs:diffuse = 50`, so ambient fills every
+        # shadowed face, and the storm HDRI is DARKER than the objects it is
+        # meant to silhouette them against. The skip, the jersey barriers and
+        # the poplar line do read as dark masses against the sun's glare, and
+        # the bridge reads as a lintel, but the bridge's own underside and
+        # columns come back mid-grey. No camera transform changes that; it is a
+        # dome-intensity decision. Also 7.0 % of the frame is clipped white -
+        # the sun path on the wet apron - and there is no camera-side exposure
+        # on this build to pull it down (see the header). Both are in the report.
+        #
+        # SUPERSEDED ROUND-5 NOTE, kept for the reasoning, not the numbers:
+        # Round 5 stood at (56, -8, 1.65) with the lens at 35 mm and heading at
+        # LAYOUT's 90.0, and dropped pitch from round 4's 96 to 90.
+        #
+        # Round 4 held pitch 96 because LAYOUT 7.5 says "6 deg up", and round 5
+        # measured a pitch ladder from that stand which is still the best data
+        # on how much sky this lens can carry (2048 spp, everything else equal):
+        #
+        #     pitch 96   detail_density 0.0500   dead_area 0.327
+        #     pitch 91                   0.0725              0.233
+        #     pitch 90                   0.0745              0.119
+        #     pitch 88                   0.0794              0.084
+        #
+        # The conclusion round 5 drew from it - "go dead level" - was right about
+        # sky and wrong about the shot, because at heading 90 from X 56 the disc
+        # was occluded whatever the pitch. Round 6 keeps the lesson (do not point
+        # this lens 6 deg up; two thirds of the frame becomes flat sky) and fixes
+        # the cause (the stand, not the tilt). Pitch 93 costs a little dead_area
+        # against pitch 90 and buys the sun a clean sky slot under the bridge.
+        #
+        # Two round-5 claims in this block were stale and have been deleted
+        # rather than left to mislead: the sun is NOT invisible (60_lighting now
+        # ships a separate SunDisc prim with visibleInPrimaryRay = 1 alongside
+        # the invisible KeySun, both at rotateXYZ (82.7, 0, 290)), and the dome
+        # is NOT evening_road_01_4k (it is approaching_storm_4k spun to Z 56).
+        # ---------------------------------------------------------------------
+        def Camera "SILHOUETTE_WEST"
+        {
+            float focalLength = 0.035
+            float horizontalAperture = 0.036
+            float verticalAperture = 0.02025
+            float2 clippingRange = (0.05, 10000)
+            float focusDistance = 45.0
+            float fStop = 0
+            double3 xformOp:translate = (46.0, 1.0, 1.65)
+            double3 xformOp:rotateXYZ = (93.00, 0, 98.00)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+        }
+
+    }
+}
+
+# =============================================================================
+# RENDER PRODUCTS
+# =============================================================================
+# render.py composes an inline root layer that `over`s /Render/<SHOT> and writes
+# the quality tier (rendermode, bounce limits, samplesPerPixel, denoising) plus
+# the resolution from usd/shots.json. Anything authored HERE that render.py also
+# writes gets overridden - so what is baked in below is only:
+#
+#   * rendermode, so the layer renders correctly on its own without the harness
+#     (the schema default string "Real-Time Path-Tracing" is REJECTED by this
+#     build - see BRIEF section 2.3),
+#   * resolution, so `--res` is optional,
+#   * firefly-filter ceilings, which render.py enables but never sizes.
+#
+# -----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# ROUND-5. THE ROUND-4 DIAGNOSIS WAS WRONG, AND SO WAS THE REVIEW'S PRESCRIPTION
+# -----------------------------------------------------------------------------
+# Round 4 called the firefly outliers "one-pixel-wide sunlit edges of thin
+# background geometry" and reached for `omni:rtx:pt:pixelFilter:radius` 2.2-2.6.
+# The review then correctly called that a disaster for detail_density (5/5 shots
+# failing by 2.3-3.4x) and prescribed: wait for 60_lighting to cap emitter
+# variance with normalize = 1, then drop the radius to 1.2-1.5.
+#
+# 60_lighting landed normalize = 1 on 77 of 82 lights and dropped peak intensity
+# from 2.97e11 to 6.30e7. Measured across that change, LANE_EYE_YARD at
+# radius 1.0, everything else equal:
+#     before (normalize 0, 2.97e11)   firefly_frac 0.00820
+#     after  (normalize 1, 6.30e7)    firefly_frac 0.00791
+# Emitter variance was never the cause. The prescription would not have worked.
+#
+# WHAT THE OUTLIERS ACTUALLY ARE - three independent measurements.
+#
+#  1. THEY DO NOT CONVERGE AWAY, BECAUSE THEY ARE NOT NOISE. The identical frame
+#     at 512 / 2048 / 8192 samplesPerPixel measured
+#         firefly 0.00811 / 0.00810 / 0.00810
+#         detail  0.0613  / 0.0610  / 0.0610
+#     in 23 / 25 / 22 seconds. Monte-Carlo speckle cannot be sample-invariant.
+#     (This also proves `omni:rtx:pt:samplesPerPixel` is INERT on this build -
+#     see the WARMUP note below, which is a much bigger deal than it looks.)
+#
+#  2. THEY ARE ON THE GROUND, NOT THE SKYLINE. tools/_cam_ffmap.py renders the
+#     outlier mask back over the frame and tabulates it. On LANE_EYE_YARD the
+#     top three rows of a 9-row tile grid are 0-6 permille - i.e. the sky, the
+#     skyline, the crane lattice and the roof trusses are essentially CLEAN -
+#     while the bottom row is 32-69 permille. 67 % of outliers are 1 px runs and
+#     22 % have no outlier neighbour at all. Their mean luma is 0.505 against a
+#     frame mean of 0.253.
+#
+#  3. AT 1:1 THE OVERLAY IS A UNIFORM CARPET OF SUB-PIXEL AGGREGATE GLINTS
+#     across the whole yard. The ground material's grain sits at roughly one
+#     delivered pixel, so a 3x3 median filter cannot see past it and scores
+#     every grain as a firefly.
+#
+# THIS IS WHY THE TWO GATES WERE TRADING AGAINST EACH OTHER. `firefly_frac` and
+# `detail_density` were measuring THE SAME PIXELS. Any low-pass that suppresses
+# one suppresses the other, which is exactly the 2.3-3.4x deficit the review
+# measured, and no setting on the blur axis can escape it:
+#     radius 1.0   firefly 0.00791   detail 0.0571
+#     radius 1.5   firefly 0.00203   detail 0.0398
+#     radius 2.3   firefly 0.00018   detail 0.0250   <- 56 % of detail destroyed
+#
+# SUPERSAMPLING - the review's option (c), implemented and MEASURED, and it
+# LOSES. render.py now supports it (`supersample` in shots.json / `--ss`), so
+# the next round does not have to re-derive this. Rendering 2x and box-averaging
+# down made BOTH gates worse:
+#     ss 1  firefly 0.00862  detail 0.0757
+#     ss 2  firefly 0.00665  detail 0.0615
+#     ss 3 (old lighting)    detail/firefly ratio worse again
+# The reason is mip selection: at 2x the texture footprint per pixel halves, the
+# renderer picks a sharper mip, and the same grain comes back at one 2x pixel -
+# which the box average then decimates straight back to one hard delivered
+# pixel, while flattening the real mid-frequency texture around it. SSAA is the
+# right instrument for geometric aliasing and the wrong one for texture aliasing.
+#
+# -----------------------------------------------------------------------------
+# WHAT ACTUALLY FIXED IT - three levers, none of them a wider blur
+# -----------------------------------------------------------------------------
+#
+# 1. WARMUP - AND ROUND 5's READING OF IT WAS OVERTURNED BY THE BRIEF.
+#    Round 5 measured, with denoising OFF, warmup 50/300/1000 -> firefly
+#    0.0783 / 0.0406 / 0.0334 and set render.py's --final default to 600 steps.
+#    BRIEF section 6 has since measured the DELIVERED frame (denoising on, as
+#    shipped) at warmup 120 vs 600 and got firefly 0.022 vs 0.024 - slightly
+#    worse at five times the cost - and fixed the acceptance command at
+#    `--warmup 120`. Both measurements are real: more steps do quieten the RAW
+#    buffer, but the delivered frame is mostly the DENOISED buffer, which is
+#    already smooth at 120, so the extra steps buy nothing that survives.
+#    Everything in this file is now measured at 120 and `omni:rtx:pt:
+#    samplesPerPixel` remains inert (512 / 2048 / 8192 identical).
+#    Recorded so they are not retried: `samplesPerIteration` 16 drags mean_luma
+#    0.158 -> 0.113 and at 64 collapses exposure (0.039); `delta_time = 0` in
+#    the warmup loop changes nothing (detail 0.1919 vs 0.1922).
+#
+# 2. denoising:blendFactor - NOW THE ONLY DIAL, AND RE-TUNED FOR 120 STEPS.
+#    The OptiX denoiser removes authored surface texture at any sample count:
+#    INTERIOR_AISLE measured detail 0.0422 with denoising on against 0.1918 with
+#    it off, identically at 600 and 3000 warmup steps. blendFactor mixes a
+#    fraction of the raw buffer back over the denoised result and is what puts
+#    plywood, aggregate and cardboard back on screen.
+#
+#    The values round 5 shipped (0.22 / 0.35) were chosen against a 600-step raw
+#    buffer. At 120 steps that buffer is roughly five times noisier and the same
+#    blend delivers roughly five times the speckle. Re-measured this round,
+#    single-shot `--final --warmup 120`, on the shipped cameras:
+#
+#      INTERIOR_AISLE   bf 0.00   detail 0.0539   speckle 0.0082   firefly 0.0106
+#                       bf 0.12   detail 0.0721   speckle 0.0118   firefly 0.0130
+#                       bf 0.15   detail 0.0789   speckle 0.0132   firefly 0.0151
+#                       bf 0.35   detail 0.1200   speckle 0.0218   firefly 0.0326
+#      SILHOUETTE_WEST  bf 0.10   detail 0.0431   speckle 0.0081   firefly 0.0070
+#                       bf 0.22   detail 0.0513   speckle 0.0097   firefly 0.0079
+#                       bf 0.35   detail 0.0787   speckle 0.0147   firefly 0.0139
+#                       bf 0.45   detail 0.0887   speckle 0.0169   firefly 0.0175
+#
+#    THE STRUCTURAL RESULT, and it is the honest headline of this round:
+#    AT WARMUP 120 THESE TWO GATES CANNOT BOTH BE PASSED. `detail_density` needs
+#    >= 0.075 and `speckle_energy` needs <= 0.009, and on both frames the blend
+#    that reaches 0.075 detail lands speckle at 0.013-0.015. They are computed
+#    from the same pixels - one is |Laplacian|, the other is |pixel - 3x3
+#    median| - so the raw buffer's variance enters both with the same sign.
+#    Extrapolating the two lines, detail 0.075 arrives at speckle 0.0135 on
+#    INTERIOR_AISLE and 0.0142 on SILHOUETTE_WEST. There is no blendFactor
+#    that satisfies both, and there is no OTHER camera-side control that does
+#    either: pixelFilter:radius trades them at a far worse rate (round 4:
+#    radius 2.3 bought firefly 0.00018 for 56 % of detail), supersampling loses
+#    on both (below), and the save-path clamp that used to paper over it was a
+#    filter on the measurement and is deliberately gone.
+#    THE CHOICE MADE HERE, stated so it can be overruled: pass detail_density
+#    and report speckle_energy failing. A smeared frame is the failure a critic
+#    sees at 100 % zoom and it is caused by THIS module's setting; the residual
+#    speckle is caused by the light count, which BRIEF section 6 names as the
+#    real lever and which belongs to 60_lighting.
+#    Shipped: 0.22 on HERO / LANE / DETAIL / INTERIOR_AISLE and 0.35 on
+#    SILHOUETTE_WEST. INTERIOR_AISLE came DOWN from 0.35 (it was the only
+#    product above the pack and at warmup 120 that made it the noisiest frame
+#    in the set); SILHOUETTE_WEST went UP from 0.22 because its round-6 framing
+#    trades textured clutter for sky and glare and nothing lower clears
+#    detail_density on it. HERO / LANE / DETAIL were not re-solved this round -
+#    they were not this round's assignment - but the same 120-step arithmetic
+#    applies to them and whoever takes them next should re-sweep rather than
+#    trust the round-5 numbers.
+#
+# 3. THE SAVE-PATH CLAMP IS GONE AND IS NOT COMING BACK.
+#    Round 5 held `firefly_frac` with a 3x3 neighbourhood colour clamp in
+#    render.py's save path - the same kernel and the same predicate as the gate,
+#    iterated four times until the number read 0.000. It suppressed only the
+#    bright polarity; total noise energy was unchanged and rose. The gate is now
+#    two-sided and reports `speckle_energy`, the clamp and its `clamp` key in
+#    usd/shots.json have been removed, and this module has no replacement for it
+#    and does not want one. Every firefly and speckle number in this file is a
+#    raw delivered frame.
+# With those, `omni:rtx:pt:pixelFilter:radius` stays at 1.0 - the
+# renderer default - on ALL FIVE products. It is still authored explicitly on
+# every one, and filter 1 (Triangle) with it, because these keys carry in
+# renderer-global state.
+#
+# -----------------------------------------------------------------------------
+# THE HARNESS TRAP IS FIXED, NOT DOCUMENTED AROUND
+# -----------------------------------------------------------------------------
+# Rounds 3 and 4 both found that `omni:rtx:pt:pixelFilter:*` was honoured only on
+# the FIRST RenderProduct of a render.py invocation, and round 4's answer was to
+# declare that a batched `render.py --final` is "NOT a valid acceptance run".
+# The review rightly ran both and judged the level on the discrepancy.
+# The render-settings skill says, in as many words, to call `reset()` after
+# changing a render setting. render.py now calls `renderer.reset()` before each
+# shot's warmup loop, which discards both the accumulated samples and the
+# renderer-global settings state.
+# VERIFIED by running both, this round, on the shipped module:
+#                     five --shot runs        one batched --final run
+#     HERO            ff 0.00009 det 0.0854   ff 0.00009 det 0.0884
+#     INTERIOR        ff 0.00004 det 0.0910   ff 0.00008 det 0.0976
+#     LANE            ff 0.00009 det 0.0867   ff 0.00005 det 0.1007
+#     DETAIL          ff 0.00020 det 0.0906   ff 0.00003 det 0.1008
+#     SILHOUETTE      ff 0.00006 det 0.0814   ff 0.00004 det 0.1079
+# Both runs pass both gates on all five. The review's batched run previously
+# failed firefly on 5/5 at 0.00140-0.00724. This module no longer requires a
+# special command, and there is no longer a favourable run and an unfavourable
+# one to choose between.
+#
+# STILL NOT AUTHORABLE HERE, recorded rather than faked: maxBounces,
+# maxGlossyBounces, adaptiveSampling, lightCache and radianceCache are written
+# into render.py's inline ROOT layer, which is stronger than this module.
+# Nothing this file says about them has any effect at --final.
+#
+# FIREFLY CEILINGS. All six keys stay at the 3200 schema default except on
+# INTERIOR_AISLE (see its own note). Re-measured this round across 3200 / 12800
+# with everything else fixed: no effect in either direction. They are not the
+# instrument and never were.
+# =============================================================================
+
+over "Render"
+{
+    # HERO: 2560 x 1440. The one frame judged as a beauty shot, so it gets the
+    # extra pixels. Round 4 gave it the WIDEST filter of the five (2.6) on the
+    # theory that its north-east skyline of thin sunlit steel was the outlier
+    # source; the outlier map (tools/_cam_ffmap.py) shows the skyline is the
+    # CLEANEST part of the frame and the yard grade is the dirtiest, so that
+    # theory and that radius are both gone. Firefly ceilings sit at the 3200
+    # schema default, authored explicitly - re-measured this round, no effect
+    # in either direction.
+    def RenderProduct "HERO_ESTABLISH"
+    {
+        rel camera = </World/Cameras/HERO_ESTABLISH>
+        rel orderedVars = [</Render/HERO_ESTABLISH/LdrColor>]
+        int2 resolution = (2560, 1440)
+        token omni:rtx:rendermode = "RealTimePathTracing"
+        # Pinned, not inherited. renderer.reset() does NOT make a batched run
+        # equivalent to a single-shot one (measured in the header: 4.6x on
+        # firefly for byte-identical state), so every setting stays authored
+        # explicitly on every product - a value that is stated cannot be misread
+        # later, and DETAIL_WET_APRON deliberately turns this one OFF.
+        bool omni:rtx:pt:fractionalCutoutOpacity = 1
+        float omni:rtx:pt:fireflyFilter:maxUnexposedIntensityPerSample = 3200
+        float omni:rtx:pt:fireflyFilter:maxUnexposedIntensityPerSampleDiffuse = 3200
+        float omni:rtx:pt:fireflyFilter:maxPerEmissiveUnexposedIntensity = 3200
+        float omni:rtx:rtpt:fireflyFilter:maxUnexposedIntensityPerSample = 3200
+        float omni:rtx:rtpt:fireflyFilter:maxUnexposedIntensityPerSampleDiffuse = 3200
+        float omni:rtx:rtpt:fireflyFilter:maxPerEmissiveUnexposedIntensity = 3200
+
+        # RECONSTRUCTION. radius stays at the renderer default 1.0 on all five
+        # products: the round-4 widening to 2.2-2.6 was aimed at outliers that
+        # turned out to be sub-pixel ground-texture aliasing, and it cost up to
+        # 70 % of detail_density to suppress them. NOTHING holds firefly now -
+        # the round-5 save-path clamp that used to has been deleted as a filter
+        # on the measurement, and this module did not replace it. blendFactor
+        # mixes a fraction of the raw buffer back over the OptiX result, which
+        # is what returns the authored surface texture the denoiser removes at
+        # any sample count; it is tuned PER SHOT against the measured curve in
+        # the ROUND-6 block above, which also records that detail_density and
+        # speckle_energy cannot both be satisfied at warmup 120. Both keys are
+        # authored on ALL FIVE products because they carry in renderer-global
+        # state. filter 1 is the Triangle default, stated.
+        int omni:rtx:pt:pixelFilter:filter = 1
+        float omni:rtx:pt:pixelFilter:radius = 1.0
+        float omni:rtx:pt:denoising:blendFactor = 0.22
+
+        # Pinned off: SILHOUETTE_WEST turns bloom on, and omni:rtx:* post
+        # settings are renderer-global state.
+        bool omni:rtx:post:bloom:enabled = 0
+
+        def RenderVar "LdrColor"
+        {
+            string sourceName = "LdrColor"
+        }
+    }
+
+    # INTERIOR: the darkest frame in the set. Emissive lamp fittings are the
+    # only key at the far end of the aisle, so the per-emissive ceiling is
+    # raised to let the sodium points stay hot points instead of being clamped
+    # into grey dots at the vanishing point.
+    #
+    # ROUND 6: blendFactor 0.35 -> 0.22. This is still the frame the OptiX
+    # denoiser hurts most - measured detail 0.1918 with denoising off against
+    # 0.0422 with it on, at both 600 and 3000 warmup steps - because an interior
+    # lit only by small emissive fittings is the highest-variance frame in the
+    # set, so the denoiser does the most smoothing here. But 0.35 was chosen
+    # against a 600-step raw buffer; at the brief's warmup 120 it delivers a
+    # frame that is speckled white at 1:1 across every surface (measured
+    # speckle_energy 0.0218, firefly 0.0326, and a detail_density of 0.1200 that
+    # is high mostly because the operator is counting grain as texture).
+    # 0.22 is authored - the same value as HERO / LANE / DETAIL. 0.15 was tried
+    # first and rejected on a re-render: the probe measured detail 0.0789 at
+    # 0.15 but the shipped module measured 0.0660, BELOW the floor, because
+    # run-to-run variance on this harness is about +/-0.012 on this operator
+    # (60_lighting measured the same effect on mean_luma and firefly). 0.22
+    # lands detail 0.0780 with firefly 0.0110 - both inside their gates - at
+    # speckle 0.0140 and chroma 0.0100, which are not. At 1:1 the grain is
+    # visible but the box labels, plywood grain, rack perforations and floor
+    # aggregate all read; at 0.15 they are noticeably softer.
+    def RenderProduct "INTERIOR_AISLE"
+    {
+        rel camera = </World/Cameras/INTERIOR_AISLE>
+        rel orderedVars = [</Render/INTERIOR_AISLE/LdrColor>]
+        int2 resolution = (1920, 1080)
+        token omni:rtx:rendermode = "RealTimePathTracing"
+        # Pinned, not inherited. renderer.reset() does NOT make a batched run
+        # equivalent to a single-shot one (measured in the header: 4.6x on
+        # firefly for byte-identical state), so every setting stays authored
+        # explicitly on every product - a value that is stated cannot be misread
+        # later, and DETAIL_WET_APRON deliberately turns this one OFF.
+        bool omni:rtx:pt:fractionalCutoutOpacity = 1
+        # FIREFLY CEILINGS, and a renderer-global trap found while fixing the
+        # round-2 noise blocker. Round 2 authored ONLY the per-emissive key
+        # here (9600) and left the other four unauthored. Unauthored does NOT
+        # mean "3200 default" on this build: HERO_ESTABLISH renders first in
+        # every render.py invocation and its 12800 ceilings CARRIED FORWARD
+        # into this product. So the round-2 INTERIOR frame was really rendered
+        # at 12800, and pinning the keys honestly to 3200 dropped it to
+        # mean_luma 0.112 / rms_contrast 0.132 - both under floor. Measured
+        # both ways at 2048 spp:
+        #     3200  -> mean_luma 0.112  rms 0.132  firefly 0.094 %
+        #    12800  -> mean_luma 0.168  rms 0.161  firefly 0.097 %
+        # 12800 is authored EXPLICITLY, which is the value this frame was
+        # always being rendered at; the change is that it is now stated rather
+        # than inherited by shot order. This is the one product in the set
+        # that runs a loosened ceiling, it is the darkest frame in the set,
+        # and 0.097 % is the LOWEST outlier count of the five - the only one
+        # of the five that clears the review's 0.10 % hard ceiling.
+        float omni:rtx:pt:fireflyFilter:maxUnexposedIntensityPerSample = 12800
+        float omni:rtx:pt:fireflyFilter:maxUnexposedIntensityPerSampleDiffuse = 12800
+        float omni:rtx:pt:fireflyFilter:maxPerEmissiveUnexposedIntensity = 9600
+        float omni:rtx:rtpt:fireflyFilter:maxUnexposedIntensityPerSample = 12800
+        float omni:rtx:rtpt:fireflyFilter:maxUnexposedIntensityPerSampleDiffuse = 12800
+        float omni:rtx:rtpt:fireflyFilter:maxPerEmissiveUnexposedIntensity = 9600
+
+        # RECONSTRUCTION. radius stays at the renderer default 1.0 on all five
+        # products: the round-4 widening to 2.2-2.6 was aimed at outliers that
+        # turned out to be sub-pixel ground-texture aliasing, and it cost up to
+        # 70 % of detail_density to suppress them. NOTHING holds firefly now -
+        # the round-5 save-path clamp that used to has been deleted as a filter
+        # on the measurement, and this module did not replace it. blendFactor
+        # mixes a fraction of the raw buffer back over the OptiX result, which
+        # is what returns the authored surface texture the denoiser removes at
+        # any sample count; it is tuned PER SHOT against the measured curve in
+        # the ROUND-6 block above, which also records that detail_density and
+        # speckle_energy cannot both be satisfied at warmup 120. Both keys are
+        # authored on ALL FIVE products because they carry in renderer-global
+        # state. filter 1 is the Triangle default, stated.
+        int omni:rtx:pt:pixelFilter:filter = 1
+        float omni:rtx:pt:pixelFilter:radius = 1.0
+        float omni:rtx:pt:denoising:blendFactor = 0.22
+
+        # Pinned off: SILHOUETTE_WEST turns bloom on, and omni:rtx:* post
+        # settings are renderer-global state.
+        bool omni:rtx:post:bloom:enabled = 0
+
+        def RenderVar "LdrColor"
+        {
+            string sourceName = "LdrColor"
+        }
+    }
+
+    # LANE-LEVEL: sun behind camera, all specular from practicals. Defaults.
+    def RenderProduct "LANE_EYE_YARD"
+    {
+        rel camera = </World/Cameras/LANE_EYE_YARD>
+        rel orderedVars = [</Render/LANE_EYE_YARD/LdrColor>]
+        int2 resolution = (1920, 1080)
+        token omni:rtx:rendermode = "RealTimePathTracing"
+        # Pinned, not inherited. renderer.reset() does NOT make a batched run
+        # equivalent to a single-shot one (measured in the header: 4.6x on
+        # firefly for byte-identical state), so every setting stays authored
+        # explicitly on every product - a value that is stated cannot be misread
+        # later, and DETAIL_WET_APRON deliberately turns this one OFF.
+        bool omni:rtx:pt:fractionalCutoutOpacity = 1
+        float omni:rtx:pt:fireflyFilter:maxUnexposedIntensityPerSample = 3200
+        float omni:rtx:pt:fireflyFilter:maxUnexposedIntensityPerSampleDiffuse = 3200
+        float omni:rtx:pt:fireflyFilter:maxPerEmissiveUnexposedIntensity = 3200
+        float omni:rtx:rtpt:fireflyFilter:maxUnexposedIntensityPerSample = 3200
+        float omni:rtx:rtpt:fireflyFilter:maxUnexposedIntensityPerSampleDiffuse = 3200
+        float omni:rtx:rtpt:fireflyFilter:maxPerEmissiveUnexposedIntensity = 3200
+
+        # RECONSTRUCTION. radius stays at the renderer default 1.0 on all five
+        # products: the round-4 widening to 2.2-2.6 was aimed at outliers that
+        # turned out to be sub-pixel ground-texture aliasing, and it cost up to
+        # 70 % of detail_density to suppress them. NOTHING holds firefly now -
+        # the round-5 save-path clamp that used to has been deleted as a filter
+        # on the measurement, and this module did not replace it. blendFactor
+        # mixes a fraction of the raw buffer back over the OptiX result, which
+        # is what returns the authored surface texture the denoiser removes at
+        # any sample count; it is tuned PER SHOT against the measured curve in
+        # the ROUND-6 block above, which also records that detail_density and
+        # speckle_energy cannot both be satisfied at warmup 120. Both keys are
+        # authored on ALL FIVE products because they carry in renderer-global
+        # state. filter 1 is the Triangle default, stated.
+        int omni:rtx:pt:pixelFilter:filter = 1
+        float omni:rtx:pt:pixelFilter:radius = 1.0
+        float omni:rtx:pt:denoising:blendFactor = 0.22
+
+        # Pinned off: SILHOUETTE_WEST turns bloom on, and omni:rtx:* post
+        # settings are renderer-global state.
+        bool omni:rtx:post:bloom:enabled = 0
+
+        def RenderVar "LdrColor"
+        {
+            string sourceName = "LdrColor"
+        }
+    }
+
+    # DETAIL: judged on micro-contrast, and the only frame with a live aperture.
+    #
+    # THE DENOISER "WORMS" - found, and it was not the sample count.
+    # The review called out "mottled low-frequency worms across the drum bodies
+    # at (1050-1400, 440-620), across the dock wall and across the ground, plus
+    # a dark smear across the foreground cone" and prescribed 4096 spp. Rendered
+    # at 2048 and at 4096: the smear survives both, unchanged. It is not a
+    # convergence problem.
+    #
+    # It was isolated by ablation - four probe products on this same camera,
+    # rendered together at 2048 spp:
+    #     firefly clamp 800/800/1200 ......... smear UNCHANGED
+    #     + samplesPerIteration 8 ............ smear UNCHANGED
+    #     denoiser blendFactor 0.25 .......... smear still there, under grain
+    #     fractionalCutoutOpacity = 0 ........ smear GONE, completely
+    # The cause is 80_fx's translucent cards - /World/FX/.../GroundMist/Steam
+    # and the glow cards, alpha-mapped surfaces bound to FX_Steam. With
+    # fractional cutout opacity ON, RTX samples that alpha STOCHASTICALLY: one
+    # ray in n passes straight through, the rest scatter, and a card hanging
+    # half a metre in front of a glossy black drum lit by a 1.5e6 practical
+    # produces a variance spike that the OptiX denoiser resolves into exactly
+    # the low-frequency blotches the review describes. The black speckle inside
+    # the smear at 2x is the raw stochastic-alpha dither - that is the giveaway.
+    #
+    # fractionalCutoutOpacity = 0 makes the cutout binary instead. On THIS frame
+    # that is unambiguously right: the cards were never readable as steam at
+    # 8.8 m and f/5.6, they were readable as a render bug. It also cleans up
+    # 40_vegetation's alpha-mapped leaf cards for free.
+    #
+    # It is authored ONLY here. The same flag was measured on SILHOUETTE_WEST
+    # and made it WORSE (dead_area 0.30 -> 0.37), because out there the same
+    # cards are doing real atmospheric work at 40-100 m. Per-product, not global.
+    #
+    # FOG OFF on this product, overriding 80_fx (which documents that override
+    # as by-design). 80_fx's DETAIL fog is colour (0.58,0.40,0.30) at density
+    # 0.11 from 2 m; measured on this camera it ATTENUATES rather than veils -
+    # mean_luma 0.190 -> 0.114 and dead_area 0.187 -> 0.272. A texture frame
+    # whose entire subject sits inside 15 m has nothing to gain from aerial
+    # perspective and everything to lose from a 34 % grey multiply.
+    #
+    # blendFactor ON, LIKE THE OTHER FOUR, and the round-3 note that said
+    # "NO blendFactor" is superseded. That note was right about round 2's use of
+    # it - 0.03 was being used to buy dead_area and it paid in single-pixel
+    # grain, 15057 outlier pixels in the drum crop - but it drew the wrong
+    # conclusion, which was that the control is unusable. What makes it usable
+    # was that round 2 was buying dead_area with grain. It is used here for the
+    # opposite purpose and the grain it costs IS shipped, because the save-path
+    # clamp that round 5 relied on has been deleted. On a texture
+    # frame this is the whole point: this is the one shot judged on aggregate,
+    # rust bleed and the puddle meniscus, and the fully-denoised version of it
+    # is the "featureless cream field" the review called out on the dock wall.
+    #
+    # Firefly ceilings pinned to the 3200 default on all six keys.
+    def RenderProduct "DETAIL_WET_APRON"
+    {
+        rel camera = </World/Cameras/DETAIL_WET_APRON>
+        rel orderedVars = [</Render/DETAIL_WET_APRON/LdrColor>]
+        int2 resolution = (1920, 1080)
+        token omni:rtx:rendermode = "RealTimePathTracing"
+        # (no samplesPerPixel here: render.py's FINAL block authors it into the
+        #  inline ROOT layer, which is stronger than this module. An authored
+        #  8192 measured byte-for-byte identical to the default - verified,
+        #  probe S0 - so a value here would be a comforting lie.)
+        bool omni:rtx:pt:fractionalCutoutOpacity = 0
+        float omni:rtx:pt:fireflyFilter:maxUnexposedIntensityPerSample = 3200
+        float omni:rtx:pt:fireflyFilter:maxUnexposedIntensityPerSampleDiffuse = 3200
+        float omni:rtx:pt:fireflyFilter:maxPerEmissiveUnexposedIntensity = 3200
+        float omni:rtx:rtpt:fireflyFilter:maxUnexposedIntensityPerSample = 3200
+        float omni:rtx:rtpt:fireflyFilter:maxUnexposedIntensityPerSampleDiffuse = 3200
+        float omni:rtx:rtpt:fireflyFilter:maxPerEmissiveUnexposedIntensity = 3200
+
+        # RECONSTRUCTION. radius stays at the renderer default 1.0 on all five
+        # products: the round-4 widening to 2.2-2.6 was aimed at outliers that
+        # turned out to be sub-pixel ground-texture aliasing, and it cost up to
+        # 70 % of detail_density to suppress them. NOTHING holds firefly now -
+        # the round-5 save-path clamp that used to has been deleted as a filter
+        # on the measurement, and this module did not replace it. blendFactor
+        # mixes a fraction of the raw buffer back over the OptiX result, which
+        # is what returns the authored surface texture the denoiser removes at
+        # any sample count; it is tuned PER SHOT against the measured curve in
+        # the ROUND-6 block above, which also records that detail_density and
+        # speckle_energy cannot both be satisfied at warmup 120. Both keys are
+        # authored on ALL FIVE products because they carry in renderer-global
+        # state. filter 1 is the Triangle default, stated.
+        int omni:rtx:pt:pixelFilter:filter = 1
+        float omni:rtx:pt:pixelFilter:radius = 1.0
+        float omni:rtx:pt:denoising:blendFactor = 0.22
+        bool omni:rtx:fog:enabled = 0
+
+        # Pinned off: SILHOUETTE_WEST turns bloom on, and omni:rtx:* post
+        # settings are renderer-global state.
+        bool omni:rtx:post:bloom:enabled = 0
+
+        def RenderVar "LdrColor"
+        {
+            string sourceName = "LdrColor"
+        }
+    }
+
+    # SILHOUETTE: re-authored in round 3.
+    #
+    # 1. FOG. The round-2 block ran WARM (0.68, 0.56, 0.48) at colorIntensity
+    #    0.420, distanceDensity 0.260 from 6.00 m - the opposite of the round-2
+    #    prescription on every single value, which is what produced the
+    #    "milky-grey haze plate with a hard upper boundary". The prescribed
+    #    values are now authored exactly as given:
+    #        color (0.42, 0.47, 0.56)  colorIntensity 0.22
+    #        distanceDensity 0.085     start:distance 25.0
+    #        height:density 0.35
+    #    height:falloff is 11.0 rather than round 2's 4.0 so the veil is a
+    #    depth cue on the 40-120 m layers instead of a ground-hugging bank.
+    #    No warm cast is authored anywhere in this product; the only warm in
+    #    frame is the sodium practicals and the sun's own halo, which is what
+    #    "confine any warm cast to a narrow band around the sun disc" asks for.
+    #    ROUND 6 - THE FOG IS DOING ALMOST NOTHING AND THAT IS MEASURED.
+    #    Swept on the round-6 framing, single-shot --final --warmup 120, only
+    #    the fog block changing:
+    #        shipped   (0.42,0.47,0.56) i 0.220 d 0.085 from 25 m
+    #                     mean_luma 0.262  rms 0.284  firefly 0.0625
+    #        denser cool                i 0.350 d 0.160 from 12 m
+    #                     mean_luma 0.266  rms 0.281  firefly 0.0610
+    #        warm       (0.62,0.52,0.44) i 0.300 d 0.130 from 12 m
+    #                     mean_luma 0.268  rms 0.282  firefly 0.0607
+    #    Doubling the density and halving the start distance moves mean_luma by
+    #    0.004. The control is not broken - pushed to i 1.000 d 1.000 from 2 m
+    #    it does bite (mean_luma 0.389, rms 0.238, i.e. it flattens the frame) -
+    #    it is simply far too weak at the authored values to be the aerial
+    #    perspective the round-3 note claims it is. It is kept, because at these
+    #    values it costs nothing and it is the prescribed cool cast, but nobody
+    #    should credit it with the look of this frame. If a future round wants
+    #    real depth haze here it needs distanceDensity in the 0.3-0.5 range and
+    #    it will pay for it in rms_contrast.
+    #
+    # 2. blendFactor 0.22, as on the other four. Round 2's 0.075 here was
+    #    being used to buy dead_area and paid in grain (34105 outlier pixels,
+    #    1.645 % of frame); round 3 deleted it. It is back for the opposite
+    #    reason - recovering surface texture from the denoiser - and round 6
+    #    raises it to 0.35, because at warmup 120 nothing lower clears
+    #    detail_density on this framing. The outliers it costs ARE shipped: the
+    #    save-path clamp round 5 leaned on is gone. See the ROUND-6 block.
+    #
+    # 3. Firefly ceilings back to the 3200 default from round 2's 32000 on all
+    #    six keys.
+    #
+    # 4. PHYSICAL BLOOM, and the honest limit of the "rim" requirement.
+    #    The review asks for "a rim of at least 0.15 luma above its body value
+    #    along its sunward edge". The bridge's SUNWARD face is its WEST face
+    #    (KeySun travels on compass bearing 70), and this camera stands EAST of
+    #    the bridge, so the sunward face is not in shot at all - only the
+    #    anti-sunward east face and the shadowed eave are. A literal
+    #    surface-lit rim is not photographable from any camera that also has
+    #    the sun in frame, because the sun and the camera are on opposite
+    #    sides of the structure by construction.
+    #    What IS available is glare wrap. Measured on the roof edge (150
+    #    columns, first 4 px inside the silhouette vs the body 22-38 px in):
+    #        no bloom          edge 0.137  body 0.232  rim -0.095
+    #        scale 0.08 cut 6  edge 0.265  body 0.260  rim +0.005
+    #        scale 0.20 cut 4  edge 0.324  body 0.303  rim +0.021
+    #    0.20/4.0 flips the sign harder but pushes warm_cool_split under its
+    #    floor (0.016). 0.08/6.0 is authored: it flips the edge from 0.095
+    #    BELOW the body to level with it and gives the disc real photographic
+    #    glare. +0.15 is not reachable and that is stated rather than fudged.
+    #    Verified non-leaking: a control product with bloom explicitly off,
+    #    rendered AFTER both bloom products in the same invocation, measured
+    #    rim -0.095 - i.e. bloom does not carry in renderer-global state the
+    #    way pixelFilter:radius does.
+    #
+    #    ROUND 6 RE-SWEPT IT, because the review called the disc "a bloom
+    #    sprite". Bloom is what makes the disc read as a sun rather than a white
+    #    dot, but it is also a low-pass over the whole frame and it is expensive
+    #    in detail_density. On the round-6 framing, everything else equal:
+    #        scale 0.00 (off)  detail 0.0522*  mean_luma 0.247  - disc is a bare
+    #                          40 px white ball with no glare at all
+    #        scale 0.08 cut 6  detail 0.0787   mean_luma 0.320  dead 0.108
+    #        scale 0.12 cut 5  detail 0.0723   mean_luma 0.320  dead 0.120
+    #        scale 0.25 cut 4  detail 0.0505   mean_luma 0.307  dead 0.173
+    #        scale 0.40 cut 3  detail 0.1008*  mean_luma 0.350  dead 0.107
+    #                          - and the whole frame is veiled; rejected on look
+    #    (*measured at a different blendFactor; the 0.08/0.12/0.25 rows are the
+    #    like-for-like comparison at bf 0.35.)
+    #    0.08/6.0 stays. 0.25 gives the sun a bigger, prettier corona and costs
+    #    36 % of detail_density and 0.065 of dead_area, which is not a trade
+    #    this frame can afford - it is already the barest frame in the set.
+    #    The concentric dotted ring the review read as a "bloom sprite" is the
+    #    physical bloom's aperture diffraction pattern; it is present at every
+    #    scale and only its amplitude changes. cutoffFuzziness 1.20 does not
+    #    smooth it (detail 0.1136 vs 0.1135, identical frame) and
+    #    aperture:blades 0 renders a BLACK FRAME. The only way to remove it is
+    #    to turn bloom off, which leaves the disc reading as a blown practical -
+    #    exactly the complaint. Shipped at 0.08 as the smallest amplitude that
+    #    still gives the disc a corona.
+    def RenderProduct "SILHOUETTE_WEST" (
+        prepend apiSchemas = ["OmniRtxPostBloomPhysicalAPI_1"]
+    )
+    {
+        rel camera = </World/Cameras/SILHOUETTE_WEST>
+        rel orderedVars = [</Render/SILHOUETTE_WEST/LdrColor>]
+        int2 resolution = (1920, 1080)
+        token omni:rtx:rendermode = "RealTimePathTracing"
+        # Pinned, not inherited. renderer.reset() does NOT make a batched run
+        # equivalent to a single-shot one (measured in the header: 4.6x on
+        # firefly for byte-identical state), so every setting stays authored
+        # explicitly on every product - a value that is stated cannot be misread
+        # later, and DETAIL_WET_APRON deliberately turns this one OFF.
+        bool omni:rtx:pt:fractionalCutoutOpacity = 1
+        float omni:rtx:pt:fireflyFilter:maxUnexposedIntensityPerSample = 3200
+        float omni:rtx:pt:fireflyFilter:maxUnexposedIntensityPerSampleDiffuse = 3200
+        float omni:rtx:pt:fireflyFilter:maxPerEmissiveUnexposedIntensity = 3200
+        float omni:rtx:rtpt:fireflyFilter:maxUnexposedIntensityPerSample = 3200
+        float omni:rtx:rtpt:fireflyFilter:maxUnexposedIntensityPerSampleDiffuse = 3200
+        float omni:rtx:rtpt:fireflyFilter:maxPerEmissiveUnexposedIntensity = 3200
+
+        # RECONSTRUCTION. radius stays at the renderer default 1.0 on all five
+        # products: the round-4 widening to 2.2-2.6 was aimed at outliers that
+        # turned out to be sub-pixel ground-texture aliasing, and it cost up to
+        # 70 % of detail_density to suppress them. NOTHING holds firefly now -
+        # the round-5 save-path clamp that used to has been deleted as a filter
+        # on the measurement, and this module did not replace it. blendFactor
+        # mixes a fraction of the raw buffer back over the OptiX result, which
+        # is what returns the authored surface texture the denoiser removes at
+        # any sample count; it is tuned PER SHOT against the measured curve in
+        # the ROUND-6 block above, which also records that detail_density and
+        # speckle_energy cannot both be satisfied at warmup 120. Both keys are
+        # authored on ALL FIVE products because they carry in renderer-global
+        # state. filter 1 is the Triangle default, stated.
+        int omni:rtx:pt:pixelFilter:filter = 1
+        float omni:rtx:pt:pixelFilter:radius = 1.0
+        float omni:rtx:pt:denoising:blendFactor = 0.35
+        bool omni:rtx:fog:enabled = 1
+        color3f omni:rtx:fog:color = (0.4200, 0.4700, 0.5600)
+        float omni:rtx:fog:colorIntensity = 0.220
+        float omni:rtx:fog:distanceDensity = 0.0850
+        float omni:rtx:fog:start:distance = 25.00
+        float omni:rtx:fog:endDist = 520.0
+        float omni:rtx:fog:height:density = 0.350
+        float omni:rtx:fog:height:falloff = 11.00
+        float omni:rtx:fog:start:height = 0.00
+        bool omni:rtx:fog:zUp:enabled = 1
+        bool omni:rtx:post:bloom:enabled = 1
+        float omni:rtx:post:bloom:scale = 0.08
+        float3 omni:rtx:post:bloom:cutoff = (6.0, 6.0, 6.0)
+        float omni:rtx:post:bloom:cutoffFuzziness = 0.45
+        float omni:rtx:post:bloom:focalLength = 35
+        float omni:rtx:post:bloom:fStop = 8
+        float omni:rtx:post:bloom:sensorDiagonal = 43.3
+        float omni:rtx:post:bloom:aspectRatio = 1.0
+        int omni:rtx:post:bloom:aperture:blades = 7
+
+        def RenderVar "LdrColor"
+        {
+            string sourceName = "LdrColor"
+        }
+    }
+}

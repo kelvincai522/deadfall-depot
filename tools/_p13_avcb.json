@@ -1,0 +1,156 @@
+[
+ {
+  "key": "Assets/ArchVis/Industrial/Containers/Cardboard/Cardbox_A1.usd",
+  "upAxis": "Z",
+  "metersPerUnit": 0.009999999776482582,
+  "points": 279,
+  "defaultPrim": "World",
+  "min_m": [
+   -0.3497,
+   -0.2606,
+   0.0
+  ],
+  "max_m": [
+   0.3497,
+   0.2606,
+   0.5099
+  ],
+  "size_m": [
+   0.6994,
+   0.5212,
+   0.5099
+  ]
+ },
+ {
+  "key": "Assets/ArchVis/Industrial/Containers/Cardboard/Cardbox_A2.usd",
+  "upAxis": "Z",
+  "metersPerUnit": 0.009999999776482582,
+  "points": 279,
+  "defaultPrim": "World",
+  "min_m": [
+   -0.3497,
+   -0.255,
+   0.0
+  ],
+  "max_m": [
+   0.3497,
+   0.255,
+   0.5212
+  ],
+  "size_m": [
+   0.6994,
+   0.5099,
+   0.5212
+  ]
+ },
+ {
+  "key": "Assets/ArchVis/Industrial/Containers/Cardboard/Cardbox_B2.usd",
+  "upAxis": "Z",
+  "metersPerUnit": 0.009999999776482582,
+  "points": 282,
+  "defaultPrim": "World",
+  "min_m": [
+   -0.2551,
+   -0.255,
+   -0.0007
+  ],
+  "max_m": [
+   0.2551,
+   0.255,
+   0.52
+  ],
+  "size_m": [
+   0.5103,
+   0.5099,
+   0.5207
+  ]
+ },
+ {
+  "key": "Assets/ArchVis/Industrial/Containers/Cardboard/Cardbox_B3.usd",
+  "upAxis": "Z",
+  "metersPerUnit": 0.009999999776482582,
+  "points": 282,
+  "defaultPrim": "World",
+  "min_m": [
+   -0.2551,
+   -0.255,
+   -0.0007
+  ],
+  "max_m": [
+   0.2551,
+   0.255,
+   0.52
+  ],
+  "size_m": [
+   0.5103,
+   0.5099,
+   0.5207
+  ]
+ },
+ {
+  "key": "Assets/ArchVis/Industrial/Containers/Cardboard/Cardbox_C3.usd",
+  "upAxis": "Z",
+  "metersPerUnit": 0.009999999776482582,
+  "points": 152,
+  "defaultPrim": "World",
+  "min_m": [
+   -0.2566,
+   -0.2553,
+   -0.0002
+  ],
+  "max_m": [
+   0.2566,
+   0.2553,
+   0.2595
+  ],
+  "size_m": [
+   0.5132,
+   0.5106,
+   0.2597
+  ]
+ },
+ {
+  "key": "Assets/ArchVis/Industrial/Containers/Cardboard/Cardbox_D1.usd",
+  "upAxis": "Z",
+  "metersPerUnit": 0.009999999776482582,
+  "points": 179,
+  "defaultPrim": "World",
+  "min_m": [
+   -0.1724,
+   -0.1322,
+   0.0
+  ],
+  "max_m": [
+   0.1724,
+   0.1322,
+   0.1661
+  ],
+  "size_m": [
+   0.3448,
+   0.2644,
+   0.1661
+  ]
+ },
+ {
+  "key": "Assets/ArchVis/Industrial/Containers/Cardboard/Cardbox_D2.usd",
+  "upAxis": "Z",
+  "metersPerUnit": 0.009999999776482582,
+  "points": 179,
+  "defaultPrim": "World",
+  "min_m": [
+   -0.1724,
+   -0.1322,
+   0.0
+  ],
+  "max_m": [
+   0.1724,
+   0.1322,
+   0.1661
+  ],
+  "size_m": [
+   0.3448,
+   0.2644,
+   0.1661
+  ]
+ }
+]

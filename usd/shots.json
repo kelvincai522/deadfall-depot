@@ -1,0 +1,51 @@
+{
+  "shots": {
+    "HERO_ESTABLISH": {
+      "resolution": [
+        2560,
+        1440
+      ],
+      "desc": "HERO ESTABLISHING. Elevated three-quarter drone view from the south-west at Z 11 m, 28 mm / 65.5 deg, looking north-east across the whole yard at the warehouse south wall. Aim point is the 7.39 m hero gate at (4,18,3), 80.6 m out and 5.7 deg below the lens, sitting dead centre of frame. Foreground: dock canopy + west yard clutter entering 23 m ahead. Midground: 76 m of corrugated south wall raked by the WSW sun. Background: gantry crane, water tower, silos, storm sky with ~13 m of air above the 18 m ridge.",
+      "warmup": 120,
+      "denoise": 1
+    },
+    "INTERIOR_AISLE": {
+      "resolution": [
+        1920,
+        1080
+      ],
+      "desc": "INTERIOR. 24 mm / 73.7 deg at Z 2.40 m, 2.5 m inside the west wall in main through-lane A3, looking due east down 73 m of racking to the glowing east roller doors. Camera Y 49.40 vs aisle centreline 49.50 makes the two 3.011 m rack walls asymmetric - that is the depth cue. 3 deg down-tilt drops the hero-gate water slick into the lower third; the SM_Lamp_A1 fittings converge in as a receding row of sodium points at the vanishing point.",
+      "warmup": 120,
+      "denoise": 1
+    },
+    "LANE_EYE_YARD": {
+      "resolution": [
+        1920,
+        1080
+      ],
+      "desc": "LANE-LEVEL GAMEPLAY TRUTH. Exactly 1.65 m eye height, dead horizon (pitch 90.000), 28 mm / 65.5 deg, standing in Lane B at the west end of the yard looking due east. Pipe-trestle legs at X -30 occlude the near field at 14 m; the centre cluster is the focal read at 38-58 m; the conveyor bridge caps the upper middle at 70 m; warehouse wall rakes in from upper-left, dock canopy from lower-right. Sun is behind camera, so all wet specular must come from the wall packs and canopy sodiums.",
+      "warmup": 120,
+      "denoise": 1
+    },
+    "DETAIL_WET_APRON": {
+      "resolution": [
+        1920,
+        1080
+      ],
+      "desc": "DETAIL / TEXTURE. 45 mm / 43.6 deg at 1.10 m, tilted 7 deg down toward (-6.6,-17.4,0.02) 8.8 m away, f/5.6 focused at 8.8 m. Subject: puddle P4, the cast-iron trench drain crossing 5 m out, two rusted steeldrum_a01 bleeding into the water, a half-submerged heavydutytrafficcone_a03; the dock face at Y -22 closes the composition 14.6 m out. The canopy sodium at (-6,-23,5.4) is above the frame - only its reflection is in shot. Judged on aggregate, rust-bleed streaking, puddle meniscus, moss in the drain, tyre scuff over faded paint.",
+      "warmup": 120,
+      "denoise": 1
+    },
+    "SILHOUETTE_WEST": {
+      "resolution": [
+        1920,
+        1080
+      ],
+      "desc": "SILHOUETTE / SKYLINE. 1.65 m eye height, 6 deg up, 35 mm / 54.4 deg, looking due west down the length of the map into the storm break. The 5.5 deg sun sits ~13% in from the left edge and UNDER the conveyor bridge, which crosses frame centre 20.8 m out as a black lintel (deck 11.5 deg, ridge 19.7 deg). Warehouse south wall is 41 m of raking silhouette on frame-right, dock canopy on frame-left, west poplar at (-73,+6) clips the disc at 121 m. Five depth planes front to back.",
+      "warmup": 120,
+      "denoise": 1
+    }
+  },
+  "_render_notes_policy": "Do NOT add any save-path filter, clamp, median or clip. An earlier agent used one to drive the firefly metric to 0.000 without reducing noise; the mechanism was deleted deliberately. See BRIEF.md section 6.",
+  "_render_notes": "Keys read by render.py: resolution, warmup, denoise, spi. MEASURED on this build: omni:rtx:pt:samplesPerPixel is INERT (512 == 8192). Warmup does NOT accumulate in PathTracing mode (120 vs 600 -> 0.022 vs 0.024 speckle). omni:rtx:pt:samplesPerIteration IS the convergence knob; 64 is the measured sweet spot. Noise plateaus at speckle ~0.017 on a scene this complex - that is the honest floor."
+}

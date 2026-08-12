@@ -1,0 +1,1663 @@
+#usda 1.0
+(
+    defaultPrim = "World"
+    doc = """DEADFALL DEPOT module: lighting. Owned by one specialist agent - do not edit from another module.
+
+GENERATED. The authority is tools/gen_lighting9.py, which writes this whole
+layer from one table. Do not hand-patch it - re-run the generator:
+
+    cd tools && uv run gen_lighting9.py
+    cd tools && uv run gen_lighting9.py --report          # peak radiance table
+    cd tools && uv run gen_lighting9.py --ablate          # DIAGNOSTIC, 2 lights
+    cd tools && uv run gen_lighting9.py --albedo-probe    # DIAGNOSTIC, white dome
+    cd tools && uv run gen_lighting9.py --only StormSky   # DIAGNOSTIC, dome alone
+    cd tools && uv run gen_lighting9.py --drop KeySun     # DIAGNOSTIC, by name
+
+The value gate this revision exists for is NOT in analyze_shot.py. Measure it
+with tools/_light10_value.py, and decompose a failing warm_cool_split with
+tools/_light10_split.py:
+
+    cd tools && uv run _light10_value.py '../_shots/*_final.png'
+    cd tools && uv run _light10_split.py ../_shots/HERO_ESTABLISH_final.png
+
+gen_lighting.py, _light_struct6/7/8.py and tune_lighting.py are SUPERSEDED and
+must not be run: they are incremental regex patchers written against the
+82-light revision-8 rig and they will re-author prims revision 9 deleted.
+
+STORM-BREAK DUSK. The grade is one sentence: THE SKY IS THE BRIGHTEST THING IN
+THE FRAME, THE ARCHITECTURE IS A DARKER MASS, AND THE PRACTICALS ARE WARM POOLS
+ON DARK WET GROUND.
+
+=============================================================================
+REVISION 10 - THE VALUE RELATIONSHIP, WHICH WAS INVERTED FOR FIVE ROUNDS
+=============================================================================
+
+THE FINDING, as the round-10 critic measured it: "sunlit facade mean luma 0.581,
+sky mean luma 0.194 - the building is three times brighter than the sky behind
+it. In every reference the sky is the brightest thing in frame and the
+architecture is a dark mass carrying a rim. Ours reads as a scale model under a
+work light." Revision 9 shipped that and did not know, because analyze_shot.py
+has no operator that can see it: mean_luma, warm_cool_split, cool_pixel_frac and
+dead_area_frac are all whole-frame statistics and every one of them passed.
+
+So the first thing revision 10 built was the missing instrument,
+tools/_light10_value.py - fixed pixel windows on open sky and on lit
+architecture, per shot, verified by cropping them out and looking at them. Every
+number below comes from it at `--final --warmup 120 --dt 0`.
+
+-----------------------------------------------------------------------------
+THE MEASUREMENT THAT MADE IT SOLVABLE - `gen_lighting9.py --only StormSky`
+-----------------------------------------------------------------------------
+    linear-light mean of each window, dome alone vs the full revision-9 rig
+
+    shot              window   dome only   full rig   dome's share
+    HERO_ESTABLISH    FACADE     0.0116     0.3515        3.3 %
+    LANE_EYE_YARD     FACADE     0.0089     0.4381        2.0 %
+    SILHOUETTE_WEST   FACADE     0.0160     0.2183        7.3 %
+    HERO_ESTABLISH    SKY        0.0577     0.0589       98.0 %
+
+THE SKY IS THE DOME AND NOTHING ELSE. THE LIT ARCHITECTURE IS THE WSW WARM GROUP
+AND ALMOST NOTHING ELSE. That is why five rounds of surface work could not touch
+it: the two quantities are driven by different prims and were never balanced
+against each other. Once measured, the gate is one inequality in one unknown,
+and LANE_EYE_YARD is the binding shot because its facade window is 8 m of
+warehouse wall at 13 m.
+
+WHAT CHANGED, all of it in tools/gen_lighting9.py:
+
+ 1. WARM_KEY_TRIM = 0.30 scales KeySun, its visible SunDisc and the
+    StormBreak_West card together - they are one light in three prims. That is a
+    3.3x cut from revision 9. StormBreak_West mattered more than the sun did:
+    45 500 m2 of card at 450 m subtends 0.225 sr, so at revision 9's radiance it
+    was delivering of the order of 8e4 lux from the WSW, several times KeySun's
+    own beam, and it is what made the facade a hard warm wash.
+
+    THAT CUT IS THE PHYSICS, NOT A DODGE. This is a storm BREAK at dusk: a 5-7
+    degree sun seen through the full thickness of a storm's edge, with the cloud
+    ceiling carrying the light. A sun that puts 30 000 lux on a wall at that hour
+    is a clear golden-hour sun, and a clear golden-hour sun is precisely why the
+    frames read as a scale model under a work light.
+
+ 2. THE DOME IS PHOTOGRAPHED 8.8x BRIGHTER AND ONLY 7.7x MORE ILLUMINATING.
+    `intensity` 58 -> 512 is what a primary ray sees; `diffuse` 50 -> 39 holds
+    the illumination back so the level does not simply get brighter everywhere.
+    `specular` 1.00 -> 0.15 keeps intensity * specular within 20 percent of
+    revision 9, because otherwise every wet surface would mirror a 9x sky and
+    DETAIL_WET_APRON's puddle - whose subject is a SODIUM reflection - would have
+    gone further blue rather than less.
+
+ 3. FOUR WALL-LENGTH WASHES BECAME ELEVEN POOLS, and EXT_WARM_TRIM went 0.24 ->
+    1.00. Revision 9 consolidated eleven point sources into 22-38 m cards on the
+    stated grounds that fewer lights meant less variance; the brief's own
+    correction has since falsified that premise, and what the consolidation cost
+    was the Hackney Yard image - a 38 m card lays one even sheet over the whole
+    apron, and an even sheet is by definition not a pool. The eleven are DiskLights
+    with cone shaping (which does NOT work on a RectLight on this build) sitting
+    on the fixtures 20_architecture already built, and the dead units are that
+    file's dead units: WallPack3_lens (X +2) and Sodium1/4_lens (X -30, +12) have
+    no emissive binding, so they get no light either.
+
+ 4. THE FIXTURE LENSES ARE REBOUND FROM 9 000 NITS TO 2 800. sRGB 1.0 lands near
+    1 200 nits here, so a 9 000 nit lens clips to flat white in all three
+    channels - a white dot, not a sodium lamp. 60_lighting sublayers above
+    50_materials so the rebinding at the foot of this file wins without editing
+    that module. The cold swap-in LAYOUT 8.2 asks for is wall pack X -10, chosen
+    because 80_fx already authors its one FX_GlowMercury cone at exactly that
+    station and the two were contradicting each other.
+
+=============================================================================
+REVISION 9 - 82 LIGHTS DOWN TO 32, AND THE NOISE HYPOTHESIS FALSIFIED
+=============================================================================
+
+READ THE ABLATION LADDER BELOW BEFORE SPENDING MORE TIME ON speckle_energy.
+The brief this revision was written against stated, as established fact, that
+"LIGHT COUNT IS THE LEVER: 2 lights -> speckle 0.006; 82 lights -> speckle
+0.020". That is true of the trivial calibration scene. IT IS NOT TRUE OF THIS
+LEVEL. Cutting 82 lights to 27 did not bring speckle_energy or chroma_speckle
+to their gates on any shot, and on HERO_ESTABLISH it changed them by nothing.
+
+-----------------------------------------------------------------------------
+THE ABLATION LADDER - every row is `render.py --final --warmup 120`, measured
+-----------------------------------------------------------------------------
+    HERO_ESTABLISH                       speckle  chroma  firefly  mean_luma
+      82 lights (revision 8, shipped)     0.017   0.011    0.025     0.229
+      27 lights (revision 9)              0.017   0.011    0.028     0.302
+       2 lights (dome + key sun only)     0.018   0.012    0.034     0.175
+       2 lights AND no emissive geometry  0.018   0.012    0.035     0.190
+
+    LANE_EYE_YARD
+      82 lights                           0.027   0.015    0.068     0.161
+      27 lights                           0.028   0.016    0.075     0.235
+       1 light  (a single WHITE dome)     0.018   0.007      -       0.123
+
+    DETAIL_WET_APRON
+      82 lights                           0.025   0.015    0.062     0.135
+      27 lights                           0.029   0.018    0.038     0.203
+       1 light  (a single WHITE dome)     0.006   0.004      -       0.022
+
+    INTERIOR_AISLE
+      82 lights                           0.046   0.022    0.137     0.184
+      27 lights                           0.044   0.020    0.122     0.177
+       2 lights AND no emissive geometry  0.011   0.009    0.012     0.027
+
+THREE THINGS FOLLOW, AND THEY ARE THE MOST USEFUL RESULT IN THIS REVISION.
+
+ 1. ON HERO_ESTABLISH THE LIGHT RIG CONTRIBUTES NOTHING MEASURABLE. Two analytic
+    lights, no practicals, no emissive geometry, at mean_luma 0.190 - which is
+    INSIDE the exposure gate - still measures speckle_energy 0.018 and
+    chroma_speckle 0.012, i.e. 2x each gate. There is no rig this module can
+    author that gets that frame under 0.009. The residue is scene-side:
+    sub-pixel aliasing over an enormous amount of high-frequency prop,
+    vegetation and decal geometry, plus the level's emissive card stack.
+
+ 2. speckle_energy IS AN ABSOLUTE MEASURE AND THEREFORE PARTLY AN EXPOSURE
+    MEASURE. It is mean |pixel - 3x3 median| in sRGB, so the same relative noise
+    reads higher on a brighter frame. Normalised by mean_luma, revision 9 is
+    cleaner than revision 8 on every shot:
+        HERO 0.074 -> 0.070   INTERIOR 0.250 -> 0.249   LANE 0.168 -> 0.119
+        DETAIL 0.185 -> 0.143  SILHOUETTE 0.172 -> 0.160
+    and revision 8 bought part of its lower absolute number by being too dark -
+    mean_luma failed low on three of five frames. Some of that darkness was the
+    renderer's own `fireflyFilter:maxUnexposedIntensityPerSample = 3200` clamp
+    discarding energy from emitters running at 4-5e6 nits; capping peak radiance
+    is why the same authored flux now reaches the film.
+
+ 3. INTERIOR_AISLE IS A SEPARATE, DIAGNOSED, CROSS-MODULE PROBLEM. Its 0.044 /
+    0.020 / 0.122 is roughly double every other frame and it barely moved
+    between 82 lights and 27. `80_fx.usda` authors /World/FX/DustMotes/Motes,
+    whose own doc string reads "Sub-pixel emissive quads in the beams. They read
+    as sparkle, not geometry", with extent X -37.29..31.90, Y 40.00..56.18,
+    Z 0.07..12.47. INTERIOR_AISLE stands at (-35.5, 49.40, 2.40) and looks due
+    east: that mesh occupies EXACTLY the volume this camera looks through, and
+    the frame's noise is a uniform field of white sub-pixel dots including over
+    surfaces no light in this module reaches. It also drives that frame's
+    detail_density to 0.269 against a 0.200 ceiling - high-frequency noise reads
+    as "texture" to that operator. 80_fx sublayers ABOVE 60_lighting so I cannot
+    override or ablate it to prove this; it is filed as a request with the
+    coordinates. REQUEST TO 80_fx: give Motes a real width, cut its density by
+    an order of magnitude, or restrict it to the shafts it is named for.
+
+WHAT REVISION 9 DID DO ABOUT VARIANCE, since the count was not the lever:
+
+  * 82 prims -> 27, because a smaller rig is still the right rig and it made the
+    level cleaner PER UNIT OF EXPOSURE (see 2 above). Consolidations, all
+    flux-preserving unless noted - with `normalize = 1` an area light's power is
+    fixed and only its peak radiance moves when you change its size:
+         5 SphereLight south wall packs      ->  2 RectLight wall washes
+         6 SphereLight dock canopy fascia    ->  2 RectLight fascia washes
+         2 SphereLight dock-face bay lamps   ->  1 RectLight (flux cut 3x)
+         3 SphereLight conveyor bridge       ->  1 RectLight underside run
+        27 DiskLight   interior high bays    ->  6 DiskLight at radius 2.40
+         6 RectLight + 6 SphereLight roof breaks -> 0; the beams are geometry
+         3 RectLight   clerestory + monitor  ->  1 RectLight roof monitor
+         3 RectLight   gate washes           ->  1 RectLight south gate wash
+         2 RectLight   storm break + fringe  ->  1 RectLight break
+         2 DistantLight cool fills           ->  1 DistantLight ENE horizon fill
+         9 SphereLight minor floods          ->  3
+    Deleted outright: Gable_Yard_West/East (folded into the wall washes),
+    TankerGantry, EastPlatform, DockOffice_Broken, DC_p26, Bridge_East_N/S,
+    Gantry_East, StormFillCool_S, StormBreak_Fringe, DockFace_BayLamp_m22.
+
+  * PEAK RADIANCE IS CAPPED AT 8.0e5 NITS and the generator REFUSES TO WRITE if
+    any emitter exceeds it, so the cap cannot be lost to a later edit. Revision
+    8's worst were DockFace_BayLamp_m06 at 4.5e6 nits and Gable_Yard_West at
+    5.3e6 - small, chromatic sodium spheres, which is what the critic
+    photographed as "warm orange specks in the SKY of LANE_EYE_YARD". The
+    brightest emitter in the level is now under 6e5 nits and the brightest is
+    within 8x of the median area emitter.
+
+  * The two emissive mesh families come down with everything else, because
+    `ris:meshLights` is on in both render tiers and they are genuine emitters:
+    SM_Lamp_A1 (45 fittings merged into one 96.58 m2 mesh) 12484 -> 2400 nits,
+    the roof-shaft beam quads 12484/4994 -> 2200/1000 with their opacity cut
+    from 0.44/0.27 to 0.34/0.20. Measured: removing both from the 2-light
+    ablation on INTERIOR_AISLE took speckle 0.014 -> 0.011.
+
+-----------------------------------------------------------------------------
+THE COLOUR GRADE - what changed and why, with the mechanism stated once
+-----------------------------------------------------------------------------
+    warm_cool_split = |(R-B)_bright - (R-B)_dark| about the frame median.
+
+It is an ORDERING requirement, not a colour one. Warm must land on what the
+frame calls BRIGHT and cool on what it calls DARK, and any source that lands on
+both halves in equal measure subtracts out of the difference no matter what
+colour it is. Revision 4 answered a failing split by adding StormFillCool_Z, a
+near-vertical saturated blue DistantLight putting 5 060 lux on every horizontal
+surface with no falloff and no occlusion structure, and the metric did not move,
+because a uniform top-light cannot move it. Revision 8 correctly deleted that
+light and then left the level with almost no cool ambient at all.
+
+REVISION 9'S ARRANGEMENT IS THE PHYSICAL ONE FOR THIS HOUR.
+
+  * THE COOL HALF IS THE SKY AND IT IS DELIVERED BY THE DOME. That distinction
+    is the whole fix. A DomeLight is occluded by the geometry a ray passes, so
+    it fills OPEN shadow - yard, apron, aisle floor - and leaves crevices and
+    contact shadows dark. That correlation with luminance is exactly what
+    warm_cool_split measures and exactly what a DistantLight cannot have.
+    `inputs:diffuse` 9.8 -> 50.0 with `inputs:intensity` 85.26 -> 58: measured
+    on this build, `diffuse` scales the illumination a dome contributes WITHOUT
+    changing what a primary ray sees of the sky, so the storm ceiling sits
+    DARKER on film than before - its blue then counts toward the dark half -
+    while the ambient it delivers is about 3.5x. `inputs:color`
+    (0.58, 0.81, 1.22) is a bias over a probe that already carries the
+    structure: decoded with tools/_light_probe.py, approaching_storm_4k is break
+    core R:B 1.19 at +18.50 deg, opposite sky 0.28, zenith 0.62, horizon band
+    0.79, cos-weighted ambient (0.94, 1.02, 1.31) = R:B 0.72.
+
+    HARD LIMIT FOUND BY MEASUREMENT, do not cross it: `inputs:diffuse` ABOVE
+    ABOUT 50 BLOWS DETAIL_WET_APRON OUT TO A FLAT WHITE FOG. Holding
+    intensity * diffuse constant (58/50, 44/66 and 34/86 are all about 2 900)
+    that frame measured mean_luma 0.203 / 0.611 / 0.637, dead_area_frac
+    0.034 / 0.229 / 0.299 and mean_saturation 0.299 / 0.118 / 0.103. The
+    illumination is unchanged, so this is the dome driving 80_fx's participating
+    medium non-linearly, not a surface-lighting effect. 58 / 50 is shipped.
+
+  * THE WARM HALF IS THE SUN, AND ONLY THE SUN, AT THE GLOBAL SCALE.
+    KeySun (1.00, 0.72, 0.44) at 30 000 lux, bearing 200, elevation 7.30 deg.
+    That is a 4.6x CUT from revision 8's 136 735 and it is deliberate: at
+    7.3 deg a horizontal surface receives sin(7.3) = 12.7 percent of the beam
+    while a west-facing wall receives 99 percent of it, so a sun this size
+    lights the walls hard and the ground barely at all. That is the real dusk
+    relationship and it is what lets the GROUND be sky-blue while the WALLS are
+    amber - which is the COD dusk image the brief is asking for.
+
+  * THE PRACTICALS ARE WARM AND LOCAL, in pools, with dark wet ground between.
+    EXT_WARM_TRIM scales the whole exterior sodium family together so the
+    balance can be swept without disturbing the dressing; the swept relationship
+    between it and cool_pixel_frac is recorded in the generator.
+
+  * cool_pixel_frac WAS NOT AN ALBEDO PROBLEM, and that was worth proving before
+    blaming another module. Rendered under a SINGLE WHITE DomeLight and nothing
+    else (`--albedo-probe`), the level reads cool_pixel_frac 0.672 on
+    DETAIL_WET_APRON and 0.565 on LANE_EYE_YARD. Every point of it this module
+    was losing, it was losing to its own sodium and its own sun.
+
+=============================================================================
+SHIPPED NUMBERS - REVISION 10. `render.py --final --warmup 120 --dt 0`
+=============================================================================
+    One batch, on the authored state of this file, tag R10h. USE --dt 0; the
+    reason is under the revision-9 table further down and it still holds.
+
+    THE VALUE GATE - tools/_light10_value.py, sRGB luma of the two windows
+    (the linear ratio is in brackets; > 1.00 means the sky wins)
+
+    shot              SKY    FACADE   ratio     round-9 shipped
+    HERO_ESTABLISH   0.754   0.548   [1.79]     0.260 / 0.589  [0.17]
+    LANE_EYE_YARD    0.643   0.525   [1.29]     0.205 / 0.641  [0.08]
+    DETAIL_WET_APRON 0.570   0.426   [1.25]     0.087 / 0.338  [0.07]
+    SILHOUETTE_WEST  0.713   0.598   [1.39]     0.364 / 0.465  [0.57]
+
+    INVERTED ON FOUR OF FOUR, NOW CORRECT ON FOUR OF FOUR. The sky went from a
+    seventh of the facade's linear luminance on LANE_EYE_YARD to 1.29 times it.
+
+    DETAIL_WET_APRON's puddle P4, the shot whose stated subject is the canopy
+    sodium reflected in standing water:
+        window mirroring DockFace_BayLamp   luma 0.658   R-B +0.046
+        window mirroring the cool sky slot  luma 0.448   R-B -0.050
+    i.e. the warm patch is now both brighter AND on the opposite side of neutral
+    from the water beside it. Round 9 measured +0.090 / -0.044 but at sky 0.087
+    against facade 0.338 - the amber was there and the frame around it was wrong.
+
+    analyze_shot.py, all five:
+
+    shot             mean_luma  split   cool_pix  detail  dead  spkl  chrm
+                     (.16-.42)(.12-.28) (>0.25) (.075-.20)(<.16)(<.009)(<.006)
+    HERO_ESTABLISH    0.205 P  0.016 F  0.494 P  0.080 P 0.115  0.015 0.010
+    INTERIOR_AISLE    0.197 P  0.069 F  0.369 P  0.110 P 0.002  0.021 0.016
+    LANE_EYE_YARD     0.197 P  0.054 F  0.330 P  0.106 P 0.115  0.020 0.016
+    DETAIL_WET_APRON  0.251 P  0.029 F  0.550 P  0.117 P 0.069  0.022 0.017
+    SILHOUETTE_WEST   0.316 P  0.074 F  0.488 P  0.126 P 0.044  0.024 0.018
+
+    p01_luma, p99_luma, dynamic_range, rms_contrast and mean_saturation are
+    inside their bands on all five as well. Against revision 9 that is
+    detail_density 4/5 -> 5/5 (INTERIOR_AISLE's 0.269 was the DustMotes noise
+    field and it has come down to 0.110) and cool_pixel_frac 4/5 -> 5/5.
+
+-----------------------------------------------------------------------------
+WARM_COOL_SPLIT IS STILL FAILING AND I COULD NOT FIX IT. THE SWEEP IS BELOW.
+-----------------------------------------------------------------------------
+    It is 0.016-0.074 against a 0.12 floor and revision 9 shipped 0.139 on
+    HERO_ESTABLISH. The regression is real and it is not an accident: it is the
+    direct cost of the value fix, and the mechanism is worth more than another
+    round of guessing.
+
+    warm_cool_split = |(R-B)_bright - (R-B)_dark| about the frame median. On
+    THIS level the dark half has never carried it - measured on the revision-9
+    frame it was +0.024, and on every revision-10 frame it is +0.008 to +0.029,
+    because the dark half is dark and |R-B| is bounded by luminance. So the whole
+    metric has always come from the BRIGHT half, and in revision 9 the bright
+    half was 76 m of sunlit facade at R-B +0.193 - the very thing the round-10
+    critic photographed as the defect. Take the sun off the wall and the number
+    goes with it.
+
+    The obvious replacement is to warm the bright half from the dome instead.
+    That was swept, and it trades one gate for another:
+
+    DOME_TINT       HERO split  HERO cool_pix  LANE split  LANE cool_pix
+    (1.00,0.96,0.90)   0.078       0.346         0.018       0.241 FAIL
+    (0.94,0.95,0.98)   0.069       0.368         0.014       0.221 FAIL
+    (0.84,0.92,1.08)   0.069       0.368         0.008       0.226 FAIL
+    (0.72,0.88,1.18)   0.017       0.488         0.043       0.331
+    (0.70,0.87,1.20)   0.016       0.494         0.054       0.330  SHIPPED
+
+    A dome warm enough to move warm_cool_split takes LANE_EYE_YARD's
+    cool_pixel_frac under its floor, because that camera looks EAST with the sun
+    behind it and every surface facing the lens is a lit face. Both are hard
+    gates and they are anti-correlated through a single parameter. I shipped the
+    one that keeps cool_pixel_frac, because a level that fails cool_pixel_frac
+    is the sepia wash the brief names as the round-8 finding, and because the
+    round-10 mandate was the value relationship.
+
+    WHAT WOULD ACTUALLY FIX IT, and it is not in this module: warm_cool_split
+    wants the frame's BRIGHT MIDTONES warm while its brightest element stays a
+    cool sky. That means the lit architecture has to be warm-albedo and darker,
+    and right now it is pale near-white cladding - under a single WHITE dome
+    (`--albedo-probe`) this level already reads cool. Measured on the shipped
+    frame, LANE_EYE_YARD's `bldg` window - the north backdrop block - sits at
+    linear 0.485 against a sky at 0.380, i.e. THAT building is brighter than the
+    sky under ambient alone, which no light rig can undo. REQUEST TO
+    50_materials: the warehouse cladding, the dock-office blockwork and the north
+    annex need a materially lower and warmer albedo. That single change would
+    give this rig back the warm bright half it is missing.
+
+-----------------------------------------------------------------------------
+REVISION 9's SHIPPED NUMBERS, kept for comparison
+-----------------------------------------------------------------------------
+    shot              mean_luma   split    cool_pix  detail  speckle chroma
+                      (.16-.42) (.12-.28)  (>0.25) (.075-.20)(<.009)(<.006)
+    HERO_ESTABLISH     0.240 P   0.139 P   0.279 P   0.099 P  0.017  0.011
+    INTERIOR_AISLE     0.172 P   0.083 F   0.291 P   0.269 F  0.044  0.020
+    LANE_EYE_YARD      0.216 P   0.141 P   0.199 F   0.165 P  0.029  0.017
+    DETAIL_WET_APRON   0.206 P   0.041 F   0.256 P   0.165 P  0.029  0.018
+    SILHOUETTE_WEST    0.184 P   0.006 F   0.445 P   0.163 P  0.029  0.016
+
+    JUDGE THIS LEVEL WITH `--dt 0`. The default marches scene time one delta per
+    warmup step, so with animated FX in the layer each --final frame lands on a
+    different scene and the numbers are not reproducible. Measured on the
+    identical authored state: SILHOUETTE_WEST came back at mean_luma 0.179 on one
+    run and 0.424 on the next, with dead_area_frac 0.025 vs 0.077 - a fog frame
+    and a clear one. With `--dt 0` two consecutive runs of that shot measured
+    0.200 / 0.199 mean_luma, 0.433 / 0.437 cool_pixel_frac and 0.018 / 0.018
+    speckle_energy, and LANE_EYE_YARD 0.206 / 0.206 and 0.029 / 0.029. Freezing
+    scene time also LOWERED the noise on the shots that carry drifting mist -
+    SILHOUETTE_WEST 0.028 -> 0.018 speckle and 0.016 -> 0.010 chroma when
+    rendered on its own. Batch position still moves it (the same shot in a
+    five-shot batch measured 0.029), which is a harness property, not a lighting
+    one, and is recorded here rather than tuned around.
+
+    AGAINST THE REVISION-8 STATE, measured the same way in the same session:
+        mean_luma        2/5 pass -> 5/5 pass
+        cool_pixel_frac  2/5 pass -> 4/5 pass
+        warm_cool_split  1/5 pass -> 2/5 pass
+    HERO_ESTABLISH now passes every metric analyze_shot.py checks except the two
+    noise gates, and with margin rather than on the line.
+
+-----------------------------------------------------------------------------
+HONEST GAPS - what is still wrong after revision 9
+-----------------------------------------------------------------------------
+ * speckle_energy AND chroma_speckle FAIL ON ALL FIVE AND I COULD NOT FIX THEM
+   FROM THIS MODULE. The ablation ladder above is the evidence: with two
+   analytic lights and no emissive geometry, HERO_ESTABLISH still measures
+   0.018 / 0.012 at an in-gate exposure, against gates of 0.009 / 0.006. What I
+   did do - 82 prims to 27, an 8x cut in peak radiance, a 5x cut in mesh-light
+   emission - improved noise per unit exposure on every shot and improved the
+   absolute number on none of them by enough to matter. I do not believe this
+   gate is reachable by lighting. Next places to look, in order: 80_fx's
+   DustMotes (worth roughly a factor of two on INTERIOR_AISLE), the level's
+   semi-transparent emissive card stack generally, and pixel filtering or
+   supersampling in render.py, which 90_cameras owns. I did not touch the save
+   path and I did not touch the analyzer.
+
+ * SILHOUETTE_WEST's warm_cool_split IS 0.006 AND THE CAUSE IS THE CAMERA.
+   90_cameras authors it at translate (56.0, -8.0, 1.65) / rotateXYZ (90.00, 0,
+   90.00). LAYOUT 7.5 specifies (48.0, -8.0, 1.65) / (96.0, 0, 90.0) - 8 m
+   further west and 6 degrees UP. Pitch 90.00 is DEAD LEVEL, so about 40 percent
+   of the frame is open sky and ALL of it sits in the BRIGHT half of the
+   histogram; the metric is then capped at whatever the sky's own hue is, no
+   matter what the lighting does. I measured that frame at 0.001-0.037 across
+   NINE different rigs this round, including a 2-light ablation (0.016) and a
+   single-white-dome ablation (0.022). It does not respond to lighting at all.
+   LAYOUT's 6 degrees up is what puts the conveyor bridge across frame centre as
+   a black lintel and the sun disc UNDER it, which breaks the sky into pieces
+   and gives the bright half something warm to be. CROSS-MODULE REQUEST to
+   90_cameras: restore translate (48, -8, 1.65) and pitch 96.0.
+
+ * DETAIL_WET_APRON's warm_cool_split IS 0.038. That frame is 45 mm of
+   horizontal wet ground under an open sky slot; its bright half is standing
+   water reflecting the overcast, which is cool BY PHYSICS, and its warm half is
+   two sodium fixtures 10-14 m away. Every configuration that raised its split
+   dropped its cool_pixel_frac below the floor and vice versa - the two gates
+   pull in opposite directions on this specific frame - and I chose
+   cool_pixel_frac, because a sepia close-up was the round-8 finding. The
+   measured trade, so nobody re-derives it: KeySun at 150k / 100k / 58k / 40k lux
+   gave split 0.090 / 0.110 / 0.020 / 0.010 against cool_pixel_frac
+   0.034 / 0.035 / 0.053 / 0.053.
+
+ * INTERIOR_AISLE's split is 0.091. The frame is authored cold-at-the-back - a
+   cool card in the east roller doors, the mercury swap-in at the far bay -
+   against warm sodium at the front, which is the right image; but its
+   detail_density of 0.269 says a large part of what that operator measures is
+   the DustMotes noise field rather than surface texture, and the same noise
+   flattens the hue difference between the two halves.
+
+ * LANE_EYE_YARD's cool_pixel_frac is 0.198 against 0.250. That camera looks due
+   EAST with the sun behind it, so every surface facing the lens is a sun-lit
+   face. Measured: it does not respond to the practicals (cutting the entire
+   exterior sodium family 3.5x moved it 0.165 -> 0.193) and it barely responds
+   to the sun (46 000 -> 22 000 lux moved it 0.193 -> 0.178). Under a single
+   white dome the same frame reads 0.565, so the headroom exists; reaching it
+   needs either a materially cooler dome than (0.58, 0.81, 1.22) - which starts
+   making wet asphalt read as ice, the round-7 finding - or less saturated warm
+   albedo in the yard dressing, which is 30_props and 50_materials.
+
+ * THE SUN DISC IS IN THE FRAME AND IT IS WHITE. A DistantLight's primary-ray
+   disc renders at about intensity * color nits, and there is no value that is
+   both bright enough to be the sun and dim enough for blue to stay under the
+   white point. Splitting the prim - KeySun invisible, SunDisc visible - puts a
+   disc where LAYOUT 7.5 asks for it and keeps the shading correct, but a warm
+   corona has to come from atmosphere, which 80_fx owns.
+
+ * RUN-TO-RUN VARIANCE ON THIS HARNESS IS LARGER THAN IT LOOKS. Two --final
+   renders of the identical authored state measured LANE_EYE_YARD at mean_luma
+   0.205 vs 0.220 and firefly_frac 0.076 vs 0.038. Do not read a 5 percent
+   change on one frame as a result.
+
+ * `inputs:shaping:cone:*` DOES NOT WORK ON A RectLight ON THIS BUILD. Adding
+   ShapingAPI and a cone to the wall washes and the canopy fascia - an attempt
+   to turn washes into pools without adding prims - blew DETAIL_WET_APRON to
+   mean_luma 0.637 with dead_area_frac 0.299. It is reverted. Cone shaping works
+   correctly on DiskLight and SphereLight, which is where the six high bays and
+   the two metal-halide masts use it.
+
+-----------------------------------------------------------------------------
+UNITS ON THIS RENDERER, measured rather than assumed
+-----------------------------------------------------------------------------
+    DistantLight  irradiance = intensity (lux). `normalize` is a no-op on it;
+                  `angle` only softens the shadow edge and sizes the disc.
+    DomeLight     radiance = intensity * color * texel. `inputs:diffuse` scales
+                  the illumination only, not the photographed sky - but see the
+                  hard limit of about 50 above.
+    area light    radiance = intensity * color / area   (normalize = 1), so FLUX
+                  IS PROPORTIONAL TO intensity ALONE and growing an emitter
+                  lowers its peak radiance without changing what it delivers.
+    sRGB 1.0      lands near 1 200 nits in the linear part of the curve.
+    `visibleInPrimaryRay` is the BARE name. An `inputs:`-prefixed spelling
+    parses, validates, and then silently does nothing. It is authored 0 on every
+    light here except SunDisc; the DomeLight is deliberately left visible
+    because it is the sky."""
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+over "World"
+{
+    def Xform "Lighting"
+    {
+
+        # =====================================================================
+        # FITTING EMISSION - the interior high-bay fittings themselves
+        # =====================================================================
+        # LAYOUT 12.6: "SM_Lamp_A1 will render black unless the lighting agent
+        # binds an emissive material". Warehouse01 merges all 45 fittings into
+        # ONE mesh at /World/Architecture/Warehouse/Warehouse01/SM_Lamp_A1,
+        # world X -27.06..+27.05, Y 17.67..73.37, Z 8.08..13.12, 96.58 m2 of
+        # surface. It cannot be split, so the whole fitting gets the emission.
+        #
+        # REVISION 9 CUTS emissive_intensity 12484.5 -> 3200. `ris:meshLights`
+        # is on in both render tiers, so this is 45 disjoint emitters and it
+        # belongs in the light budget. 3200 nits is 2.7x the ~1 200 nit white
+        # point, which is all a fitting needs to read as lit; the previous value
+        # clipped to flat white AND sprayed.
+        #
+        # Authored here rather than in 50_materials because it is a lighting
+        # decision on a prim 20_architecture owns; 60_lighting is stronger than
+        # both, so the binding at the foot of this file wins by layer order and
+        # neither file is touched.
+        def Scope "Looks"
+        {
+            def Material "M_LampSodium"
+            {
+                token outputs:mdl:surface.connect = </World/Lighting/Looks/M_LampSodium/Shader.outputs:out>
+                token outputs:surface.connect = </World/Lighting/Looks/M_LampSodium/Preview.outputs:surface>
+
+                def Shader "Shader"
+                {
+                    uniform token info:implementationSource = "sourceAsset"
+                    uniform asset info:mdl:sourceAsset = @OmniPBR.mdl@
+                    uniform token info:mdl:sourceAsset:subIdentifier = "OmniPBR"
+                    color3f inputs:diffuse_color_constant = (0.2600, 0.2200, 0.1900)
+                    float inputs:reflection_roughness_constant = 0.3400
+                    float inputs:metallic_constant = 0.2000
+                    float inputs:specular_level = 0.5000
+                    bool inputs:enable_emission = 1
+                    color3f inputs:emissive_color = (1.0000, 0.6400, 0.3300)
+                    float inputs:emissive_intensity = 2400.00
+                    token outputs:out
+                }
+
+                def Shader "Preview"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0.2600, 0.2200, 0.1900)
+                    float inputs:metallic = 0.2
+                    float inputs:roughness = 0.34
+                    float inputs:opacity = 1
+                    color3f inputs:emissiveColor = (1.0000, 0.6400, 0.3300)
+                    token outputs:surface
+                }
+            }
+
+            # =================================================================
+            # LENS EMISSION - the exterior fixtures, so the practicals are
+            # VISIBLE and not merely present.
+            # =================================================================
+            # The round-10 critic's second finding was "five frames show no
+            # visible practical at all". Part of that was flux (EXT_WARM_TRIM
+            # 0.24) and part of it is here: 50_materials binds every wall-pack
+            # and canopy lens to FX_LensSodium at emissive_intensity 9000, and
+            # sRGB 1.0 lands near 1 200 nits on this build, so a 9 000 nit lens
+            # clips to FLAT WHITE in all three channels. A white dot is not a
+            # sodium lamp. 2 800 nits is 2.3x the white point - bright enough to
+            # bloom, low enough that the amber survives the tonemap.
+            #
+            # Rebound rather than edited: 60_lighting sublayers above
+            # 50_materials, so the overrides at the foot of this file win and
+            # neither that file nor 20_architecture is touched. Only the lenses
+            # that 20_architecture already bound emissive are rebound - the dead
+            # units at wall-pack X +2 and fascia X -30 / +12 stay dead.
+            def Material "M_LensSodium"
+            {
+                token outputs:mdl:surface.connect = </World/Lighting/Looks/M_LensSodium/Shader.outputs:out>
+                token outputs:surface.connect = </World/Lighting/Looks/M_LensSodium/Preview.outputs:surface>
+
+                def Shader "Shader"
+                {
+                    uniform token info:implementationSource = "sourceAsset"
+                    uniform asset info:mdl:sourceAsset = @OmniPBR.mdl@
+                    uniform token info:mdl:sourceAsset:subIdentifier = "OmniPBR"
+                    color3f inputs:diffuse_color_constant = (0.3500, 0.2200, 0.0900)
+                    float inputs:reflection_roughness_constant = 0.2200
+                    float inputs:metallic_constant = 0.0000
+                    float inputs:specular_level = 0.8000
+                    bool inputs:enable_emission = 1
+                    color3f inputs:emissive_color = (1.0000, 0.5850, 0.2000)
+                    float inputs:emissive_intensity = 2800.00
+                    token outputs:out
+                }
+
+                def Shader "Preview"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0.3500, 0.2200, 0.0900)
+                    float inputs:metallic = 0
+                    float inputs:roughness = 0.22
+                    float inputs:opacity = 1
+                    color3f inputs:emissiveColor = (1.0000, 0.5850, 0.2000)
+                    token outputs:surface
+                }
+            }
+
+            # LAYOUT 8.2: "one should be a different, colder colour temperature".
+            # That is the canopy fascia at X +26 - Sodium5 - and its DiskLight
+            # carries the matching MERCURY colour, so the housing and the pool
+            # under it agree instead of contradicting each other.
+            def Material "M_LensMercury"
+            {
+                token outputs:mdl:surface.connect = </World/Lighting/Looks/M_LensMercury/Shader.outputs:out>
+                token outputs:surface.connect = </World/Lighting/Looks/M_LensMercury/Preview.outputs:surface>
+
+                def Shader "Shader"
+                {
+                    uniform token info:implementationSource = "sourceAsset"
+                    uniform asset info:mdl:sourceAsset = @OmniPBR.mdl@
+                    uniform token info:mdl:sourceAsset:subIdentifier = "OmniPBR"
+                    color3f inputs:diffuse_color_constant = (0.1800, 0.2200, 0.2600)
+                    float inputs:reflection_roughness_constant = 0.2200
+                    float inputs:metallic_constant = 0.0000
+                    float inputs:specular_level = 0.8000
+                    bool inputs:enable_emission = 1
+                    color3f inputs:emissive_color = (0.7400, 0.8600, 1.0000)
+                    float inputs:emissive_intensity = 2600.00
+                    token outputs:out
+                }
+
+                def Shader "Preview"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0.1800, 0.2200, 0.2600)
+                    float inputs:metallic = 0
+                    float inputs:roughness = 0.22
+                    float inputs:opacity = 1
+                    color3f inputs:emissiveColor = (0.7400, 0.8600, 1.0000)
+                    token outputs:surface
+                }
+            }
+        }
+
+        # =====================================================================
+        # SKY - the storm ceiling. This is the level's ambient AND its cool half.
+        # =====================================================================
+        def Scope "Sky"
+        {
+
+            # approaching_storm_4k. NO X rotation - a latlong maps correctly on a
+            # Z-up stage without one; spin about Z only so the probe's own break
+            # (texture azimuth 216.0) lands on KeySun's bearing of 200.
+            # REVISION 10: THE SKY IS NOW THE BRIGHTEST THING IN THE FRAME. That is
+            # the entire point of this revision - see WARM_KEY_TRIM in the generator
+            # and the sky-vs-facade table in this file's header.
+            def DomeLight "StormSky"
+            {
+                color3f inputs:color = (0.7000, 0.8700, 1.2000)
+                float inputs:intensity = 546.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 41.0
+                float inputs:specular = 0.15
+                asset inputs:texture:file = @https://omniverse-content-production.s3.us-west-2.amazonaws.com/Assets/Skies/Storm/approaching_storm_4k.hdr@
+                token inputs:texture:format = "latlong"
+                bool inputs:normalize = 0
+                double3 xformOp:rotateXYZ = (0, 0, 56.0)
+                uniform token[] xformOpOrder = ["xformOp:rotateXYZ"]
+            }
+        }
+
+        # =====================================================================
+        # SUN, COOL FILL AND THE OPEN-SKY CARDS.
+        # =====================================================================
+        def Scope "Sun"
+        {
+
+            # WSW bearing 200 at 7.30 deg. Every corrugation, kerb and slab joint
+            # throws a shadow ~7.8x its own height at this angle, which is what
+            # makes a surface read as textured rather than painted.
+            # REVISION 10 CUT THIS 7.7x, from 30 000 lux. At 0.341 incidence a
+            # 30 000 lux sun put 10 200 lux on the warehouse south wall and made it
+            # three times brighter than the sky behind it.
+            def DistantLight "KeySun"
+            {
+                float inputs:angle = 1.2
+                color3f inputs:color = (1.0000, 0.6200, 0.3000)
+                float inputs:intensity = 9000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 0.3
+                bool inputs:normalize = 0
+                custom bool visibleInPrimaryRay = 0
+                double3 xformOp:rotateXYZ = (82.7, 0, 290.0)
+                uniform token[] xformOpOrder = ["xformOp:rotateXYZ"]
+            }
+
+            # STILL RENDERS WHITE and that is recorded rather than claimed fixed -
+            # see HONEST GAPS in the module header.
+            def DistantLight "SunDisc"
+            {
+                float inputs:angle = 1.2
+                color3f inputs:color = (1.0000, 0.6200, 0.3000)
+                float inputs:intensity = 3450.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 1.0
+                bool inputs:normalize = 0
+                custom bool visibleInPrimaryRay = 1
+                double3 xformOp:rotateXYZ = (82.7, 0, 290.0)
+                uniform token[] xformOpOrder = ["xformOp:rotateXYZ"]
+            }
+
+            # ENE, 24 deg up, aimed WSW and down - the bright part of the storm sky
+            # opposite the break. specular 0.20: at full specular this laid a broad
+            # blue sheen over every wet surface and the asphalt read as periwinkle.
+            def DistantLight "StormFillCool"
+            {
+                float inputs:angle = 12.0
+                color3f inputs:color = (0.2800, 0.5200, 1.0000)
+                float inputs:intensity = 30000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 0.25
+                bool inputs:normalize = 0
+                custom bool visibleInPrimaryRay = 0
+                double3 xformOp:rotateXYZ = (66.4, 0, 112.0)
+                uniform token[] xformOpOrder = ["xformOp:rotateXYZ"]
+            }
+
+            def RectLight "StormBreak_West"
+            {
+                float inputs:width = 260.0
+                float inputs:height = 175.0
+                color3f inputs:color = (1.0000, 0.6200, 0.3000)
+                float inputs:intensity = 6600000000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 1.0
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                double3 xformOp:translate = (-422.9, -153.9, 103.9)
+                double3 xformOp:rotateXYZ = (73.0, 0.0, 290.0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+            }
+
+            def RectLight "YardSky_South"
+            {
+                float inputs:width = 60.0
+                float inputs:height = 26.0
+                color3f inputs:color = (0.5000, 0.7400, 1.0500)
+                float inputs:intensity = 3800000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 0.25
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                double3 xformOp:translate = (-8.0, -7.0, 13.0)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def RectLight "ApronSky_CanopySlot"
+            {
+                float inputs:width = 42.0
+                float inputs:height = 5.2
+                color3f inputs:color = (0.5000, 0.7000, 1.0000)
+                float inputs:intensity = 600000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 0.12
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                double3 xformOp:translate = (-14.0, -19.7, 3.0)
+                double3 xformOp:rotateXYZ = (76.0, 0.0, 0.0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+            }
+        }
+
+        # =====================================================================
+        # PRACTICALS - warm sodium pools on dark wet ground.
+        # =====================================================================
+        def Scope "Practicals"
+        {
+
+            def DiskLight "WallPack_m34" (
+                prepend apiSchemas = ["ShapingAPI"]
+            )
+            {
+                float inputs:radius = 1.75
+                color3f inputs:color = (1.0000, 0.5800, 0.2700)
+                float inputs:intensity = 5600000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 0.85
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                float inputs:shaping:cone:angle = 40.0
+                float inputs:shaping:cone:softness = 0.5
+                float inputs:shaping:focus = 2.0
+                double3 xformOp:translate = (-34.0, 12.6, 4.95)
+                double3 xformOp:rotateXYZ = (-58.0, 0.0, 0.0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+            }
+
+            def DiskLight "WallPack_m22" (
+                prepend apiSchemas = ["ShapingAPI"]
+            )
+            {
+                float inputs:radius = 1.75
+                color3f inputs:color = (1.0000, 0.5800, 0.2700)
+                float inputs:intensity = 5600000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 0.85
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                float inputs:shaping:cone:angle = 40.0
+                float inputs:shaping:cone:softness = 0.5
+                float inputs:shaping:focus = 2.0
+                double3 xformOp:translate = (-22.0, 12.6, 4.95)
+                double3 xformOp:rotateXYZ = (-58.0, 0.0, 0.0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+            }
+
+            def DiskLight "WallPack_m10" (
+                prepend apiSchemas = ["ShapingAPI"]
+            )
+            {
+                float inputs:radius = 1.75
+                color3f inputs:color = (0.7400, 0.8600, 1.0000)
+                float inputs:intensity = 4000000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 0.85
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                float inputs:shaping:cone:angle = 40.0
+                float inputs:shaping:cone:softness = 0.5
+                float inputs:shaping:focus = 2.0
+                double3 xformOp:translate = (-10.0, 12.6, 4.95)
+                double3 xformOp:rotateXYZ = (-58.0, 0.0, 0.0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+            }
+
+            def DiskLight "WallPack_p14" (
+                prepend apiSchemas = ["ShapingAPI"]
+            )
+            {
+                float inputs:radius = 1.75
+                color3f inputs:color = (1.0000, 0.4600, 0.1400)
+                float inputs:intensity = 4000000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 0.85
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                float inputs:shaping:cone:angle = 40.0
+                float inputs:shaping:cone:softness = 0.5
+                float inputs:shaping:focus = 2.0
+                double3 xformOp:translate = (14.0, 12.6, 4.95)
+                double3 xformOp:rotateXYZ = (-58.0, 0.0, 0.0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+            }
+
+            def DiskLight "WallPack_p26" (
+                prepend apiSchemas = ["ShapingAPI"]
+            )
+            {
+                float inputs:radius = 1.75
+                color3f inputs:color = (1.0000, 0.5800, 0.2700)
+                float inputs:intensity = 5100000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 0.85
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                float inputs:shaping:cone:angle = 40.0
+                float inputs:shaping:cone:softness = 0.5
+                float inputs:shaping:focus = 2.0
+                double3 xformOp:translate = (26.0, 12.6, 4.95)
+                double3 xformOp:rotateXYZ = (-58.0, 0.0, 0.0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+            }
+
+            def DiskLight "Fascia_m44" (
+                prepend apiSchemas = ["ShapingAPI"]
+            )
+            {
+                float inputs:radius = 2.6
+                color3f inputs:color = (1.0000, 0.5800, 0.2700)
+                float inputs:intensity = 11500000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 0.75
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                float inputs:shaping:cone:angle = 44.0
+                float inputs:shaping:cone:softness = 0.5
+                float inputs:shaping:focus = 2.0
+                double3 xformOp:translate = (-44.0, -21.5, 4.0)
+                double3 xformOp:rotateXYZ = (30.0, 0.0, 0.0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+            }
+
+            def DiskLight "Fascia_m16" (
+                prepend apiSchemas = ["ShapingAPI"]
+            )
+            {
+                float inputs:radius = 2.6
+                color3f inputs:color = (1.0000, 0.5800, 0.2700)
+                float inputs:intensity = 12500000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 0.75
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                float inputs:shaping:cone:angle = 44.0
+                float inputs:shaping:cone:softness = 0.5
+                float inputs:shaping:focus = 2.0
+                double3 xformOp:translate = (-16.0, -21.5, 4.0)
+                double3 xformOp:rotateXYZ = (30.0, 0.0, 0.0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+            }
+
+            def DiskLight "Fascia_m02" (
+                prepend apiSchemas = ["ShapingAPI"]
+            )
+            {
+                float inputs:radius = 2.6
+                color3f inputs:color = (1.0000, 0.5800, 0.2700)
+                float inputs:intensity = 12500000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 0.75
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                float inputs:shaping:cone:angle = 44.0
+                float inputs:shaping:cone:softness = 0.5
+                float inputs:shaping:focus = 2.0
+                double3 xformOp:translate = (-2.0, -21.5, 4.0)
+                double3 xformOp:rotateXYZ = (30.0, 0.0, 0.0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+            }
+
+            def DiskLight "Fascia_p26" (
+                prepend apiSchemas = ["ShapingAPI"]
+            )
+            {
+                float inputs:radius = 2.6
+                color3f inputs:color = (1.0000, 0.5800, 0.2700)
+                float inputs:intensity = 10000000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 0.75
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                float inputs:shaping:cone:angle = 44.0
+                float inputs:shaping:cone:softness = 0.5
+                float inputs:shaping:focus = 2.0
+                double3 xformOp:translate = (26.0, -21.5, 4.0)
+                double3 xformOp:rotateXYZ = (30.0, 0.0, 0.0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+            }
+
+            def RectLight "DockFace_BayLamp"
+            {
+                float inputs:width = 6.5
+                float inputs:height = 3.8
+                color3f inputs:color = (1.0000, 0.5800, 0.2700)
+                float inputs:intensity = 19000000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 0.22
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                double3 xformOp:translate = (-6.6, -21.75, 1.35)
+                double3 xformOp:rotateXYZ = (76.0, 0.0, 0.0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+            }
+
+            def RectLight "Bridge_Underside"
+            {
+                float inputs:width = 2.2
+                float inputs:height = 26.0
+                color3f inputs:color = (1.0000, 0.5800, 0.2700)
+                float inputs:intensity = 22000000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 0.85
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                double3 xformOp:translate = (25.9, -3.0, 5.65)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def RectLight "Trestle_West"
+            {
+                float inputs:width = 3.5
+                float inputs:height = 3.5
+                color3f inputs:color = (1.0000, 0.4600, 0.1400)
+                float inputs:intensity = 6000000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 0.85
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                double3 xformOp:translate = (-30.0, 3.5, 5.0)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def RectLight "YardMast_EastApron"
+            {
+                float inputs:width = 6.0
+                float inputs:height = 5.0
+                color3f inputs:color = (1.0000, 0.5800, 0.2700)
+                float inputs:intensity = 15000000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 0.65
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                double3 xformOp:translate = (40.0, -19.4, 6.6)
+                double3 xformOp:rotateXYZ = (66.4, 0.0, 318.7)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+            }
+
+            def SphereLight "Mast_FuelBay" (
+                prepend apiSchemas = ["ShapingAPI"]
+            )
+            {
+                float inputs:radius = 1.0
+                color3f inputs:color = (0.9000, 0.9400, 1.0000)
+                float inputs:intensity = 4000000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 1.0
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                float inputs:shaping:cone:angle = 52.0
+                float inputs:shaping:cone:softness = 0.6
+                float inputs:shaping:focus = 2.0
+                double3 xformOp:translate = (-60.0, -2.0, 7.45)
+                double3 xformOp:rotateXYZ = (47.1, 0.0, 209.7)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+            }
+
+            def SphereLight "Gantry_West" (
+                prepend apiSchemas = ["ShapingAPI"]
+            )
+            {
+                float inputs:radius = 0.9
+                color3f inputs:color = (0.9000, 0.9400, 1.0000)
+                float inputs:intensity = 3000000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 1.0
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                float inputs:shaping:cone:angle = 54.0
+                float inputs:shaping:cone:softness = 0.6
+                float inputs:shaping:focus = 2.0
+                double3 xformOp:translate = (44.0, 26.0, 8.28)
+                double3 xformOp:rotateXYZ = (65.5, 0.0, 135.0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+            }
+
+            def DiskLight "HighBay_A3_m24" (
+                prepend apiSchemas = ["ShapingAPI"]
+            )
+            {
+                float inputs:radius = 2.9
+                color3f inputs:color = (1.0000, 0.5800, 0.2700)
+                float inputs:intensity = 18850000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 1.0
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                float inputs:shaping:cone:angle = 44.0
+                float inputs:shaping:cone:softness = 0.6
+                float inputs:shaping:focus = 2.0
+                double3 xformOp:translate = (-24.0, 49.5, 10.2)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def DiskLight "HighBay_A3_m08" (
+                prepend apiSchemas = ["ShapingAPI"]
+            )
+            {
+                float inputs:radius = 2.9
+                color3f inputs:color = (1.0000, 0.5800, 0.2700)
+                float inputs:intensity = 18850000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 1.0
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                float inputs:shaping:cone:angle = 44.0
+                float inputs:shaping:cone:softness = 0.6
+                float inputs:shaping:focus = 2.0
+                double3 xformOp:translate = (-8.0, 49.5, 10.2)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def DiskLight "HighBay_A3_p08" (
+                prepend apiSchemas = ["ShapingAPI"]
+            )
+            {
+                float inputs:radius = 2.9
+                color3f inputs:color = (1.0000, 0.5800, 0.2700)
+                float inputs:intensity = 11600000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 1.0
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                float inputs:shaping:cone:angle = 44.0
+                float inputs:shaping:cone:softness = 0.6
+                float inputs:shaping:focus = 2.0
+                double3 xformOp:translate = (8.0, 49.5, 10.2)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def DiskLight "HighBay_A3_p24" (
+                prepend apiSchemas = ["ShapingAPI"]
+            )
+            {
+                float inputs:radius = 2.9
+                color3f inputs:color = (1.0000, 0.5800, 0.2700)
+                float inputs:intensity = 13050000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 1.0
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                float inputs:shaping:cone:angle = 44.0
+                float inputs:shaping:cone:softness = 0.6
+                float inputs:shaping:focus = 2.0
+                double3 xformOp:translate = (24.0, 49.5, 10.2)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def DiskLight "HighBay_Loading" (
+                prepend apiSchemas = ["ShapingAPI"]
+            )
+            {
+                float inputs:radius = 2.9
+                color3f inputs:color = (1.0000, 0.4600, 0.1400)
+                float inputs:intensity = 5075000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 1.0
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                float inputs:shaping:cone:angle = 50.0
+                float inputs:shaping:cone:softness = 0.65
+                float inputs:shaping:focus = 2.0
+                double3 xformOp:translate = (-14.0, 24.0, 9.6)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def DiskLight "HighBay_North" (
+                prepend apiSchemas = ["ShapingAPI"]
+            )
+            {
+                float inputs:radius = 2.9
+                color3f inputs:color = (0.7400, 0.8600, 1.0000)
+                float inputs:intensity = 7250000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 1.0
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                float inputs:shaping:cone:angle = 44.0
+                float inputs:shaping:cone:softness = 0.6
+                float inputs:shaping:focus = 2.0
+                double3 xformOp:translate = (16.0, 66.0, 10.6)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+
+        # =====================================================================
+        # INTERIOR DAYLIGHT - the warehouse needs its own solution.
+        # =====================================================================
+        def Scope "InteriorDaylight"
+        {
+
+            def RectLight "RoofMonitor_Down"
+            {
+                float inputs:width = 62.0
+                float inputs:height = 15.0
+                color3f inputs:color = (0.2800, 0.5500, 1.1000)
+                float inputs:intensity = 30000000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 0.4
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                double3 xformOp:translate = (0.0, 45.5, 16.6)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def RectLight "EastDoor_Sky"
+            {
+                float inputs:width = 24.0
+                float inputs:height = 3.8
+                color3f inputs:color = (0.2800, 0.5500, 1.1000)
+                float inputs:intensity = 7000000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 0.6
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                double3 xformOp:translate = (37.5, 45.5, 1.9)
+                double3 xformOp:rotateXYZ = (82.0, 0.0, 90.0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+            }
+
+            def RectLight "WestDoor_Sky"
+            {
+                float inputs:width = 42.0
+                float inputs:height = 4.0
+                color3f inputs:color = (0.6200, 0.7800, 1.0000)
+                float inputs:intensity = 6000000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 0.6
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                double3 xformOp:translate = (-37.5, 36.5, 2.0)
+                double3 xformOp:rotateXYZ = (82.0, 0.0, 270.0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+            }
+
+            def RectLight "GateWash_South"
+            {
+                float inputs:width = 44.0
+                float inputs:height = 3.6
+                color3f inputs:color = (1.0000, 0.6200, 0.3000)
+                float inputs:intensity = 6525000.0
+                float inputs:exposure = 0
+                float inputs:diffuse = 1.0
+                float inputs:specular = 0.6
+                bool inputs:normalize = 1
+                custom bool visibleInPrimaryRay = 0
+                double3 xformOp:translate = (-17.6, 15.6, 1.9)
+                double3 xformOp:rotateXYZ = (83.0, 0.0, 0.0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+            }
+        }
+
+        # =====================================================================
+        # ROOF-BREAK SHAFTS - geometry, not lights
+        # =====================================================================
+        # The six breaks are real: they are the RoofDressing HoleN_void meshes in
+        # 20_architecture.usda. Revision 4 gave each of them TWO lights (a cold
+        # Sky_HN card and a collimated SunBar_HN sphere), which is twelve prims
+        # and, at 12.65e6 on an r 1.10 sphere, twelve of the level's hotter
+        # emitters. REVISION 9 DELETES ALL TWELVE. What the eye actually reads
+        # as a shaft is the beam itself, and the beam is these crossed emissive
+        # quads - so the geometry stays and the lights go.
+        #
+        # HONEST GEOMETRY NOTE, because it drives the shapes: the sun is at
+        # 7.30 deg. A beam entering a hole 10.6-12.4 m up descends 0.128 m per
+        # metre travelled, so it needs ~90 m to reach the slab and the building
+        # is 76 m long - NO roof shaft in this map lands on the floor. These rake
+        # east-north-east over the tops of the rack runs and out through the open
+        # east roller doors at 2-7 m above the slab, which is a diagonal bar
+        # across the upper half of INTERIOR_AISLE and is true for this hour
+        # rather than a noon shaft faked at dusk.
+        #
+        # Each beam is two crossed quads along the sun vector, widening 1.5x over
+        # its length and fading from ShaftCore to ShaftSoft at 55 percent because
+        # a real shaft loses its edge as it picks up dust. doNotCastShadows on
+        # every card: they are air and must not darken the slab under them.
+        # Emissive intensity is cut about 4x with everything else in this
+        # revision - these are mesh lights too.
+        def Scope "Volumetrics"
+        {
+            def Scope "Looks"
+            {
+                def Material "L_ShaftCore"
+                {
+                    token outputs:mdl:surface.connect = </World/Lighting/Volumetrics/Looks/L_ShaftCore/Shader.outputs:out>
+                    token outputs:surface.connect = </World/Lighting/Volumetrics/Looks/L_ShaftCore/Preview.outputs:surface>
+
+                    def Shader "Shader"
+                    {
+                        uniform token info:implementationSource = "sourceAsset"
+                        uniform asset info:mdl:sourceAsset = @OmniPBR.mdl@
+                        uniform token info:mdl:sourceAsset:subIdentifier = "OmniPBR"
+                        color3f inputs:diffuse_color_constant = (0.0000, 0.0000, 0.0000)
+                        float inputs:reflection_roughness_constant = 1.000
+                        float inputs:metallic_constant = 0.000
+                        float inputs:specular_level = 0.000
+                        bool inputs:enable_emission = 1
+                        color3f inputs:emissive_color = (1.0000, 0.7200, 0.4200)
+                        float inputs:emissive_intensity = 2200.00
+                        bool inputs:enable_opacity = 1
+                        float inputs:opacity_constant = 0.3400
+                        float inputs:opacity_threshold = 0.0
+                        token outputs:out
+                    }
+
+                    def Shader "Preview"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0.0000, 0.0000, 0.0000)
+                        float inputs:roughness = 1.000
+                        float inputs:metallic = 0
+                        float inputs:opacity = 0.3400
+                        color3f inputs:emissiveColor = (1.0000, 0.7200, 0.4200)
+                        token outputs:surface
+                    }
+                }
+
+                def Material "L_ShaftSoft"
+                {
+                    token outputs:mdl:surface.connect = </World/Lighting/Volumetrics/Looks/L_ShaftSoft/Shader.outputs:out>
+                    token outputs:surface.connect = </World/Lighting/Volumetrics/Looks/L_ShaftSoft/Preview.outputs:surface>
+
+                    def Shader "Shader"
+                    {
+                        uniform token info:implementationSource = "sourceAsset"
+                        uniform asset info:mdl:sourceAsset = @OmniPBR.mdl@
+                        uniform token info:mdl:sourceAsset:subIdentifier = "OmniPBR"
+                        color3f inputs:diffuse_color_constant = (0.0000, 0.0000, 0.0000)
+                        float inputs:reflection_roughness_constant = 1.000
+                        float inputs:metallic_constant = 0.000
+                        float inputs:specular_level = 0.000
+                        bool inputs:enable_emission = 1
+                        color3f inputs:emissive_color = (1.0000, 0.7800, 0.5400)
+                        float inputs:emissive_intensity = 1000.00
+                        bool inputs:enable_opacity = 1
+                        float inputs:opacity_constant = 0.2000
+                        float inputs:opacity_threshold = 0.0
+                        token outputs:out
+                    }
+
+                    def Shader "Preview"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (0.0000, 0.0000, 0.0000)
+                        float inputs:roughness = 1.000
+                        float inputs:metallic = 0
+                        float inputs:opacity = 0.2000
+                        color3f inputs:emissiveColor = (1.0000, 0.7800, 0.5400)
+                        token outputs:surface
+                    }
+                }
+            }
+
+            def Xform "RoofShafts"
+            {
+
+                def Mesh "Beam_H1_0A" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    bool primvars:doNotCastShadows = 1
+                    float3[] extent = [(13.1922, 28.1543, 9.0790), (36.4487, 38.2881, 12.1540)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </World/Lighting/Volumetrics/Looks/L_ShaftCore>
+                    point3f[] points = [(13.1922, 29.8457, 12.1540), (13.8078, 28.1543, 12.1540), (36.4487, 36.1315, 9.0790), (35.6638, 38.2881, 9.0790)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Beam_H1_0B" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    bool primvars:doNotCastShadows = 1
+                    float3[] extent = [(13.3925, 28.9609, 7.9408), (36.1932, 37.2597, 13.0467)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </World/Lighting/Volumetrics/Looks/L_ShaftCore>
+                    point3f[] points = [(13.6075, 29.0391, 13.0467), (13.3925, 28.9609, 11.2613), (35.9192, 37.1599, 7.9408), (36.1932, 37.2597, 10.2172)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Beam_H1_1A" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    bool primvars:doNotCastShadows = 1
+                    float3[] extent = [(35.6638, 36.1315, 6.5632), (54.9731, 45.1955, 9.0790)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </World/Lighting/Volumetrics/Looks/L_ShaftSoft>
+                    point3f[] points = [(35.6638, 38.2881, 9.0790), (36.4487, 36.1315, 9.0790), (54.9731, 42.6583, 6.5632), (54.0496, 45.1955, 6.5632)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Beam_H1_1B" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    bool primvars:doNotCastShadows = 1
+                    float3[] extent = [(35.9192, 37.1599, 5.2241), (54.6725, 43.9856, 10.2172)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </World/Lighting/Volumetrics/Looks/L_ShaftSoft>
+                    point3f[] points = [(36.1932, 37.2597, 10.2172), (35.9192, 37.1599, 7.9408), (54.3501, 43.8682, 5.2241), (54.6725, 43.9856, 7.9022)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Beam_H2_0A" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    bool primvars:doNotCastShadows = 1
+                    float3[] extent = [(-5.6736, 28.7482, 9.5766), (15.4545, 37.9219, 12.3720)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </World/Lighting/Volumetrics/Looks/L_ShaftCore>
+                    point3f[] points = [(-5.6736, 30.2518, 12.3720), (-5.1264, 28.7482, 12.3720), (15.4545, 36.0050, 9.5766), (14.7568, 37.9219, 9.5766)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Beam_H2_0B" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    bool primvars:doNotCastShadows = 1
+                    float3[] extent = [(-5.4955, 29.4652, 8.5648), (15.2275, 37.0078, 13.1655)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </World/Lighting/Volumetrics/Looks/L_ShaftCore>
+                    point3f[] points = [(-5.3045, 29.5348, 13.1655), (-5.4955, 29.4652, 11.5785), (14.9839, 36.9191, 8.5648), (15.2275, 37.0078, 10.5883)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Beam_H2_1A" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    bool primvars:doNotCastShadows = 1
+                    float3[] extent = [(14.7568, 36.0050, 7.2894), (32.2935, 44.1975, 9.5766)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </World/Lighting/Volumetrics/Looks/L_ShaftSoft>
+                    point3f[] points = [(14.7568, 37.9219, 9.5766), (15.4545, 36.0050, 9.5766), (32.2935, 41.9423, 7.2894), (31.4726, 44.1975, 7.2894)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Beam_H2_1B" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    bool primvars:doNotCastShadows = 1
+                    float3[] extent = [(14.9839, 36.9191, 6.0991), (32.0263, 43.1221, 10.5883)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </World/Lighting/Volumetrics/Looks/L_ShaftSoft>
+                    point3f[] points = [(15.2275, 37.0078, 10.5883), (14.9839, 36.9191, 8.5648), (31.7398, 43.0178, 6.0991), (32.0263, 43.1221, 8.4797)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Beam_H3_0A" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    bool primvars:doNotCastShadows = 1
+                    float3[] extent = [(25.3922, 17.3543, 8.5334), (41.4717, 24.8759, 10.6300)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </World/Lighting/Volumetrics/Looks/L_ShaftCore>
+                    point3f[] points = [(25.3922, 19.0457, 10.6300), (26.0078, 17.3543, 10.6300), (41.4717, 22.7193, 8.5334), (40.6868, 24.8759, 8.5334)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Beam_H3_0B" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    bool primvars:doNotCastShadows = 1
+                    float3[] extent = [(25.5925, 18.1609, 7.3952), (41.2163, 23.8475, 11.5227)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </World/Lighting/Volumetrics/Looks/L_ShaftCore>
+                    point3f[] points = [(25.8075, 18.2391, 11.5227), (25.5925, 18.1609, 9.7373), (40.9422, 23.7477, 7.3952), (41.2163, 23.8475, 9.6716)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Beam_H3_1A" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    bool primvars:doNotCastShadows = 1
+                    float3[] extent = [(40.6868, 22.7193, 6.8181), (54.1240, 29.6460, 8.5334)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </World/Lighting/Volumetrics/Looks/L_ShaftSoft>
+                    point3f[] points = [(40.6868, 24.8759, 8.5334), (41.4717, 22.7193, 8.5334), (54.1240, 27.1089, 6.8181), (53.2005, 29.6460, 6.8181)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Beam_H3_1B" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    bool primvars:doNotCastShadows = 1
+                    float3[] extent = [(40.9422, 23.7477, 5.4790), (53.8235, 28.4361, 9.6716)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </World/Lighting/Volumetrics/Looks/L_ShaftSoft>
+                    point3f[] points = [(41.2163, 23.8475, 9.6716), (40.9422, 23.7477, 7.3952), (53.5011, 28.3188, 5.4790), (53.8235, 28.4361, 8.1571)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Beam_H4_0A" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    bool primvars:doNotCastShadows = 1
+                    float3[] extent = [(33.7922, 28.0543, 10.4610), (47.8212, 34.8295, 12.2780)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </World/Lighting/Volumetrics/Looks/L_ShaftCore>
+                    point3f[] points = [(33.7922, 29.7457, 12.2780), (34.4078, 28.0543, 12.2780), (47.8212, 32.6729, 10.4610), (47.0362, 34.8295, 10.4610)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Beam_H4_0B" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    bool primvars:doNotCastShadows = 1
+                    float3[] extent = [(33.9925, 28.8609, 9.3228), (47.5657, 33.8011, 13.1707)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </World/Lighting/Volumetrics/Looks/L_ShaftCore>
+                    point3f[] points = [(34.2075, 28.9391, 13.1707), (33.9925, 28.8609, 11.3853), (47.2917, 33.7014, 9.3228), (47.5657, 33.8011, 11.5992)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Beam_H4_1A" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    bool primvars:doNotCastShadows = 1
+                    float3[] extent = [(47.0362, 32.6729, 8.9743), (58.7957, 38.9890, 10.4610)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </World/Lighting/Volumetrics/Looks/L_ShaftSoft>
+                    point3f[] points = [(47.0362, 34.8295, 10.4610), (47.8212, 32.6729, 10.4610), (58.7957, 36.4519, 8.9743), (57.8722, 38.9890, 8.9743)]
+                    uniform token subdivisionScheme = "none"
+                }
+
+                def Mesh "Beam_H4_1B" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    uniform bool doubleSided = 1
+                    bool primvars:doNotCastShadows = 1
+                    float3[] extent = [(47.2917, 33.7014, 7.6353), (58.4952, 37.7791, 11.5992)]
+                    int[] faceVertexCounts = [4]
+                    int[] faceVertexIndices = [0, 1, 2, 3]
+                    rel material:binding = </World/Lighting/Volumetrics/Looks/L_ShaftSoft>
+                    point3f[] points = [(47.5657, 33.8011, 11.5992), (47.2917, 33.7014, 9.3228), (58.1728, 37.6618, 7.6353), (58.4952, 37.7791, 10.3134)]
+                    uniform token subdivisionScheme = "none"
+                }
+            }
+        }
+    }
+
+    # Fixture-emission bindings. 60_lighting sublayers ABOVE both
+    # 20_architecture and 50_materials, so these overrides win without
+    # either file being edited. Only lenses 20_architecture already bound
+    # emissive are rebound - the dead units stay dead.
+    over "Architecture"
+    {
+        over "Warehouse"
+        {
+            over "Warehouse01"
+            {
+                over "SM_Lamp_A1" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Lighting/Looks/M_LampSodium>
+                }
+            }
+
+            over "Facade"
+            {
+                over "WallPack0_lens" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Lighting/Looks/M_LensSodium>
+                }
+
+                over "WallPack1_lens" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Lighting/Looks/M_LensSodium>
+                }
+
+                over "WallPack2_lens" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Lighting/Looks/M_LensMercury>
+                }
+
+                over "WallPack4_lens" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Lighting/Looks/M_LensSodium>
+                }
+
+                over "WallPack5_lens" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </World/Lighting/Looks/M_LensSodium>
+                }
+            }
+        }
+
+        over "DockCanopy"
+        {
+            over "Sodium0_lens" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </World/Lighting/Looks/M_LensSodium>
+            }
+
+            over "Sodium2_lens" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </World/Lighting/Looks/M_LensSodium>
+            }
+
+            over "Sodium3_lens" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </World/Lighting/Looks/M_LensSodium>
+            }
+
+            over "Sodium5_lens" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </World/Lighting/Looks/M_LensSodium>
+            }
+        }
+    }
+}

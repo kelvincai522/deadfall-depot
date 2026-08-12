@@ -1,0 +1,18 @@
+#usda 1.0
+(
+    doc = "Stage root. Owns /World and /Render scopes. Other modules `over` into these."
+    defaultPrim = "World"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "World"
+{
+    def Scope "Looks"
+    {
+    }
+}
+
+def Scope "Render"
+{
+}

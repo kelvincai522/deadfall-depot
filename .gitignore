@@ -1,0 +1,30 @@
+# --- Virtualenvs (18 GB) -------------------------------------------------
+.venv/
+tools/.venv/
+
+# --- Render outputs ------------------------------------------------------
+# ~1600 intermediate frames from five rounds of agent iteration (7.5 GB).
+# The five delivered shots are committed under renders/ instead.
+_shots/
+
+# --- Mirrored NVIDIA S3 content (13 GB) ----------------------------------
+# Assets and textures stream from S3 at render time; these are local caches.
+# _catalog/library.json IS committed -- it is the crawled index and is cheap.
+_catalog/_assetcache/
+_catalog/_texcache/
+
+# --- Agent scratch -------------------------------------------------------
+# Ad-hoc diagnostic and one-shot fix scripts written during review rounds.
+# The reusable generators (gen_*.py) and tools are committed.
+tools/_*.py
+tools/_*.usda
+_probe/
+usd/modules/*.bak*
+usd/modules/*.new*
+
+# --- Python --------------------------------------------------------------
+__pycache__/
+*.pyc
+
+# stray probe downloads from early asset inspection
+_catalog/*.usd

@@ -1,0 +1,19 @@
+#usda 1.0
+(
+    doc = "DEADFALL DEPOT - AAA Call-of-Duty-class level. Root layer: composition only, no prims. Each module is owned by one specialist; earlier sublayers are stronger."
+    defaultPrim = "World"
+    metersPerUnit = 1
+    upAxis = "Z"
+    subLayers = [
+        @./modules/90_cameras.usda@,
+        @./modules/80_fx.usda@,
+        @./modules/70_physics.usda@,
+        @./modules/60_lighting.usda@,
+        @./modules/50_materials.usda@,
+        @./modules/40_vegetation.usda@,
+        @./modules/30_props.usda@,
+        @./modules/20_architecture.usdc@,
+        @./modules/10_terrain.usdc@,
+        @./modules/00_stage.usda@
+    ]
+)
